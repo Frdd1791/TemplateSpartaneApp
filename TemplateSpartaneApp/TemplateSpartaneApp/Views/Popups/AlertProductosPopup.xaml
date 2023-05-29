@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="TemplateSpartaneApp.Views.Popups.AlertProductosPopup">
+    <StackLayout Margin="20">
+        <Frame BackgroundColor="white" 
+               VerticalOptions="CenterAndExpand"
+               CornerRadius="6">
+            <StackLayout>
+                <Image Source="close.png"
+                       HorizontalOptions="End"
+                       WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Aviso"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="25"
+                       HorizontalTextAlignment="Center"/>
+
+                <Label Text="Esta informacion unicamente es una guia, esta sujeta a cambios que pudiera hacer el laboratorio o por cambios de productos dependiendo el pais, por lo que te invitamos a validar la informacion antes de utlizarla."
+                       TextColor="Black"
+                       Margin="0,20"
+                       FontSize="15"/>
+
+                <Button Command="{Binding CloseCommand}"
+                        Margin="0,30,0,0"
+                        Text="Regresar"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="EndAndExpand"
+                        CornerRadius="5"
+                        TextTransform="None"
+                        FontSize="Large"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

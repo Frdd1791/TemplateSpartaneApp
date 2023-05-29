@@ -17,6 +17,7 @@ namespace TemplateSpartaneApp.Models.ProductosOrales
     }
     public partial class ProductosOrales : ModelBase
     {
+        public int Id { get; set; }
         public string ImageProduct { get; set; }
         public string NombreProducto { get; set; }
     }

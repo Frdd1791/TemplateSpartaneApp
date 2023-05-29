@@ -8,7 +8,11 @@
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,0">
             <StackLayout Orientation="Horizontal">
-                <Image Source="left_arrow.png" IsVisible="{Binding ButtonBack}"/>
+                <Image Source="left_arrow.png" IsVisible="{Binding IsVisibleBackButton}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="Calculo nutricional"
                        TextColor="Black"
                        FontSize="Large"
@@ -27,6 +31,9 @@
             <CarouselView ItemsSource="{Binding ItemsProductosOrales}"
                           Margin="0,15"
                           PeekAreaInsets="120">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>

@@ -5,7 +5,9 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TemplateSpartaneApp.Abstractions;
 using TemplateSpartaneApp.Models.ProductosOrales;
 
@@ -19,7 +21,7 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         #endregion
 
         #region Vars Commands
-        public DelegateCommand NextPageCommand { get; set; }
+        public DelegateCommand ButtonBackCommand { get; set; }
         public DelegateCommand<object> SelectProduct { get; private set; }
         #endregion
 
@@ -35,7 +37,15 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
 
         }
 
-
+        private string isVisibleBackButton;
+        public string IsVisibleBackButton
+        {
+            get { return isVisibleBackButton; }
+            set
+            {
+                SetProperty(ref isVisibleBackButton, value);
+            }
+        }
 
         #endregion
 
@@ -51,14 +61,18 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         #region Methods
         private void CreatedListProductos()
         {
+            IsVisibleBackButton = "True";
+            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
             ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>()
             {
-                new ProductosOrales{ ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
-                new ProductosOrales{ ImageProduct="logo.png", NombreProducto="Advance active" },
-                new ProductosOrales{ ImageProduct="logo.png", NombreProducto="Producto 3" },
-                new ProductosOrales{ ImageProduct="logo.png", NombreProducto="Producto 4" },
-                new ProductosOrales{ ImageProduct="logo.png", NombreProducto = "Producto 5" }
+                new ProductosOrales{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
+                new ProductosOrales{ Id=1, ImageProduct="logo.png", NombreProducto="Advance active" },
+                new ProductosOrales{ Id=2, ImageProduct="logo.png", NombreProducto="Producto 3" },
+                new ProductosOrales{ Id=3, ImageProduct="logo.png", NombreProducto="Producto 4" },
+                new ProductosOrales{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
             };
+            
+            LoadAlert();
         }
         #endregion
 
@@ -68,22 +82,34 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
             await NavigationService.NavigateAsync(new Uri("/Navigation/InitTwo", UriKind.Absolute));
         }
 
-        private void SelectProductCommandExecute(object item)
+        private async void SelectProductCommandExecute(object item)
         {
             if (item is ProductosOrales)
             {
                 ProductSelected = (ProductosOrales)item;
-                Debug.WriteLine(ProductSelected.NombreProducto);
+                Debug.WriteLine(ProductSelected.Id);
             }
+            await NavigationService.NavigateAsync(new Uri("/Navigation/ProductoOral", UriKind.Absolute));
+        }
+        private async void LoadAlert()
+        {
+            await Task.Delay(1000);
+            await NavigationService.NavigateAsync("AlertProducto");
+        }
+
+        private async void ButtonBackCommandExecuted()
+        {
+            Debug.WriteLine("press");
+            await NavigationService.NavigateAsync(new Uri("/Index/Navigation/ProductosNutricionales", UriKind.Absolute));
         }
         #endregion
 
         #region Methods Life Cycle Page
-        public class ListProductos
+        /*public class ListProductos
         {
             public string ImageProduct { get; set; }
             public string NombreProducto { get; set; }
-        }
+        }*/
         #endregion
     }
 }

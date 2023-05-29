@@ -101,6 +101,7 @@ namespace TemplateSpartaneApp
 
             containerRegistry.RegisterForNavigation<ProductosNutricionalesPage, ProductosNutricionalesPageViewModel>("ProductosNutricionales");
             containerRegistry.RegisterForNavigation<ProductosOralesPage, ProductosOralesPageViewModel>("ProductosOrales");
+            containerRegistry.RegisterForNavigation<ProductoOralSeleccionadoPage, ProductoOralSeleccionadoPageVideModel>("ProductoOral");
             #endregion
 
             #region Popups
@@ -108,6 +109,7 @@ namespace TemplateSpartaneApp
             containerRegistry.RegisterForNavigation<PacientesPopup, PacientesPopupViewModel>("InfoListPacientes");
             containerRegistry.RegisterForNavigation<AgregarSuplementoPopup, AgregarSuplementoPopupViewModel>("AgregarSuplemento");
             containerRegistry.RegisterForNavigation<AgregarProductoPopup, AgregarProductoPopupViewModel>("AgregarProducto");
+            containerRegistry.RegisterForNavigation<AlertProductosPopup, AlertProductoPopupViewModel>("AlertProducto");
             #endregion
 
             #region Instances
