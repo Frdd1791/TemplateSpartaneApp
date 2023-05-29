@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductosNutricionalesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,20,20,0">
+                <StackLayout>
+                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}"/>
+                    <Label Text="Productos Nutricionales"
+                           TextColor="Black"
+                           FontSize="25"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Start"/>
+                </StackLayout>
+
+                <Label Text="Selecciona una categiria"
+                       TextColor="Black"
+                       FontSize="Large"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Start"/>
+
+                <StackLayout Margin="10,50" Spacing="30">
+                    <Frame BackgroundColor="#D9D9D9"
+                           CornerRadius="5"
+                           HeightRequest="80">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ProductosOralesCommand}"
+                                                  NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                        <Label Text="Oral - Alimentos"
+                               TextColor="Black"
+                               FontSize="Large"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="End"/>
+                    </Frame>
+                    <Frame BackgroundColor="#D9D9D9"
+                           CornerRadius="5"
+                           HeightRequest="80">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding}"
+                                                  NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                        <Label Text="Enteral - Suplementos"
+                               TextColor="Black"
+                               FontSize="Large"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="End"/>
+                    </Frame>
+                    <Frame BackgroundColor="#D9D9D9"
+                           CornerRadius="5"
+                           HeightRequest="80">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding}"
+                                                  NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                        <Label Text="Parenteral"
+                               TextColor="Black"
+                               FontSize="Large"
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="End"/>
+                    </Frame>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

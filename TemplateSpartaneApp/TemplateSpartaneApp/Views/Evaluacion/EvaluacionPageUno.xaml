@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.Evaluacion.EvaluacionPageUno"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,20,20,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}"/>
+                    <Label Text="Evaluacion"
+                           TextColor="Black"
+                           FontSize="Large"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <Label Text="{Binding TxtIndicadorPaso}"
+                       TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <StackLayout Margin="0,5"
+                             IsVisible="{Binding ProgressBarOpt }">
+                    <Label Text="Paso 1 de 4"/>
+                    <ProgressBar Progress="0.2"
+                                 ProgressColor="#47B561"/>
+                </StackLayout>
+            </StackLayout>
+            <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5"/>
+
+            <ContentView IsVisible="{Binding IsActiveEvoUno}">
+                <StackLayout Margin="20">
+                    <ScrollView>
+                        <StackLayout>
+                            <Label Text="Nombre del paciente" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <Grid ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="40"/>
+                                </Grid.ColumnDefinitions>
+                                <controls:EntryControl HeightRequest="40"
+                                                       Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       BorderColor="Gray"
+                                                       Placeholder=""
+                                                       Text="{Binding Password}"
+                                                       Keyboard="Text"
+                                                       CornerRadius="0"
+                                                       HorizontalOptions="FillAndExpand"/>
+
+                                <Frame Grid.Row="0" Grid.Column="1" Padding="0" BackgroundColor="#E6E9F0">
+                                    <Image Source="calendar.png" Margin="10">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TabGestureListCommand}"
+                                                                  NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Frame>
+                            </Grid>
+
+                            <Label Text="Edad" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                            <Label Text="Sexo" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <Button Command="{Binding ActionGeneroCommand}" Text="{Binding TextGenero}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                            <Label Text="Talla" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="mts" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                            <Label Text="Peso actual" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                            <Label Text="Peso usual (hace 3 meses)" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                            <Label Text="Peso ideal" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                            <Label Text="Creatinina" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="mg/dl" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                            <Button Command="{Binding NextEvoUnoCommand}" Text="Siguiente"
+                                    BackgroundColor="#165BE2"
+                                    TextColor="White"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="EndAndExpand"
+                                    CornerRadius="50"
+                                    Margin="0,40,0,0"
+                                    TextTransform="None"
+                                    FontSize="Large"/>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView IsVisible="{Binding IsActiveEvoDos}">
+                <StackLayout>
+                    <StackLayout Margin="20">
+                        <Label Text="Fractura, paciente cronico, complicaciones agudas, cirrosism EPOC, hermodialisis, diabetes, cancer"
+                               TextColor="Black" FontSize="Large"/>
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton Content="Si" GroupName="evo_qs_uno" HorizontalOptions="CenterAndExpand"/>
+                            <RadioButton Content="No" GroupName="evo_qs_uno" HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,20"/>
+
+                        <Label Text="Cirugia mayor abdominal, EVC, Neumonia severa, tumores hematologicos"
+                               TextColor="Black" FontSize="Large"/>
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton Content="Si" GroupName="evo_qs_dos" HorizontalOptions="CenterAndExpand"/>
+                            <RadioButton Content="No" GroupName="evo_qs_dos" HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,20"/>
+
+                        <Label Text="Trauma craneoencefalico, paciente critico, transplante medular, quemado"
+                               TextColor="Black" FontSize="Large"/>
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton Content="Si" GroupName="evo_qs_tres" HorizontalOptions="CenterAndExpand"/>
+                            <RadioButton Content="No" GroupName="evo_qs_tres" HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,20"/>
+
+                        <!--<Label Text="{Binding TextPeso}"
+                        TextColor="Black" FontSize="Large"/>
+                        <Button Command="{Binding NextPageCommand}" Text="No ha perdido peso"
+                        BackgroundColor="white"
+                        TextColor="Black"
+                        HorizontalOptions="Fill"
+                        CornerRadius="50"
+                        TextTransform="None"
+                        FontSize="Large"
+                        BorderColor="Gray"
+                        BorderWidth="1"
+                        ImageSource="down_arrow.png"
+                        ContentLayout="Right,0"/>-->
+
+                        <!--<Frame BackgroundColor="Aquamarine"
+                        Padding="10"
+                        HorizontalOptions="EndAndExpand"
+                        CornerRadius="40"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        Margin="0,15">
+                        <Label Text="65+"
+                        TextColor="Gray"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NextEvoMas65Command}"
+                        NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                        </Label>
+                        </Frame>-->
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="EndAndExpand">
+                        <StackLayout BackgroundColor="Gray">
+                            <StackLayout Margin="20,20">
+                                <Label Text="Resultado IMC = 18.5"
+                                       TextColor="Black"
+                                       FontSize="Large"
+                                       VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+                            <Button Command="{Binding NextEvoDosCommand}" Text="Siguiente"
+                                    BackgroundColor="#165BE2"
+                                    TextColor="White"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    Margin="20,30"
+                                    TextTransform="None"
+                                    FontSize="Large"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView IsVisible="{Binding IsActiveEvoTres}">
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout Margin="20">
+                            <Label Text="¿Ha perdido apetito, Ha comido menos por falta de apetito, problemas digestivos, dificultad de masticacion, deglucion en los ultimos 3 meses?"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionAlimentacionCommand}" Text="{Binding TextAlimentacionMas65}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                            <Label Text="Perdida de peso en los ultimos 3 meses"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionPesoCommand}" Text="{Binding TextPesoMas65}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                            <Label Text="Movilidad"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionMovilidadCommand}" Text="{Binding TextMovilidadMas65}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                            <Label Text="¿Ha tenido enfermedad aguda o situacion de estres psicologico en los ultimos 3 meses?"
+                                   TextColor="Black" FontSize="Large"/>
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton Content="Si" GroupName="evo_mas65" HorizontalOptions="CenterAndExpand"/>
+                                <RadioButton Content="No" GroupName="evo_mas65" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,10"/>
+
+                            <Label Text="Problemas neutopsicologicos"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionProblemasCommand}" Text="{Binding TextProblemasMas65}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                            <Label Text="Indice de masa corporal"
+                                   TextColor="Black" FontSize="Large"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding MasaCorporal}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        </StackLayout>
+                        <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="Gray">
+                            <BoxView BackgroundColor="#1F9017" HeightRequest="0.5" Margin="0,0,0,10"/>
+                            <StackLayout Margin="20,10">
+                                <Label Text="Resultado IMC = 18.5"
+                                       TextColor="Black"
+                                       FontSize="Large"/>
+                            </StackLayout>
+                            <Frame>
+                                <Button Command="{Binding NextEvoCuatroCommand}" Text="Siguiente"
+                                        BackgroundColor="#165BE2"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="EndAndExpand"
+                                        CornerRadius="50"
+                                        TextTransform="None"
+                                        FontSize="Large"/>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+
+            <ContentView IsVisible="{Binding IsActiveEvoCuatro}">
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout Margin="20">
+                            <Label Text="Perdida de peso"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionPesoCNCommand}" Text="{Binding TextPesoCNC}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"
+                                    Margin="0,0,0,15"/>
+
+                            <Label Text="¿Ha comido nada o casi nada?"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionAlimentacionCNCommand}" Text="{Binding TextAlimentacionCNC}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"
+                                    Margin="0,0,0,15"/>
+
+                            <Label Text="¿Tiene niveles bajos de potasio, fosforo y Magnesio?"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionNivelesCNCommand}" Text="{Binding TextNivelesCNC}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"
+                                    Margin="0,0,0,15"/>
+
+
+                            <Label Text="¿Tiene historia de abuso de alcohol, uso de insulina, diureticos, quimioterapia o drogas?"
+                                   TextColor="Black" FontSize="Large"/>
+                            <Button Command="{Binding ActionHistoriaCNCommand}" Text="{Binding TextHistoriaCNC}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                        </StackLayout>
+                        <StackLayout VerticalOptions="EndAndExpand" Margin="0,20">
+                            <StackLayout BackgroundColor="Gray">
+                                <StackLayout Margin="20,20">
+                                    <Label Text="Resultado IMC = 18.5"
+                                           TextColor="Black"
+                                           FontSize="Large"
+                                           VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout>
+                                <Button Command="{Binding NexFinalProcessCommand}" Text="Siguiente"
+                                        BackgroundColor="#165BE2"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        CornerRadius="50"
+                                        Margin="20,30"
+                                        TextTransform="None"
+                                        FontSize="Large"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+
+            <ContentView IsVisible="{Binding IsActiveEvoResultado}">
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout Margin="20,10,0,10">
+                            <Label Text="Nombre del paciente"
+                                   TextColor="Black"
+                                   FontSize="Large"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5"/>
+                        <StackLayout Margin="20,0">
+                            <Label Text="Juan Hernandez Arteaga"
+                                   TextColor="Black"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <StackLayout Orientation="Horizontal" Margin="0,10">
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label Text="Resultados IMC"
+                                           FontSize="Large"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="18.5"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           FontSize="25"
+                                           HorizontalTextAlignment="Center"/>
+                                    <BoxView BackgroundColor="#10BA52" HeightRequest="0.5"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label Text="Perdida de peso:"
+                                           FontSize="Large"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="20%"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           FontSize="25"
+                                           HorizontalTextAlignment="Center"/>
+                                    <BoxView BackgroundColor="#10BA52" HeightRequest="0.5"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Margin="0,0,0,8">
+                                <Label Text="Indice de riesgo nutricional"
+                                       TextColor="Black"
+                                       FontSize="Large"/>
+
+                                <StackLayout Orientation="Horizontal" Margin="10,0">
+                                    <Frame BackgroundColor="#E15762"
+                                           WidthRequest="20"
+                                           CornerRadius="4">
+                                        <Label Text="4"
+                                               FontSize="30"
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalTextAlignment="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="#F2F1F1"
+                                           HorizontalOptions="EndAndExpand"
+                                           Padding="8"
+                                           CornerRadius="4"
+                                           HasShadow="False">
+                                        <StackLayout HorizontalOptions="Fill">
+                                            <Label Text="Desnutricion o en riesgo de desnutricion."
+                                                   FontSize="17"
+                                                   TextColor="#E15762"/>
+                                            <Label Text="Se sugiere un plan nutricional"
+                                                   FontSize="16"
+                                                   TextColor="Black"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Margin="0,0,0,8">
+                                <Label Text="Valoracion nutricional minima"
+                                       TextColor="Black"
+                                       FontSize="Large"/>
+
+                                <StackLayout Orientation="Horizontal" Margin="10,0">
+                                    <Frame BackgroundColor="#E15762"
+                                           WidthRequest="20"
+                                           CornerRadius="4">
+                                        <Label Text="6"
+                                               FontSize="30"
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalTextAlignment="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="#F2F1F1"
+                                           HorizontalOptions="EndAndExpand"
+                                           Padding="8"
+                                           CornerRadius="4"
+                                           HasShadow="False">
+                                        <StackLayout HorizontalOptions="Fill">
+                                            <Label Text="Desnutricion o en riesgo de desnutricion."
+                                                   FontSize="17"
+                                                   TextColor="#E15762"/>
+                                            <Label Text="Se sugiere un plan nutricional"
+                                                   FontSize="16"
+                                                   TextColor="Black"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout>
+                                <Label Text="Valoracion nutricional minima"
+                                       TextColor="Black"
+                                       FontSize="Large"/>
+
+                                <StackLayout Orientation="Horizontal" Margin="10,0">
+                                    <Frame BackgroundColor="#E15762"
+                                           WidthRequest="20"
+                                           CornerRadius="4">
+                                        <Label Text="3"
+                                               FontSize="30"
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalTextAlignment="Center"/>
+                                    </Frame>
+                                    <Frame BackgroundColor="#F2F1F1"
+                                           HorizontalOptions="EndAndExpand"
+                                           Padding="8"
+                                           CornerRadius="4"
+                                           HasShadow="False">
+                                        <StackLayout HorizontalOptions="Fill">
+                                            <Label Text="Riesgo de alimentacion"
+                                                   FontSize="17"
+                                                   TextColor="#E15762"/>
+                                            <Label Text="Se recomienda iniciar la alimentacion con menos de 10kcal/kg y aumentar progresivamente"
+                                                   FontSize="14"
+                                                   TextColor="Black"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout BackgroundColor="#F2F2F2"
+                                     Margin="0,20">
+                            <StackLayout Margin="20">
+                                <Button Command="{Binding NexFinalProcessCommand}" Text="Guardar resultados"
+                                        BackgroundColor="{Binding colorHexButtonSave}"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        CornerRadius="50"
+                                        TextTransform="None"
+                                        FontSize="Large"
+                                        IsEnabled="{Binding ButtonSaveData}"/>
+                                <Button Command="{Binding NexFinalProcessCommand}" Text="Descargar resultados"
+                                        BackgroundColor="#47B561"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        CornerRadius="50"
+                                        TextTransform="None"
+                                        FontSize="Large"/>
+                                <Button Command="{Binding NexFinalProcessCommand}" Text="Finalizar"
+                                        BackgroundColor="#323A50"
+                                        TextColor="White"
+                                        HorizontalOptions="Fill"
+                                        CornerRadius="50"
+                                        TextTransform="None"
+                                        FontSize="Large"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

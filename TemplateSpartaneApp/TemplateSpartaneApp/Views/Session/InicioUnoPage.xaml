@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.Session.InicioUnoPage">
+    <ContentPage.Content>
+        <StackLayout Margin="26">
+            <StackLayout HorizontalOptions="Fill">
+
+                <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Saltar" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+                    <Image Source="arrow_rg.png" WidthRequest="25"/>
+                </StackLayout>
+
+                <Image Source="logo.png" />
+                <Label Text="Bienvenido a la app&#x0a;Nutrición Clínica Total" FontSize="38" TextColor="Black" HorizontalTextAlignment="Center"/>
+
+                <StackLayout HorizontalOptions="Center" Margin="10,10,10,20">
+                    <Image Source="image_center_uno.png" WidthRequest="250"/>
+                </StackLayout>
+
+                <Label Text="Aqui pondremos una breve&#x0a;explicacion de la bienvenida" TextColor="Black" FontSize="Title" HorizontalTextAlignment="Center"/>
+
+                <StackLayout
+                    Margin="0,30"
+                    HorizontalOptions="Center"
+                    Orientation=" Horizontal">
+                    <Frame BackgroundColor="#327820" CornerRadius="50" WidthRequest="5" HeightRequest="5" Padding="5" Margin="7,0">
+
+                    </Frame>
+                    <Frame BackgroundColor="#9aba8c" CornerRadius="50" WidthRequest="5" HeightRequest="5" Padding="5" Margin="7,0">
+
+                    </Frame>
+                    <Frame BackgroundColor="#9aba8c" CornerRadius="50" WidthRequest="5" HeightRequest="5" Padding="5" Margin="7,0">
+
+                    </Frame>
+                </StackLayout>
+
+                <Button Command="{Binding NextPageCommand}" Text="Siguiente" BackgroundColor="#47B561" TextColor="White" HorizontalOptions="Fill" CornerRadius="50" TextTransform="None" FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

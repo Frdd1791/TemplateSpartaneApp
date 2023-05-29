@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.RegistroPago.PagoApple">
+    <ContentPage.Content>
+        <StackLayout Margin="26">
+            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Label Text="Saltar X" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout Spacing="20"  HorizontalOptions="Fill">
+                <Label Text="Último paso" TextColor="Black" FontSize="30" HorizontalTextAlignment="Start"/>
+                <Label Text="Sólo falta tu compra..." FontSize="30" TextColor="Black" HorizontalTextAlignment="Start"/>
+
+                <RadioButton Content="Plan Premium mensual $99.00" />
+                <RadioButton Content="Plan Premium anual $999.00 Ahorra $198" />
+
+                <Button Command="{Binding PagarCommand}" Text="pagar" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

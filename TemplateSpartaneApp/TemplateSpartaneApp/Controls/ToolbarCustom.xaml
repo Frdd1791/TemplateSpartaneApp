@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Controls.ToolbarCustom">
+    <ContentView.Content>
+        <Frame HasShadow="False" CornerRadius="0" Padding="15" HeightRequest="25">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand">
+                <Frame BackgroundColor="#F2F2F2" Padding="3" Margin="0" HasShadow="False" CornerRadius="5">
+                    <Image Source="menu.png" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowMenuCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+
+                <Image Source="usuario.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnNotificationsCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

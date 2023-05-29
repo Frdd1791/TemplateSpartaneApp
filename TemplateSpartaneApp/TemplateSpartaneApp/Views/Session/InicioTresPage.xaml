@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.Session.InicioTresPage"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Margin="26">
+            <StackLayout Spacing="20"  HorizontalOptions="Fill">
+
+                <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Saltar" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+                    <Image Source="arrow_rg.png" WidthRequest="25"/>
+                </StackLayout>
+
+                <Image Source="logo.png" />
+
+                <Label Text="Comparar Planes" TextColor="Black" FontSize="Title" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+
+                <StackLayout Margin="15,0">
+                    <Frame BackgroundColor="#EFF3F9" Margin="0,0,0,20" HasShadow="False" CornerRadius="7">
+                        <StackLayout>
+                            <Label Text="FREE" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title" Margin="0,0,0,10"/>
+
+                            <StackLayout Orientation="Horizontal" Margin="5">
+                                <Image Source="check.png" WidthRequest="20"/>
+                                <Label Text="Evaluación" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                            <Button Text="Try now" BackgroundColor="#47B561" TextColor="White" HorizontalOptions="Fill" CornerRadius="50" TextTransform="None" FontSize="Large"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="#EFF3F9" HasShadow="False" CornerRadius="7">
+                        <StackLayout>
+                            <Label Text="Premium" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title" Margin="0,0,0,10"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="check.png" WidthRequest="20"/>
+                                <Label Text="Evaluación" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="check.png" WidthRequest="20"/>
+                                <Label Text="Cálculo nutricional" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="check.png" WidthRequest="20"/>
+                                <Label Text="Seguimiento de pacientes" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,5">
+                                <Image Source="check.png" WidthRequest="20"/>
+                                <Label Text="Productos" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
+                            </StackLayout>
+                            <Button Text="Try now" BackgroundColor="#47B561" TextColor="White" HorizontalOptions="Fill" CornerRadius="50" TextTransform="None" FontSize="Large"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

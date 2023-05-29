@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.Pacientes.DataPaciente"
+             BackgroundColor="#F0F6FB">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,50,20,20">
+                <Image Source="left_arrow.png" HorizontalOptions="Start"/>
+                <Label Text="Nombre el paciente:" TextColor="Black" FontSize="Large"/>
+                <Label Text="Melissa Anthonella Marcillo Veloz" TextColor="Black" FontSize="22"/>
+            </StackLayout>
+            <StackLayout>
+                <Frame Padding="0">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame Padding="15" HorizontalOptions="FillAndExpand" HasShadow="False" BackgroundColor="{Binding BackColorEv}">
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Evaluaciones"
+                                       TextColor="{Binding ColorTextEv}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding EvaluacionCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Padding="15" HorizontalOptions="FillAndExpand" HasShadow="False" BackgroundColor="{Binding BackColorCal}">
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Calculo nutricional"
+                                       TextColor="{Binding ColorTextCal}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding CalculoCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <ContentView IsVisible="{Binding ContentEvaluacion}">
+                <StackLayout>
+                    <Button Command="{Binding NextPageCommand}" Text="Ultimos 7 dias"
+                            BackgroundColor="white"
+                            TextColor="Black"
+                            HorizontalOptions="Fill"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            FontSize="Large"
+                            Margin="20"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            ImageSource="down_arrow.png"
+                            ContentLayout="Right,0"/>
+
+                    <StackLayout>
+                        <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DeepSkyBlue" BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}">
+                            <ListView.ItemTemplate >
+                                <DataTemplate >
+                                    <ViewCell>
+                                        <Frame HasShadow="True" BackgroundColor="white">
+                                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                                <Image Source="{Binding Icon}"/>
+                                                <Label Text="{Binding Fecha}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                                                <Image Source="{Binding IconLeft}" HorizontalOptions="EndAndExpand"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <Button Command="{Binding NewEvaluacionCommandExecuted}" Text="Nueva evaluacion"
+                            BackgroundColor="#165BE2"
+                            TextColor="White"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            Margin="20"
+                            FontSize="Large"/>
+                </StackLayout>
+
+            </ContentView>
+
+            <ContentView IsVisible="{Binding ContentCalculo}">
+                <StackLayout>
+                    <Button Command="{Binding NextPageCommand}" Text="Ultimos 7 dias"
+                            BackgroundColor="white"
+                            TextColor="Black"
+                            HorizontalOptions="Fill"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            FontSize="Large"
+                            Margin="20"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            ImageSource="down_arrow.png"
+                            ContentLayout="Right,0"/>
+
+                    <StackLayout>
+                        <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DeepSkyBlue" BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}">
+                            <ListView.ItemTemplate >
+                                <DataTemplate >
+                                    <ViewCell>
+                                        <Frame HasShadow="True" BackgroundColor="white">
+                                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                                <Image Source="{Binding Icon}"/>
+                                                <Label Text="{Binding Fecha}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                                                <Image Source="{Binding IconLeft}" HorizontalOptions="EndAndExpand"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <Button Command="{Binding NewCalculoCommand}" Text="Nuevo calculo"
+                            BackgroundColor="#165BE2"
+                            TextColor="White"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            Margin="20"
+                            FontSize="Large"/>
+                </StackLayout>
+
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

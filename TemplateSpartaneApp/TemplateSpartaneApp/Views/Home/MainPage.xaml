@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.Home.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout>
+            <controls:ToolbarCustom/>
+            <StackLayout Margin="15">
+                <Image Source="portada.png"/>
+            </StackLayout>
+
+            <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="White" ItemsSource="{Binding ItemsListDash}" Margin="15,30">
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell IsEnabled="{Binding isEnabled}">
+                            <Frame HasShadow="True" BackgroundColor="#F2F2F2" Margin="5" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <StackLayout VerticalOptions="Center">
+                                        <Frame Padding="5" CornerRadius="8" BackgroundColor="#1F9017">
+                                            <Image Source="{Binding Icon}"/>
+                                        </Frame>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
+                                        <Label Text="{Binding Detail}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

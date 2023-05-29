@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.RegistroPago.RegistroPage"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls">
+    <ContentPage.Content>
+        <StackLayout Margin="26">
+            <StackLayout  Margin="0,50" Spacing="20"  HorizontalOptions="Fill">
+                <Label Text="Registro" TextColor="Black" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                <Label Text="Ingresa tu información" FontSize="Large"/>
+
+                <Label Text="Nombre" TextColor="Black" FontSize="Header"/>
+                <controls:EntryControl Keyboard="Text" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <Label Text="E-mail" TextColor="Black" FontSize="Medium"/>
+                <controls:EntryControl Keyboard="Email" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <Label Text="Contraseña" TextColor="Black" FontSize="Medium"/>
+                <controls:EntryControl BorderColor="Gray" Text="{Binding Password}" IsPassword="true" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <Label Text="Repetir contraseña" TextColor="Black" FontSize="Medium"/>
+                <controls:EntryControl BorderColor="Gray" Text="{Binding Password}" IsPassword="true" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <StackLayout
+                    Margin="0,0,0,50"
+                    HorizontalOptions="StartAndExpand"
+                    Orientation=" Horizontal">
+                    <CheckBox />
+                    <Label
+                        Text="Acepto los términos y condiciones"
+                        TextColor="Black"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"/>
+                </StackLayout>
+
+                <Button Command="{Binding NextPageCommand}" Text="siguiente" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
+                <Label Text="Tengo una cuenta" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Title"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

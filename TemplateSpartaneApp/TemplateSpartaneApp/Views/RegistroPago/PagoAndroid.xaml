@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.RegistroPago.PagoAndroid"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls">
+    <ContentPage.Content>
+        <StackLayout Margin="26">
+            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Label Text="Saltar X" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout Spacing="20"  HorizontalOptions="Fill">
+                <Label Text="Último paso" TextColor="Black" FontSize="30" HorizontalTextAlignment="Start"/>
+                <Label Text="Sólo falta tu compra..." FontSize="30" TextColor="Black" HorizontalTextAlignment="Start"/>
+
+                <RadioButton Content="Plan Premium mensual $99.00" />
+                <RadioButton Content="Plan Premium anual $999.00 Ahorra $198" />
+
+                <Label Text="Nombre" TextColor="Black" FontSize="Header"/>
+                <controls:EntryControl Keyboard="Text" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <Label Text="Numero de Tarjeta" TextColor="Black" FontSize="Medium"/>
+                <controls:EntryControl Keyboard="Numeric" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition  Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout HorizontalOptions="Fill" Grid.Row="0" Grid.Column="0">
+                        <Label Text="MM/YY" TextColor="Black" FontSize="Medium"/>
+                        <controls:EntryControl Keyboard="Numeric" BorderColor="Gray" Text="{Binding Password}" HorizontalOptions="Fill" CornerRadius="3"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="Fill" Grid.Row="0" Grid.Column="1">
+                        <Label Text="CVV" TextColor="Black" FontSize="Medium"/>
+                        <controls:EntryControl Keyboard="Numeric" BorderColor="Gray" Text="{Binding Password}" HorizontalOptions="Fill" CornerRadius="3"/>
+                    </StackLayout>
+                </Grid>
+
+                <Button Command="{Binding PagarCommand}" Text="pagar" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

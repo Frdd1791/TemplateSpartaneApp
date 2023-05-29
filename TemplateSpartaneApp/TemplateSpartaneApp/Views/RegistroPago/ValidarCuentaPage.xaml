@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.ViewModels.RegistroPago.ValidarCuentaPage"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls">
+    <ContentPage.Content>
+        <StackLayout Margin="26">
+            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
+                <Label Text="Saltar" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+                <Image Source="arrow_rg.png" WidthRequest="25"/>
+            </StackLayout>
+
+            <StackLayout  Margin="0,50" Spacing="20"  HorizontalOptions="Fill">
+
+                <Label Text="Validar tu cuenta" TextColor="Black" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                <Label Text="Hemos enviado un código de seguridad a tu e-mail" FontSize="25"/>
+
+                <Label Text="Ingresa tu código" TextColor="Black" FontSize="Large" Margin="0,20"/>
+                <controls:EntryControl Keyboard="Numeric" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+
+                <Label Text="¿No llego tu código a tu e-mail?" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"/>
+                <Label Text="Reenviar" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Large"/>
+
+                <Button Command="{Binding NextPageCommand}" Text="siguiente" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

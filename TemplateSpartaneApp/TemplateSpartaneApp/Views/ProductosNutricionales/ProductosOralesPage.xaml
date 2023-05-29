@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductosOralesPage"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Name="ProductosOrales">
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,0">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="left_arrow.png" IsVisible="{Binding ButtonBack}"/>
+                <Label Text="Calculo nutricional"
+                       TextColor="Black"
+                       FontSize="Large"
+                       VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="search.png"
+                       WidthRequest="30"/>
+                <controls:EntryControl HeightRequest="40" BorderColor="Transparent" BorderWidth="0" BackgroundColor="#C2C2C2" Placeholder="Search" HorizontalTextAlignment="Start" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" CornerRadius="4"/>
+                <Frame BackgroundColor="#C2C2C2"
+                       CornerRadius="4">
+
+                </Frame>
+            </StackLayout>
+
+            <CarouselView ItemsSource="{Binding ItemsProductosOrales}"
+                          Margin="0,15"
+                          PeekAreaInsets="120">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame BackgroundColor="#F3F3F3"
+                                   Margin="10"
+                                   CornerRadius="6"
+                                   HeightRequest="60">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectProduct, Source={x:Reference ProductosOrales}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Image Source="{Binding ImageProduct}" WidthRequest="50"/>
+                            </Frame>
+                            <StackLayout>
+                                <Label Text="{Binding NombreProducto}"
+                                       TextColor="Blue"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                            </StackLayout>
+
+                            <StackLayout Margin="0,30">
+                                <Label Text="{Binding NombreProducto}"
+                                       TextColor="Blue"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!--<Grid ColumnSpacing="0"
+            Margin="10,15">
+            <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Suplementos"
+            FontSize="Large"
+            Grid.Row="0"
+            Grid.Column="0"
+            TextColor="Black"
+            HorizontalOptions="Start"
+            VerticalTextAlignment="Center"/>
+            <Label Text="Ensure"
+            Grid.Row="0"
+            Grid.Column="1"
+            TextColor="Blue"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"/>
+            <Label Text="Advance active"
+            Grid.Row="0"
+            Grid.Column="2"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+            <Label Text="Porcion ml"
+            Grid.Row="1"
+            Grid.Column="0"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            HorizontalOptions="Start"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="1"
+            Grid.Column="1"
+            TextColor="Blue"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="1"
+            Grid.Column="2"
+            TextColor="Black"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+            <Label Text="Kcal"
+            Grid.Row="2"
+            Grid.Column="0"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            HorizontalOptions="Start"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="2"
+            Grid.Column="1"
+            TextColor="Blue"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="2"
+            Grid.Column="2"
+            TextColor="Black"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+            <Label Text="Proteinas (gr)"
+            Grid.Row="3"
+            Grid.Column="0"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            HorizontalOptions="Start"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="3"
+            Grid.Column="1"
+            TextColor="Blue"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="3"
+            Grid.Column="2"
+            TextColor="Black"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+            <Label Text="Carbohidratos (gr)"
+            Grid.Row="4"
+            Grid.Column="0"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            HorizontalOptions="Start"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="4"
+            Grid.Column="1"
+            TextColor="Blue"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="4"
+            Grid.Column="2"
+            TextColor="Black"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+            <Label Text="Grasas (gr)"
+            Grid.Row="5"
+            Grid.Column="0"
+            TextColor="Black"
+            FontAttributes="Bold"
+            FontSize="16"
+            HorizontalOptions="Start"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="5"
+            Grid.Column="1"
+            TextColor="Blue"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"/>
+            <Label Text="237"
+            Grid.Row="5"
+            Grid.Column="2"
+            TextColor="Black"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+            </Grid>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

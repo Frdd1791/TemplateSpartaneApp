@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="TemplateSpartaneApp.Views.Evaluacion.EvaluacionPageDos">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,50,20,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="left_arrow.png" HorizontalOptions="Start"/>
+                    <Label Text="Evaluacion"
+                           TextColor="Black"
+                           FontSize="Large"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <Label Text="Indice de riesgo nutricional"
+                       TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <StackLayout Margin="0,5">
+                    <Label Text="Paso 1 de 4"/>
+                    <ProgressBar Progress="0.2"
+                                 ProgressColor="#47B561"/>
+                </StackLayout>
+            </StackLayout>
+            <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5"/>
+
+            <StackLayout Margin="20">
+                <Label Text="Fractura, paciente cronico, complicaciones agudas, cirrosism EPOC, hermodialisis, diabetes, cancer"
+                       TextColor="Black" FontSize="Large"/>
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton Content="Si" GroupName="evo_uno" HorizontalOptions="CenterAndExpand"/>
+                    <RadioButton Content="No" GroupName="evo_uno" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,10"/>
+
+                <Label Text="Cirugia mayor abdominal, EVC, Neumonia severa, tumores hematologicos"
+                       TextColor="Black" FontSize="Large"/>
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton Content="Si" GroupName="evo_dos" HorizontalOptions="CenterAndExpand"/>
+                    <RadioButton Content="No" GroupName="evo_dos" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,10"/>
+
+                <Label Text="Trauma craneoencefalico, paciente critico, transplante medular, quemado"
+                       TextColor="Black" FontSize="Large"/>
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton Content="Si" GroupName="evo_dos" HorizontalOptions="CenterAndExpand"/>
+                    <RadioButton Content="No" GroupName="evo_dos" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,10"/>
+
+                <Label Text="{Binding TextPeso}"
+                       TextColor="Black" FontSize="Large"/>
+                <Button Command="{Binding NextPageCommand}" Text="No ha perdido peso"
+                        BackgroundColor="white"
+                        TextColor="Black"
+                        HorizontalOptions="Fill"
+                        CornerRadius="50"
+                        TextTransform="None"
+                        FontSize="Large"
+                        BorderColor="Gray"
+                        BorderWidth="1"
+                        ImageSource="down_arrow.png"
+                        ContentLayout="Right,0"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="Gray">
+                <BoxView BackgroundColor="#1F9017" HeightRequest="0.5" Margin="0,0,0,10"/>
+                <StackLayout Margin="20,10">
+                    <Label Text="Resultado IMC = 18.5"
+                           TextColor="Black"
+                           FontSize="Large"/>
+                </StackLayout>
+                <Frame>
+                    <Button Command="{Binding NewCalculoCommand}" Text="Siguiente"
+                            BackgroundColor="#165BE2"
+                            TextColor="White"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            FontSize="Large"/>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
+                 x:Class="TemplateSpartaneApp.Views.Popups.AgregarProductoPopup">
+    <StackLayout>
+        <Frame BackgroundColor="white" VerticalOptions="EndAndExpand">
+            <StackLayout>
+                <StackLayout  Orientation="Horizontal">
+                    <Label Text="Agregar producto"
+                           TextColor="Black"
+                           FontSize="23"
+                           FontAttributes="Bold"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="Cerrar"
+                           TextColor="#1875FB"
+                           HorizontalOptions="EndAndExpand"
+                           VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CloseCommand}"
+                                                  NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <ScrollView>
+                    <StackLayout>
+                        <Label Text="Nombre del producto"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Ml porcion"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="ml" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Kcal por porcion"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="kcal" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Proteinas por porcion"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="gr" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Carbohidratos por porcion"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="gr" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Grasas por porcion"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="gr" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Cantidad que se quiere aportar"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Horas de infusion"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="hrs" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Button Command="{Binding NextCommand}" Text="Agregar"
+                                BackgroundColor="white"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                TextColor="Black"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="EndAndExpand"
+                                CornerRadius="50"
+                                Margin="0,40,0,0"
+                                TextTransform="None"
+                                FontAttributes="Bold"
+                                FontSize="Large"/>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

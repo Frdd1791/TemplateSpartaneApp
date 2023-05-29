@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.Pacientes.ListaPacientesPage"
+             BackgroundColor="#F0F6FB">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,50,20,20">
+                <Frame HorizontalOptions="Start" Padding="8" CornerRadius="7" BackgroundColor="#D6D6D6">
+                    <Label Text="back" FontSize="Large" FontAttributes="Bold"/>
+                </Frame>
+                <Label Text="Mis pacientes" TextColor="Black" FontSize="30"/>
+            </StackLayout>
+            <BoxView BackgroundColor="Blue" HeightRequest="2"/>
+            <StackLayout Margin="10,0">
+                <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}" Margin="10,30">
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <ViewCell>
+                                <Frame HasShadow="True" BackgroundColor="white" Margin="5" CornerRadius="10">
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <Image Source="{Binding Icon}" WidthRequest="30"/>
+                                        <Label Text="{Binding Name}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                                        <Frame Padding="6" HorizontalOptions="EndAndExpand" CornerRadius="10">
+                                            <Image Source="arrow.png" WidthRequest="15"/>
+                                        </Frame>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

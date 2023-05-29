@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    x:Class="TemplateSpartaneApp.Views.Home.MasterPage">
+    <MasterDetailPage.Master>
+        <ContentPage
+            Title="Menú"
+            BackgroundColor="#F6F6F8">
+            <StackLayout Margin="20,50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F6F6F8">
+                <Image Source="mask_group.png" HorizontalOptions="CenterAndExpand" WidthRequest="150" />
+                <StackLayout Margin="0,20">
+                    <Label Text="Hola, Code." TextColor="Black" FontSize="25" FontAttributes="Bold"/>
+                    <Frame Margin="0,20" BackgroundColor="AliceBlue" Padding="7" HasShadow="True">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Image Source="crown.png" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" WidthRequest="30"/>
+                            <Label Text="Mi plan premium" TextColor="Black" FontAttributes="Bold" FontSize="Large" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <ListView HasUnevenRows="false" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="#F6F6F8"   ItemsSource="{Binding ItemsMenu}" SelectedItem="{Binding SelectItem}">
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="{ Binding Icon }" VerticalOptions="Center" />
+                                    <Label Text="{ Binding MenuTitle }" TextColor="Black" LineBreakMode="WordWrap" VerticalOptions="Center" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="Large"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button Text="Cerrar Sesion" TextColor="White" BackgroundColor="#47B561" Command="{Binding CloseSessionCommand}" CornerRadius="50" TextTransform="None"/>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

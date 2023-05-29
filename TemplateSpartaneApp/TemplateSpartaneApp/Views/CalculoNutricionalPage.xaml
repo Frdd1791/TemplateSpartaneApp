@@ -1,0 +1,1191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.CalculoNutricionalPage"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,20,20,0" IsVisible="False">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}"/>
+                    <Label Text="Calculo nutricional"
+                           TextColor="Black"
+                           FontSize="Large"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" IsVisible="False"/>
+            <StackLayout Margin="20,20,20,0" IsVisible="False">
+                <Label Text="{Binding TxtIndicadorPaso}"
+                       TextColor="Black"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <StackLayout Margin="0,5"
+                             IsVisible="{Binding ProgressBarOpt }">
+                    <Label Text="Paso 1 de 4"/>
+                    <ProgressBar Progress="0.2"
+                                 ProgressColor="#47B561"/>
+                </StackLayout>
+            </StackLayout>
+
+            <ContentView IsVisible="False">
+                <ScrollView>
+                    <StackLayout Margin="20">
+                        <Label Text="Nombre del paciente" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                        <Grid ColumnSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <controls:EntryControl HeightRequest="40"
+                                                   Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   BorderColor="Gray"
+                                                   Placeholder=""
+                                                   Text="{Binding Password}"
+                                                   Keyboard="Text"
+                                                   CornerRadius="0"
+                                                   HorizontalOptions="FillAndExpand"/>
+
+                            <Frame Grid.Row="0" Grid.Column="1" Padding="0" BackgroundColor="#E6E9F0">
+                                <Image Source="calendar.png" Margin="10">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TabGestureListCommand}"
+                                                              NumberOfTapsRequired="1"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                        </Grid>
+
+                        <Label Text="Indica el peso para el calculo" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Guia de aporte" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,10,0,0"/>
+                        <Frame CornerRadius="4"
+                               BorderColor="#10BA52"
+                               Padding="8">
+                            <StackLayout>
+                                <Label Text="Kcalorias"
+                                       FontAttributes="Bold"
+                                       FontSize="18"
+                                       TextColor="Black"/>
+                                <Label Text="Selecciona una medida:"
+                                       TextColor="Black"
+                                       FontSize="16"/>
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal"
+                                                                SelectedIndex="{Binding SelectedIndexCalorias, Mode=TwoWay}">
+                                        <input:RadioButton Text="Kcal/Kg" CircleColor="Gray"/>
+                                        <input:RadioButton Text="Kcal totales" Margin="20,0,0,0" CircleColor="Gray"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+
+                                <Label Text="Ingresa la cantidad"
+                                       TextColor="Black"
+                                       FontSize="16"/>
+                                <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kcal/Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="4"
+                               BorderColor="#10BA52"
+                               Padding="8"
+                               Margin="0,10,0,10">
+                            <StackLayout>
+                                <Label Text="Proteinas"
+                                       FontAttributes="Bold"
+                                       FontSize="18"
+                                       TextColor="Black"/>
+                                <Label Text="Selecciona una medida:"
+                                       TextColor="Black"
+                                       FontSize="16"/>
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <input:RadioButtonGroupView Orientation="Horizontal"
+                                                                SelectedIndex="{Binding SelectedIndexProteinas, Mode=TwoWay}">
+                                        <input:RadioButton Text="gr/Kg" CircleColor="Gray"/>
+                                        <input:RadioButton Text="Totales" Margin="20,0,0,0" CircleColor="Gray"/>
+                                        <input:RadioButton Text="Porcentaje(%)" Margin="20,0,0,0" CircleColor="Gray"/>
+                                    </input:RadioButtonGroupView>
+                                </StackLayout>
+
+                                <Label Text="Ingresa la cantidad"
+                                       TextColor="Black"
+                                       FontSize="16"/>
+                                <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="gr/Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <Label Text="Carbohidratos (porcentaje)"
+                               TextColor="Black"
+                               FontSize="16"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="%" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Grasa (porcentaje)"
+                               TextColor="Black"
+                               FontSize="16"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="%" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Button Command="{Binding NexFinalProcessCommand}" Text="Siguiente"
+                                BackgroundColor="#165BE2"
+                                TextColor="White"
+                                HorizontalOptions="Fill"
+                                CornerRadius="50"
+                                TextTransform="None"
+                                FontSize="Large"
+                                Margin="0,20"/>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+
+            <ContentView IsVisible="False">
+                <ScrollView>
+                    <StackLayout Margin="20">
+                        <Label Text="Selecciona una o mas rutas de nutricion que requieras"
+                               TextColor="Black"/>
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="0,20">
+                            <Frame BackgroundColor="{Binding HexColorFrameAlimentos}"
+                                   HorizontalOptions="CenterAndExpand"
+                                   CornerRadius="6"
+                                   Padding="10">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GestureFrameOraAlimentosCommand}" />
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Image Source="{Binding ImageSourceAlimentos}"/>
+                                    <Label Text="Oral Alimentos"
+                                           HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="{Binding HexColorFrameEnterales}"
+                                   HorizontalOptions="CenterAndExpand"
+                                   CornerRadius="6"
+                                   Padding="10">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GestureFrameEnteralesCommand}" />
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Image Source="{Binding ImageSourceEnteral}"/>
+                                    <Label Text="Enterales"
+                                           HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="{Binding HexColorFrameParenterales}"
+                                   HorizontalOptions="CenterAndExpand"
+                                   CornerRadius="6"
+                                   Padding="10">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GestureFrameParenteralesCommand}" />
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Image Source="{Binding ImageSourceParenteral}"/>
+                                    <Label Text="Parenterales"
+                                           HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <Button Command="{Binding NextStepCommand}"
+                                Text="Siguiente"
+                                BackgroundColor="{Binding HexColorButton}"
+                                TextColor="White"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="EndAndExpand"
+                                CornerRadius="50"
+                                TextTransform="None"
+                                FontSize="Large"
+                                IsEnabled="{Binding EnabledButton}"/>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+
+            <StackLayout Margin="20,0" IsVisible="False">
+                <Label TextColor="Black"
+                       FontFamily="DM Sans"
+                       FontSize="Large">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Rutas seleccionadas: "/>
+                            <Span Text="{Binding Rutas_selected}"
+                                  FontAttributes="Bold"
+                                  FontSize="Large"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition  Width="*" />
+                        <ColumnDefinition  Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout BackgroundColor="#ECECEC"
+                                 Orientation="Horizontal"
+                                 Padding="9"
+                                 Grid.Row="0"
+                                 Grid.Column="0">
+                        <Image Source="verified_active.png"
+                               WidthRequest="12"/>
+                        <Label Text="Oral alimentos"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black"
+                               FontSize="14"/>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="#ECECEC"
+                                 Orientation="Horizontal"
+                                 Padding="9"
+                                 Grid.Row="0"
+                                 Grid.Column="1">
+                        <Image Source="verified_active.png"
+                               WidthRequest="12"/>
+                        <Label Text="Enterales"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black"
+                               FontSize="15"/>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="#ECECEC"
+                                 Orientation="Horizontal"
+                                 Padding="9"
+                                 Grid.Row="0"
+                                 Grid.Column="2">
+                        <Image Source="verified_active.png"
+                               WidthRequest="12"/>
+                        <Label Text="Parenterales"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black"
+                               FontSize="15"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <ContentView IsVisible="False">
+                <ScrollView>
+                    <StackLayout Margin="20,0">
+                        <Label Text="Equivalentes alimento"
+                               FontSize="21"
+                               FontAttributes="Bold"
+                               TextColor="Black"/>
+
+                        <Label Text="Verdura"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Fruta"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Carbohidratos"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Carbohidratos con grasa"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Leguminosas"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Proteinas A"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Proteinas D"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Leche descremada"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Leche entera"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Leche con azucar"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Grasa"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Grasa con prot"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Azucares sin grasa"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Azucares con grasa"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Label Text="Alcohol"
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+
+                        <Button Command="{Binding NextStepCommand}"
+                                Text="Siguiente"
+                                BackgroundColor="#165BE2"
+                                TextColor="White"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="EndAndExpand"
+                                CornerRadius="50"
+                                TextTransform="None"
+                                Margin="0,30"
+                                FontSize="Large"/>
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+
+            <ContentView IsVisible="False">
+                <StackLayout Margin="20,0">
+                    <Label Text="Suplementos"
+                           FontSize="21"
+                           FontAttributes="Bold"
+                           TextColor="Black"/>
+                    <BoxView BackgroundColor="#D9D9D9" HeightRequest="0.5"/>
+
+                    <Button Command="{Binding AgregarSuplementoCommand}"
+                            Text="Agregar suplemento"
+                            BackgroundColor="#FFFFFF"
+                            TextColor="Black"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            Margin="0,30"
+                            FontSize="Large"/>
+
+                    <Button Command="{Binding NextStepCommand}"
+                            Text="Agregar suplemento"
+                            BackgroundColor="#165BE2"
+                            TextColor="White"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            Margin="0,30"
+                            FontSize="Large"/>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView IsVisible="False">
+                <StackLayout Margin="20,0">
+                    <Label Text="Productos"
+                           FontSize="21"
+                           FontAttributes="Bold"
+                           TextColor="Black"/>
+                    <BoxView BackgroundColor="#D9D9D9" HeightRequest="0.5"/>
+
+                    <Button Command="{Binding AgregarProductoCommand}"
+                            Text="Agregar producto"
+                            BackgroundColor="#FFFFFF"
+                            TextColor="Black"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            Margin="0,30"
+                            FontSize="Large"/>
+
+                    <Button Command="{Binding NextStepCommand}"
+                            Text="Agregar suplemento"
+                            BackgroundColor="#165BE2"
+                            TextColor="White"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="50"
+                            TextTransform="None"
+                            Margin="0,30"
+                            FontSize="Large"/>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView>
+                <StackLayout Margin="20">
+                    <Label Text="Resultados del calculo nutricional"
+                           TextColor="Black"
+                           FontSize="30"/>
+                    <BoxView BackgroundColor="#7C7C7C" HeightRequest="0.5"/>
+                    <ScrollView>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition  Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="0">
+                                    <Label Text="Kcal totales"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="1">
+                                    <Label Text="Kcal/Kg"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           FontSize="15"/>
+                                </StackLayout>
+                                <StackLayout Grid.Row="1"
+                                             Grid.Column="0"
+                                             Padding="8">
+                                    <Label Text="0.0"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="19"/>
+                                    <BoxView BackgroundColor="#7C7C7C" HeightRequest="0.5"/>
+                                </StackLayout>
+                                <StackLayout Grid.Row="1"
+                                             Grid.Column="1"
+                                             Padding="8">
+                                    <Label Text="0.0"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="19"/>
+                                    <BoxView BackgroundColor="#7C7C7C" HeightRequest="0.5"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="0">
+                                    <Label Text="Porcentaje Enteral"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="1">
+                                    <Label Text="Porcentaje Parenteral"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           FontSize="15"/>
+                                </StackLayout>
+                                <StackLayout Grid.Row="3"
+                                             Grid.Column="0"
+                                             Padding="8">
+                                    <Label Text="0 %"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="19"/>
+                                    <BoxView BackgroundColor="#7C7C7C" HeightRequest="0.5"/>
+                                </StackLayout>
+                                <StackLayout Grid.Row="3"
+                                             Grid.Column="1"
+                                             Padding="8">
+                                    <Label Text="0 %"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="19"/>
+                                    <BoxView BackgroundColor="#7C7C7C" HeightRequest="0.5"/>
+                                </StackLayout>
+                            </Grid>
+
+                            <Label Text="Proteinas"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="25"/>
+
+                            <Grid RowSpacing="0" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition  Width="*" />
+                                    <ColumnDefinition  Width="70" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="0">
+                                    <Label Text="Total gramos"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="2">
+                                    <Label Text="gr."
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="0">
+                                    <Label Text="Total Kcal"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="2">
+                                    <Label Text="Kcal."
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="0">
+                                    <Label Text="Total nitrogeno"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="2">
+                                    <Label Text="N"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="0">
+                                    <Label Text="gr/Kilo prot"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="2">
+                                    <Label Text="g/Kg"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="4"
+                                             Grid.Column="0">
+                                    <Label Text="Tasa de oxidacion Parenteral (gr/kg/hr)"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="4"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="4"
+                                             Grid.Column="2">
+                                    <Label Text="%"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="5"
+                                             Grid.Column="0">
+                                    <Label Text="Porcentaje proteinas"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="5"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="5"
+                                             Grid.Column="2">
+                                    <Label Text="%"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                            </Grid>
+
+                            <Label Text="Carbohidratos"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="25"/>
+
+                            <Grid RowSpacing="0" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition  Width="*" />
+                                    <ColumnDefinition  Width="70" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="0">
+                                    <Label Text="Total gramos"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="2">
+                                    <Label Text="gr."
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="0">
+                                    <Label Text="Total Kcal"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="2">
+                                    <Label Text="Kcal."
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="0">
+                                    <Label Text="Oxidacion de glc mg/kg/min"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="2">
+                                    <Label Text="mg/Kg/min"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="0">
+                                    <Label Text="Porcentaje"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="2">
+                                    <Label Text="%"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                            </Grid>
+
+                            <Label Text="Grasa"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="25"/>
+
+                            <Grid RowSpacing="0" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180" />
+                                    <ColumnDefinition  Width="*" />
+                                    <ColumnDefinition  Width="70" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="0">
+                                    <Label Text="Total gramos"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="0"
+                                             Grid.Column="2">
+                                    <Label Text="gr."
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="0">
+                                    <Label Text="Total Kcal"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="1"
+                                             Grid.Column="2">
+                                    <Label Text="Kcal."
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="0">
+                                    <Label Text="Tasa de oxidacion en 24horas (gr/Kg)"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="2"
+                                             Grid.Column="2">
+                                    <Label Text="GR/KG"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="0">
+                                    <Label Text="Porcentaje"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="1">
+                                    <Label Text="0.0"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                                <StackLayout BackgroundColor="#ECECEC"
+                                             Orientation="Horizontal"
+                                             Padding="9"
+                                             Grid.Row="3"
+                                             Grid.Column="2">
+                                    <Label Text="%"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="14"/>
+                                </StackLayout>
+                            </Grid>
+
+                            <Button Command="{Binding NextStepCommand}"
+                                    Text="RE CALCULAR"
+                                    BackgroundColor="#FFFFFF"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="EndAndExpand"
+                                    CornerRadius="5"
+                                    BorderColor="Black"
+                                    BorderWidth="1"
+                                    TextTransform="None"
+                                    Margin="0,40,0,0"
+                                    FontSize="Large"/>
+
+                            <Button Command="{Binding NextStepCommand}"
+                                    Text="GUARDAR RESULTADOS"
+                                    BackgroundColor="#F8BC23"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="EndAndExpand"
+                                    CornerRadius="5"
+                                    BorderColor="Black"
+                                    BorderWidth="1"
+                                    TextTransform="None"
+                                    FontSize="Large"/>
+
+                            <Button Command="{Binding NextStepCommand}"
+                                    Text="DESCARGAR RESULTADOS"
+                                    BackgroundColor="#FFFFFF"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="EndAndExpand"
+                                    CornerRadius="5"
+                                    BorderColor="Black"
+                                    BorderWidth="1"
+                                    TextTransform="None"
+                                    FontSize="Large"/>
+
+                            <Button Command="{Binding NextStepCommand}"
+                                    Text="FINALIZAR"
+                                    BackgroundColor="Black"
+                                    TextColor="White"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="EndAndExpand"
+                                    CornerRadius="5"
+                                    BorderColor="Black"
+                                    BorderWidth="1"
+                                    TextTransform="None"
+                                    FontSize="Large"/>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
