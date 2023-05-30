@@ -26,6 +26,9 @@ namespace TemplateSpartaneApp.ViewModels.Home
         public DelegateCommand AddItemCommand { get; set; }
         public DelegateCommand OnSelectItemCommand { get; set; }
         public DelegateCommand PacientesCommand { get; set; }
+        public DelegateCommand ProductosCommand { get; set; }
+        public DelegateCommand EvaluacionCommand { get; set; }
+        public DelegateCommand CalculoNutricionalCommand { get; set; }
         #endregion
 
         #region Properties
@@ -114,6 +117,9 @@ namespace TemplateSpartaneApp.ViewModels.Home
             AddItemCommand = new DelegateCommand(AddItemCommandExecute);
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
             PacientesCommand = new DelegateCommand(PacientesCommandExecuted);
+            ProductosCommand = new DelegateCommand(ProductosCommandExecuted);
+            EvaluacionCommand = new DelegateCommand(EvaluacionCommandExecuted);
+            CalculoNutricionalCommand = new DelegateCommand(CalculoNutricionalCommandExecuted);
 
             Items = new ObservableCollectionExt<ProgressReportModel>();
 
@@ -224,8 +230,22 @@ namespace TemplateSpartaneApp.ViewModels.Home
 
         private async void PacientesCommandExecuted()
         {
-            Debug.WriteLine("test");
             await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/ListaPacientes", UriKind.Absolute));
+        }
+
+        private async void ProductosCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/ProductosNutricionales", UriKind.Absolute));
+        }
+
+        private async void EvaluacionCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/EvaluacionUno", UriKind.Absolute));
+        }
+
+        private async void CalculoNutricionalCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/CalculoNutricional", UriKind.Absolute));
         }
         #endregion
 

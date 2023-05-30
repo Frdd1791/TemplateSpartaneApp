@@ -5,7 +5,7 @@
              BackgroundColor="#F0F6FB">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Margin="20,50,20,20">
+            <StackLayout Margin="20,20,20,20">
                 <Image Source="left_arrow.png"
                        HorizontalOptions="Start">
                     <Image.GestureRecognizers>
@@ -13,7 +13,7 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Nombre el paciente:" TextColor="Black" FontSize="Large"/>
-                <Label Text="Melissa Anthonella Marcillo Veloz" TextColor="Black" FontSize="22"/>
+                <Label Text="{Binding NombrePaciente}" TextColor="Black" FontSize="22"/>
             </StackLayout>
             <StackLayout>
                 <Frame Padding="0">
@@ -51,7 +51,7 @@
             </StackLayout>
             <ContentView IsVisible="{Binding ContentEvaluacion}">
                 <StackLayout>
-                    <Button Command="{Binding NextPageCommand}" Text="Ultimos 7 dias"
+                    <Button Command="{Binding ActionSelectDiasEvCommand}" Text="{Binding TextSelectDiasEv}"
                             BackgroundColor="white"
                             TextColor="Black"
                             HorizontalOptions="Fill"
@@ -71,9 +71,9 @@
                                     <ViewCell>
                                         <Frame HasShadow="True" BackgroundColor="white">
                                             <StackLayout Orientation="Horizontal" Spacing="20">
-                                                <Image Source="{Binding Icon}"/>
+                                                <Image Source="calendar.png"/>
                                                 <Label Text="{Binding Fecha}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
-                                                <Image Source="{Binding IconLeft}" HorizontalOptions="EndAndExpand"/>
+                                                <Image Source="right_arrow.png" HorizontalOptions="EndAndExpand"/>
                                             </StackLayout>
                                         </Frame>
                                     </ViewCell>
@@ -97,7 +97,7 @@
 
             <ContentView IsVisible="{Binding ContentCalculo}">
                 <StackLayout>
-                    <Button Command="{Binding NextPageCommand}" Text="Ultimos 7 dias"
+                    <Button Command="{Binding ActionSelectDiasCalCommand}" Text="{Binding TextSelectDiasCal}"
                             BackgroundColor="white"
                             TextColor="Black"
                             HorizontalOptions="Fill"
@@ -111,15 +111,15 @@
                             ContentLayout="Right,0"/>
 
                     <StackLayout>
-                        <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DeepSkyBlue" BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}">
+                        <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DeepSkyBlue" BackgroundColor="Transparent" ItemsSource="{Binding ItemsListCalculos}">
                             <ListView.ItemTemplate >
                                 <DataTemplate >
                                     <ViewCell>
                                         <Frame HasShadow="True" BackgroundColor="white">
                                             <StackLayout Orientation="Horizontal" Spacing="20">
-                                                <Image Source="{Binding Icon}"/>
+                                                <Image Source="calendar.png"/>
                                                 <Label Text="{Binding Fecha}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
-                                                <Image Source="{Binding IconLeft}" HorizontalOptions="EndAndExpand"/>
+                                                <Image Source="right_arrow.png" HorizontalOptions="EndAndExpand"/>
                                             </StackLayout>
                                         </Frame>
                                     </ViewCell>

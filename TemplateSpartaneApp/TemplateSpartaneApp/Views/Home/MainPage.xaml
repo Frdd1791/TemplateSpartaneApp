@@ -40,6 +40,9 @@
                            BackgroundColor="#F2F2F2"
                            Margin="15,10"
                            CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EvaluacionCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" Spacing="20">
                             <StackLayout VerticalOptions="Center">
                                 <Frame Padding="5"
@@ -60,6 +63,9 @@
                            BackgroundColor="#F2F2F2"
                            Margin="15,10"
                            CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CalculoNutricionalCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" Spacing="20">
                             <StackLayout VerticalOptions="Center">
                                 <Frame Padding="5"
@@ -80,6 +86,9 @@
                            BackgroundColor="#F2F2F2"
                            Margin="15,10"
                            CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ProductosCommand}"/>
+                        </Frame.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" Spacing="20">
                             <StackLayout VerticalOptions="Center">
                                 <Frame Padding="5"

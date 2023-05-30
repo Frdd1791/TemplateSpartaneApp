@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.Models.Pacientes;
 using TemplateSpartaneApp.ViewModels.RegistroPago;
 using Xamarin.Forms;
 using static TemplateSpartaneApp.ViewModels.Home.MainPageViewModel;
@@ -25,8 +26,8 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Properties
-        private ObservableCollectionExt<ListPacientes> itemsList;
-        public ObservableCollectionExt<ListPacientes> ItemsList
+        private ObservableCollectionExt<PacientesModel> itemsList;
+        public ObservableCollectionExt<PacientesModel> ItemsList
         {
             get { return itemsList; }
             set
@@ -35,8 +36,8 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             }
         }
 
-        public ListPacientes selectItemPaciente;
-        public ListPacientes SelectItemPaciente
+        public PacientesModel selectItemPaciente;
+        public PacientesModel SelectItemPaciente
         {
             get { return selectItemPaciente; }
             set
@@ -61,28 +62,28 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #region Methods
         private void CreatedListPacientes()
         {
-            ItemsList = new ObservableCollectionExt<ListPacientes>()
+            ItemsList = new ObservableCollectionExt<PacientesModel>()
             {
-                new ListPacientes{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new ListPacientes{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new ListPacientes{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
+                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
+                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
             };
         }
         #endregion
@@ -93,14 +94,17 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             await NavigationService.NavigateAsync(new Uri("/Navigation/Home", UriKind.Absolute));
         }
 
-        private void OnSelectItemCommandExecuted()
+        private async void OnSelectItemCommandExecuted()
         {
             try
             {
                 if (SelectItemPaciente != null)
                 {
-                    Debug.WriteLine(SelectItemPaciente.Name);
-                    NavigationService.NavigateAsync(new Uri($"/Index/Navigation/DataPaciente", UriKind.Absolute));
+                    var navigationParams = new NavigationParameters
+                    {
+                        {"Paciente", SelectItemPaciente}
+                    };
+                    await NavigationService.NavigateAsync("DataPaciente", navigationParams);
                 }
             }
             catch (Exception ex)
@@ -111,11 +115,6 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Methods Life Cycle Page
-        public class ListPacientes
-        {
-            public string Name { get; set; }
-            public ImageSource Icon { get; set; }
-        }
         #endregion
     }
 }

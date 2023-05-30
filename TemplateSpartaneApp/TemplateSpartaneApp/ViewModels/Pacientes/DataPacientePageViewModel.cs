@@ -4,8 +4,12 @@ using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.Models.CalculosNutricionales;
+using TemplateSpartaneApp.Models.Evaluaciones;
+using TemplateSpartaneApp.Models.Pacientes;
 using TemplateSpartaneApp.ViewModels.Session;
 using Xamarin.Forms;
 using static TemplateSpartaneApp.ViewModels.Pacientes.PacientesPageViewModel;
@@ -24,16 +28,29 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         public DelegateCommand EvaluacionCommand { get; set; }
         public DelegateCommand CalculoCommand { get; set; }
         public DelegateCommand ButtonBackCommand { get; set; }
+        public DelegateCommand ActionSelectDiasEvCommand { get; set; }
+        public DelegateCommand ActionSelectDiasCalCommand { get; set; }
         #endregion
 
         #region Properties
-        private ObservableCollectionExt<ListEvaluaciones> itemsList;
-        public ObservableCollectionExt<ListEvaluaciones> ItemsList
+        private ObservableCollectionExt<EvaluacionesModel> itemsList;
+        public ObservableCollectionExt<EvaluacionesModel> ItemsList
         {
             get { return itemsList; }
             set
             {
                 SetProperty(ref itemsList, value);
+            }
+
+        }
+
+        private ObservableCollectionExt<CalculosNModel> itemsListCalculos;
+        public ObservableCollectionExt<CalculosNModel> ItemsListCalculos
+        {
+            get { return itemsListCalculos; }
+            set
+            {
+                SetProperty(ref itemsListCalculos, value);
             }
 
         }
@@ -98,6 +115,36 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             }
         }
 
+        private string nombrePaciente;
+        public string NombrePaciente
+        {
+            get { return nombrePaciente; }
+            set
+            {
+                SetProperty(ref nombrePaciente, value);
+            }
+        }
+
+        private string textSelectDiasEv;
+        public string TextSelectDiasEv
+        {
+            get { return textSelectDiasEv; }
+            set
+            {
+                SetProperty(ref textSelectDiasEv, value);
+            }
+        }
+
+        private string textSelectDiasCal;
+        public string TextSelectDiasCal
+        {
+            get { return textSelectDiasCal; }
+            set
+            {
+                SetProperty(ref textSelectDiasCal, value);
+            }
+        }
+
         #endregion
 
         #region Contructor
@@ -110,7 +157,11 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             CalculoCommand = new DelegateCommand(CalculoCommandExecuted);
             ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
 
+            ActionSelectDiasEvCommand = new DelegateCommand(ActionSheetDiasSelectedEvCommandExecuted);
+            ActionSelectDiasCalCommand = new DelegateCommand(ActionSheetDiasSelectedCalCommandExecuted);
+
             CreatedListaEvaluaciones();
+            CreatedListaCalculos();
             ContentEvaluacion = true;
             ContentCalculo = false;
             ColorTextEv = "#2B43A0";
@@ -118,6 +169,9 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
             BackColorEv = "#EFF4FF";
             BackColorCal = "White";
+
+            TextSelectDiasEv = "Ultimos 7 dias";
+            TextSelectDiasCal = "Ultimos 7 dias";
         }
         #endregion
 
@@ -129,11 +183,20 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
         private void CreatedListaEvaluaciones()
         {
-            ItemsList = new ObservableCollectionExt<ListEvaluaciones>()
+            ItemsList = new ObservableCollectionExt<EvaluacionesModel>()
             {
-                new ListEvaluaciones{ Fecha="10 Febrero 2023", Icon="calendar.png", IconLeft="right_arrow.png" },
-                new ListEvaluaciones{ Fecha="20 Marzo 2023", Icon="calendar.png", IconLeft="right_arrow.png" },
-                new ListEvaluaciones{ Fecha="15 Mayo 2023", Icon="calendar.png", IconLeft="right_arrow.png" }
+                new EvaluacionesModel{ Fecha="10 Febrero 2023" },
+                new EvaluacionesModel{Fecha = "20 Marzo 2023" },
+                new EvaluacionesModel{Fecha = "15 Mayo 2023" }
+            };
+        }
+
+        private void CreatedListaCalculos()
+        {
+            ItemsListCalculos = new ObservableCollectionExt<CalculosNModel>()
+            {
+                new CalculosNModel{ Fecha="10 Febrero 2023" },
+                new CalculosNModel{ Fecha = "20 Marzo 2023" },
             };
         }
         #endregion
@@ -146,6 +209,17 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         private async void NewCalculoCommandExecuted()
         {
             await NavigationService.NavigateAsync(new Uri("/Navigation/CalculoNutricional", UriKind.Absolute));
+        }
+        private async void ActionSheetDiasSelectedEvCommandExecuted()
+        {
+            string action = await Application.Current.MainPage.DisplayActionSheet("Evaluaciones: ", "Cancel", null, "Ultimos 7 dias", "Ultimos 10 dias", "Ultimos 30 dias");
+            TextSelectDiasEv = action.ToString();
+        }
+
+        private async void ActionSheetDiasSelectedCalCommandExecuted()
+        {
+            string action = await Application.Current.MainPage.DisplayActionSheet("Calculos Nutricional: ", "Cancel", null, "Ultimos 7 dias", "Ultimos 10 dias", "Ultimos 30 dias");
+            TextSelectDiasCal = action.ToString();
         }
 
         private void EvaluacionCommandExecuted()
@@ -169,13 +243,40 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         }
         #endregion
 
-        #region Methods Life Cycle Page
-        public class ListEvaluaciones
+        #region Populating
+        private void PopulateView(PacientesModel item)
         {
-            public string Fecha { get; set; }
-            public ImageSource Icon { get; set; }
-            public ImageSource IconLeft { get; set; }
+            if (item != null)
+            {
+                NombrePaciente = item.Name;
+                Debug.WriteLine(item.Name);
+            }
         }
+        #endregion
+
+        #region Navigation Params
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            try
+            {
+                if (parameters.ContainsKey("Paciente"))
+                {
+                    var item = parameters.GetValue<PacientesModel>("Paciente");
+                    PopulateView(item);
+                }
+                else
+                {
+                    PopulateView(null);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine(ex.Message, TAG);
+            }
+        }
+        #endregion
+
+        #region Methods Life Cycle Page
         #endregion
     }
 }
