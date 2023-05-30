@@ -10,7 +10,11 @@
             Title="Menú"
             BackgroundColor="#F6F6F8">
             <StackLayout Margin="20,50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F6F6F8">
-                <Image Source="mask_group.png" HorizontalOptions="CenterAndExpand" WidthRequest="150" />
+                <Image Source="mask_group.png" HorizontalOptions="CenterAndExpand" WidthRequest="150">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HomeCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <StackLayout Margin="0,20">
                     <Label Text="Hola, Code." TextColor="Black" FontSize="25" FontAttributes="Bold"/>
                     <Frame Margin="0,20" BackgroundColor="AliceBlue" Padding="7" HasShadow="True">

@@ -17,7 +17,7 @@
                 <Label Text="Comparar Planes" TextColor="Black" FontSize="Title" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
 
                 <StackLayout Margin="15,0">
-                    <Frame BackgroundColor="#EFF3F9" Margin="0,0,0,20" HasShadow="False" CornerRadius="7">
+                    <Frame BackgroundColor="#F9F9F9" Margin="0,0,0,20" HasShadow="False" CornerRadius="7">
                         <StackLayout>
                             <Label Text="FREE" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title" Margin="0,0,0,10"/>
 
@@ -25,11 +25,18 @@
                                 <Image Source="check.png" WidthRequest="20"/>
                                 <Label Text="Evaluación" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
                             </StackLayout>
-                            <Button Text="Try now" BackgroundColor="#47B561" TextColor="White" HorizontalOptions="Fill" CornerRadius="50" TextTransform="None" FontSize="Large"/>
+                            <Button Text="Try now"
+                                    BackgroundColor="#47B561"
+                                    TextColor="White"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    Command="{Binding FreePlanCommand}"/>
                         </StackLayout>
                     </Frame>
 
-                    <Frame BackgroundColor="#EFF3F9" HasShadow="False" CornerRadius="7">
+                    <Frame BackgroundColor="#F9F9F9" HasShadow="False" CornerRadius="7">
                         <StackLayout>
                             <Label Text="Premium" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="Title" Margin="0,0,0,10"/>
                             <StackLayout Orientation="Horizontal">
@@ -48,7 +55,14 @@
                                 <Image Source="check.png" WidthRequest="20"/>
                                 <Label Text="Productos" TextColor="Black" VerticalTextAlignment="Center" FontSize="Large"/>
                             </StackLayout>
-                            <Button Text="Try now" BackgroundColor="#47B561" TextColor="White" HorizontalOptions="Fill" CornerRadius="50" TextTransform="None" FontSize="Large"/>
+                            <Button Text="Try now"
+                                    BackgroundColor="#47B561"
+                                    TextColor="White"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    Command="{Binding PremiumPlanCommand}"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>

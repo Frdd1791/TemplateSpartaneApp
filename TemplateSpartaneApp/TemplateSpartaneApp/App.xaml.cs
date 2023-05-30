@@ -67,7 +67,7 @@ namespace TemplateSpartaneApp
             }
             else
             {
-                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/ProductosNutricionales", UriKind.Absolute));
+                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/InitOne", UriKind.Absolute));
             }
         }
 

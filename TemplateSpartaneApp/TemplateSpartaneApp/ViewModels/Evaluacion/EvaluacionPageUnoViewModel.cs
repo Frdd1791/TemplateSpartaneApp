@@ -256,7 +256,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         public EvaluacionPageUnoViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             ButtonBack = true;
-            ProgressBarOpt = false;
+            ProgressBarOpt = true;
             ButtonSaveData = false;
             colorHexButtonSave = "#D9D9D9";
 
@@ -281,11 +281,11 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
 
             TxtIndicadorPaso = "Indicanos algunos datos de tu paciente";
             TextPeso = "Perdida de peso de >5 % en:";
-            IsActiveEvoUno = false;
+            IsActiveEvoUno = true;
             isActiveEvoDos = false;
             IsActiveEvoTres = false;
             IsActiveEvoCuatro = false;
-            IsActiveEvoResultado = true;
+            IsActiveEvoResultado = false;
 
             TextGenero = "Hombre";
             TextAlimentacionMas65 = "Ha comido mucho menos";

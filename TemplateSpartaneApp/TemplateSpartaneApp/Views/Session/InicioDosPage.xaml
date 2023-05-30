@@ -7,7 +7,11 @@
             <StackLayout Spacing="20"  HorizontalOptions="Fill">
 
                 <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
-                    <Label Text="Saltar" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+                    <Label Text="Saltar" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NextPageCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <Image Source="arrow_rg.png" WidthRequest="25"/>
                 </StackLayout>
 

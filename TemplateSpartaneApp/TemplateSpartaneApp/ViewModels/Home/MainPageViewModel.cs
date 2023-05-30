@@ -25,6 +25,7 @@ namespace TemplateSpartaneApp.ViewModels.Home
         public DelegateCommand SelectItemCommand { get; set; }
         public DelegateCommand AddItemCommand { get; set; }
         public DelegateCommand OnSelectItemCommand { get; set; }
+        public DelegateCommand PacientesCommand { get; set; }
         #endregion
 
         #region Properties
@@ -59,6 +60,46 @@ namespace TemplateSpartaneApp.ViewModels.Home
                 OnSelectItemCommand.Execute();
             }
         }
+
+        public string frameColorUno;
+        public string FrameColorUno
+        {
+            get { return frameColorUno; }
+            set
+            {
+                SetProperty(ref frameColorUno, value);
+            }
+        }
+
+        public string frameColorDos;
+        public string FrameColorDos
+        {
+            get { return frameColorDos; }
+            set
+            {
+                SetProperty(ref frameColorDos, value);
+            }
+        }
+
+        public string frameColorTres;
+        public string FrameColorTres
+        {
+            get { return frameColorTres; }
+            set
+            {
+                SetProperty(ref frameColorTres, value);
+            }
+        }
+
+        public string frameColorCuatro;
+        public string FrameColorCuatro
+        {
+            get { return frameColorCuatro; }
+            set
+            {
+                SetProperty(ref frameColorCuatro, value);
+            }
+        }
         #endregion
 
         #region Contructor
@@ -72,7 +113,26 @@ namespace TemplateSpartaneApp.ViewModels.Home
             SelectItemCommand = new DelegateCommand(SelectItemCommandExecute);
             AddItemCommand = new DelegateCommand(AddItemCommandExecute);
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
+            PacientesCommand = new DelegateCommand(PacientesCommandExecuted);
+
             Items = new ObservableCollectionExt<ProgressReportModel>();
+
+            int premium = 1;
+
+            if (premium == 1)
+            {
+                FrameColorUno = "#1F9017";
+                FrameColorDos = "#1F9017";
+                FrameColorTres = "#1F9017";
+                FrameColorCuatro = "#1F9017";
+            }
+            else
+            {
+                FrameColorUno = "#1F9017";
+                FrameColorDos = "#A5D2A2";
+                FrameColorTres = "#A5D2A2";
+                FrameColorCuatro = "#A5D2A2";
+            }
         }
         #endregion
 
@@ -160,6 +220,12 @@ namespace TemplateSpartaneApp.ViewModels.Home
         private void AddItemCommandExecute()
         {
             NavigationService.NavigateAsync(nameof(ProgressReportPopup));
+        }
+
+        private async void PacientesCommandExecuted()
+        {
+            Debug.WriteLine("test");
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/ListaPacientes", UriKind.Absolute));
         }
         #endregion
 

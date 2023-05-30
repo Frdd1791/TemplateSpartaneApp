@@ -16,19 +16,25 @@ namespace TemplateSpartaneApp.ViewModels.Session
         #endregion
 
         #region Vars Commands
-        public DelegateCommand NextPageCommand { get; set; }
+        public DelegateCommand FreePlanCommand { get; set; }
+        public DelegateCommand PremiumPlanCommand { get; set; }
         #endregion
 
 
         #region Contructor
         public InicioTresPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
-            NextPageCommand = new DelegateCommand(NextPageCommandExecuted);
+            FreePlanCommand = new DelegateCommand(FreePlanCommandExecuted);
+            PremiumPlanCommand = new DelegateCommand(PremiumPlanCommandExecuted);
         }
         #endregion
 
         #region Commands Methods
-        private async void NextPageCommandExecuted()
+        private async void FreePlanCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
+        }
+        private async void PremiumPlanCommandExecuted()
         {
             await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
         }

@@ -6,7 +6,12 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Margin="20,50,20,20">
-                <Image Source="left_arrow.png" HorizontalOptions="Start"/>
+                <Image Source="left_arrow.png"
+                       HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="Nombre el paciente:" TextColor="Black" FontSize="Large"/>
                 <Label Text="Melissa Anthonella Marcillo Veloz" TextColor="Black" FontSize="22"/>
             </StackLayout>
@@ -77,7 +82,7 @@
                         </ListView>
                     </StackLayout>
 
-                    <Button Command="{Binding NewEvaluacionCommandExecuted}" Text="Nueva evaluacion"
+                    <Button Command="{Binding NewEvaluacionCommand}" Text="Nueva evaluacion"
                             BackgroundColor="#165BE2"
                             TextColor="White"
                             HorizontalOptions="Fill"

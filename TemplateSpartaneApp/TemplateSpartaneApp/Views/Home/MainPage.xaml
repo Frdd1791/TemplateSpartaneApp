@@ -9,31 +9,117 @@
     <ContentPage.Content>
         <StackLayout>
             <controls:ToolbarCustom/>
-            <StackLayout Margin="15">
-                <Image Source="portada.png"/>
-            </StackLayout>
 
-            <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="White" ItemsSource="{Binding ItemsListDash}" Margin="15,30">
-                <ListView.ItemTemplate >
-                    <DataTemplate >
-                        <ViewCell IsEnabled="{Binding isEnabled}">
-                            <Frame HasShadow="True" BackgroundColor="#F2F2F2" Margin="5" CornerRadius="10">
-                                <StackLayout Orientation="Horizontal" Spacing="20">
-                                    <StackLayout VerticalOptions="Center">
-                                        <Frame Padding="5" CornerRadius="8" BackgroundColor="#1F9017">
-                                            <Image Source="{Binding Icon}"/>
-                                        </Frame>
-                                    </StackLayout>
-                                    <StackLayout>
-                                        <Label Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
-                                        <Label Text="{Binding Detail}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
-                                    </StackLayout>
-                                </StackLayout>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <!--<ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="White" ItemsSource="{Binding ItemsListDash}" Margin="15,30">
+            <ListView.ItemTemplate >
+            <DataTemplate >
+            <ViewCell IsEnabled="{Binding isEnabled}">
+            <Frame HasShadow="True" BackgroundColor="#F2F2F2" Margin="5" CornerRadius="10" IsEnabled="False">
+            <StackLayout Orientation="Horizontal" Spacing="20">
+            <StackLayout VerticalOptions="Center">
+            <Frame Padding="5" CornerRadius="8" BackgroundColor="#1F9017">
+            <Image Source="{Binding Icon}"/>
+            </Frame>
+            </StackLayout>
+            <StackLayout>
+            <Label Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
+            <Label Text="{Binding Detail}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            </StackLayout>
+            </Frame>
+            </ViewCell>
+            </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>-->
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Margin="15">
+                        <Image Source="portada.png"/>
+                    </StackLayout>
+                    <Frame HasShadow="True"
+                           BackgroundColor="#F2F2F2"
+                           Margin="15,10"
+                           CornerRadius="10">
+                        <StackLayout Orientation="Horizontal" Spacing="20">
+                            <StackLayout VerticalOptions="Center">
+                                <Frame Padding="5"
+                                       CornerRadius="8"
+                                       BackgroundColor="{Binding FrameColorUno}">
+                                    <Image Source="icon_search.png"
+                                           WidthRequest="30"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Evaluar a tu paciente" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
+                                <Label Text="Descripcion para evaluacion del paciente" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame HasShadow="True"
+                           BackgroundColor="#F2F2F2"
+                           Margin="15,10"
+                           CornerRadius="10">
+                        <StackLayout Orientation="Horizontal" Spacing="20">
+                            <StackLayout VerticalOptions="Center">
+                                <Frame Padding="5"
+                                       CornerRadius="8"
+                                       BackgroundColor="{Binding FrameColorDos}">
+                                    <Image Source="icon_calculate.png"
+                                           WidthRequest="30"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Cálculo nutricional" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
+                                <Label Text="Descripcion para evaluacion del paciente" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame HasShadow="True"
+                           BackgroundColor="#F2F2F2"
+                           Margin="15,10"
+                           CornerRadius="10">
+                        <StackLayout Orientation="Horizontal" Spacing="20">
+                            <StackLayout VerticalOptions="Center">
+                                <Frame Padding="5"
+                                       CornerRadius="8"
+                                       BackgroundColor="{Binding FrameColorTres}">
+                                    <Image Source="icon_medicine.png"
+                                           WidthRequest="30"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Productos nutricionales" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
+                                <Label Text="Descripcion para evaluacion del paciente" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame HasShadow="True"
+                           BackgroundColor="#F2F2F2"
+                           Margin="15,10"
+                           CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PacientesCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" Spacing="20">
+                            <StackLayout VerticalOptions="Center">
+                                <Frame Padding="5"
+                                       CornerRadius="8"
+                                       BackgroundColor="{Binding FrameColorCuatro}">
+                                    <Image Source="icon_user_heart.png"
+                                           WidthRequest="30"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Mis pacientes" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
+                                <Label Text="Descripcion para evaluacion del paciente" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

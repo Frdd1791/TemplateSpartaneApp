@@ -23,6 +23,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         public DelegateCommand NewCalculoCommand { get; set; }
         public DelegateCommand EvaluacionCommand { get; set; }
         public DelegateCommand CalculoCommand { get; set; }
+        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
         #region Properties
@@ -107,6 +108,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
             EvaluacionCommand = new DelegateCommand(EvaluacionCommandExecuted);
             CalculoCommand = new DelegateCommand(CalculoCommandExecuted);
+            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
 
             CreatedListaEvaluaciones();
             ContentEvaluacion = true;
@@ -120,6 +122,11 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Methods
+        private async void ButtonBackCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri("/Navigation/ListaPacientes", UriKind.Absolute));
+        }
+
         private void CreatedListaEvaluaciones()
         {
             ItemsList = new ObservableCollectionExt<ListEvaluaciones>()
@@ -138,7 +145,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         }
         private async void NewCalculoCommandExecuted()
         {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/InitThree", UriKind.Absolute));
+            await NavigationService.NavigateAsync(new Uri("/Navigation/CalculoNutricional", UriKind.Absolute));
         }
 
         private void EvaluacionCommandExecuted()

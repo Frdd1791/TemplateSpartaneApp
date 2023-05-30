@@ -12,7 +12,7 @@ namespace TemplateSpartaneApp.ViewModels.Home
 {
     public class MasterPageViewModel : ViewModelBase
     {
-        
+
         #region Vars
         private static string TAG = nameof(MasterPageViewModel);
         #endregion
@@ -20,6 +20,7 @@ namespace TemplateSpartaneApp.ViewModels.Home
         #region Vars Commands
         public DelegateCommand OnSelectItemCommand { get; set; }
         public DelegateCommand CloseSessionCommand { get; set; }
+        public DelegateCommand HomeCommand { get; set; }
         #endregion
 
         #region Properties
@@ -51,6 +52,7 @@ namespace TemplateSpartaneApp.ViewModels.Home
             CreatedMenu();
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
             CloseSessionCommand = new DelegateCommand(CloseSessionCommandExecuted);
+            HomeCommand = new DelegateCommand(HomeCommandExecuted);
         }
         #endregion
 
@@ -59,9 +61,9 @@ namespace TemplateSpartaneApp.ViewModels.Home
         {
             ItemsMenu = new ObservableCollectionExt<Menu>()
             {
-                new Menu{ Page= "Home", MenuTitle="Inicio", Icon="home.png"},
-                new Menu{ Page= "Home", MenuTitle="Acerca de nosotros", Icon="home.png"},
-                new Menu{ Page= "Home", MenuTitle="Necesitas ayuda", Icon="home.png"},
+                new Menu{ Page= "Home", MenuTitle="Inicio", Icon="home_black.png"},
+                new Menu{ Page= "Home", MenuTitle="Acerca de nosotros", Icon="business_black.png"},
+                new Menu{ Page= "Home", MenuTitle="Necesitas ayuda", Icon="manager_black.png"},
             };
         }
         #endregion
@@ -93,6 +95,10 @@ namespace TemplateSpartaneApp.ViewModels.Home
             {
                 Debug.WriteLine(ex.Message, TAG);
             }
+        }
+        private void HomeCommandExecuted()
+        {
+            NavigationService.NavigateAsync(new Uri($"/Index/Navigation/Home", UriKind.Absolute));
         }
         public class Menu
         {

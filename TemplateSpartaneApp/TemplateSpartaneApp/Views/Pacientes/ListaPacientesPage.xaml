@@ -5,25 +5,38 @@
              BackgroundColor="#F0F6FB">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Margin="20,50,20,20">
-                <Frame HorizontalOptions="Start" Padding="8" CornerRadius="7" BackgroundColor="#D6D6D6">
-                    <Label Text="back" FontSize="Large" FontAttributes="Bold"/>
-                </Frame>
+            <StackLayout Margin="20,20,20,20">
+                <Image Source="left_arrow.png"
+                       HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="Mis pacientes" TextColor="Black" FontSize="30"/>
             </StackLayout>
-            <BoxView BackgroundColor="Blue" HeightRequest="2"/>
+            <BoxView BackgroundColor="Blue" HeightRequest="1"/>
             <StackLayout Margin="10,0">
-                <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}" Margin="10,30">
+                <ListView HasUnevenRows="True"
+                          SeparatorVisibility="Default"
+                          SeparatorColor="Transparent"
+                          BackgroundColor="Transparent"
+                          ItemsSource="{Binding ItemsList}"
+                          SelectedItem="{Binding SelectItemPaciente}"
+                          Margin="10,30">
                     <ListView.ItemTemplate >
                         <DataTemplate >
                             <ViewCell>
-                                <Frame HasShadow="True" BackgroundColor="white" Margin="5" CornerRadius="10">
+                                <Frame HasShadow="True"
+                                       BackgroundColor="white"
+                                       Margin="5"
+                                       Padding="10"
+                                       CornerRadius="10">
                                     <StackLayout Orientation="Horizontal" Spacing="20">
                                         <Image Source="{Binding Icon}" WidthRequest="30"/>
                                         <Label Text="{Binding Name}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
-                                        <Frame Padding="6" HorizontalOptions="EndAndExpand" CornerRadius="10">
-                                            <Image Source="arrow.png" WidthRequest="15"/>
-                                        </Frame>
+                                        <Image Source="icon_right.png"
+                                               WidthRequest="15"
+                                               HorizontalOptions="EndAndExpand"/>
                                     </StackLayout>
                                 </Frame>
                             </ViewCell>

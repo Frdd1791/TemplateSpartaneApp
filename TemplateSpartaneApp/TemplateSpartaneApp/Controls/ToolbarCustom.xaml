@@ -5,7 +5,7 @@
     <ContentView.Content>
         <Frame HasShadow="False" CornerRadius="0" Padding="15" HeightRequest="25">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand">
-                <Frame BackgroundColor="#F2F2F2" Padding="3" Margin="0" HasShadow="False" CornerRadius="5">
+                <Frame BackgroundColor="#F2F2F2" Padding="5" Margin="0" HasShadow="False" CornerRadius="5">
                     <Image Source="menu.png" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ShowMenuCommand}"/>
