@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.LocalData;
 
 namespace TemplateSpartaneApp.ViewModels.Session
 {
@@ -32,10 +33,12 @@ namespace TemplateSpartaneApp.ViewModels.Session
         #region Commands Methods
         private async void FreePlanCommandExecuted()
         {
+            AppSettings.Instance.Premium = false; 
             await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
         }
         private async void PremiumPlanCommandExecuted()
         {
+            AppSettings.Instance.Premium = true;
             await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
         }
         #endregion

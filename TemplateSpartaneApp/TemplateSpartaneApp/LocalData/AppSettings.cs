@@ -56,6 +56,22 @@ namespace TemplateSpartaneApp.LocalData
         }
 
         /// <summary>
+        /// User is logged
+        /// </summary>
+        public bool Premium
+        {
+            get
+            {
+                return settingsService.GetValueOrDefault($"{nameof(AppSettings)}{nameof(Premium)}", default(bool));
+            }
+
+            set
+            {
+                settingsService.AddOrUpdateValue($"{nameof(AppSettings)}{nameof(Premium)}", value);
+            }
+        }
+
+        /// <summary>
         /// Remember username
         /// </summary>
         public bool RememberUserName
@@ -70,6 +86,7 @@ namespace TemplateSpartaneApp.LocalData
         public void ClearValues()
         {
             Logged = default(bool);
+            Premium = default(bool);
         }
     }
 }

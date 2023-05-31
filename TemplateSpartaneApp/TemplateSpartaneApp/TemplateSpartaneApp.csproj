@@ -29,7 +29,6 @@
     <Folder Include="Converters\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Abstractions\" />
-    <Folder Include="LocalData\" />
     <Folder Include="Services\Session\" />
     <Folder Include="Models\Catalogs\" />
     <Folder Include="Services\Catalogs\" />
@@ -48,15 +47,18 @@
     <EmbeddedResource Include="Settings\Testing.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\CalculoNutricionalPage.xaml.cs">
+    <Compile Update="Views\CalculoNutricional\CalculoNutricionalPage.xaml.cs">
       <DependentUpon>CalculoNutricionalPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Evaluacion\EvaluacionPageUno.xaml.cs">
       <DependentUpon>EvaluacionPageUno.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ProductosNutricionales\Oral\ProductoOralPage.xaml.cs">
+      <DependentUpon>ProductoOralPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Views\CalculoNutricionalPage.xaml">
+    <EmbeddedResource Update="Views\CalculoNutricional\CalculoNutricionalPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Evaluacion\EvaluacionPageDos.xaml">
@@ -86,16 +88,25 @@
     <EmbeddedResource Update="Views\Popups\PacientesPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductosNutricionales\ProductoOralSeleccionadoPage.xaml">
+    <EmbeddedResource Update="Views\ProductosNutricionales\Enteral\ProductoEnteralPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductosNutricionales\ProductosEnteralesPage.xaml">
+    <EmbeddedResource Update="Views\ProductosNutricionales\Oral\ProductoOralPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProductosNutricionales\Parenteral\ProductoParenteralPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProductosNutricionales\Enteral\ProductosEnteralesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProductosNutricionales\ProductosNutricionalesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductosNutricionales\ProductosOralesPage.xaml">
+    <EmbeddedResource Update="Views\ProductosNutricionales\Oral\ProductosOralesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProductosNutricionales\Parenteral\ProductosParenteralesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegistroPago\PagoAndroid.xaml">

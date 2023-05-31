@@ -7,14 +7,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
-using TemplateSpartaneApp.ViewModels.Session;
 
-namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
+namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral
 {
-    public class ProductoOralSeleccionadoPageVideModel : ViewModelBase
+    public class ProductoEnteralPageViewModel : ViewModelBase
     {
         #region Vars
-        private static string TAG = nameof(ProductoOralSeleccionadoPageVideModel);
+        private static string TAG = nameof(ProductoEnteralPageViewModel);
         #endregion
 
         #region Vars Commands
@@ -23,7 +22,7 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
 
 
         #region Contructor
-        public ProductoOralSeleccionadoPageVideModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public ProductoEnteralPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
         }
@@ -32,7 +31,6 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         #region Commands Methods
         private async void ButtonBackCommandExecuted()
         {
-            Debug.WriteLine("press");
             await NavigationService.NavigateAsync(new Uri("/Index/Navigation/ProductosOrales", UriKind.Absolute));
         }
         #endregion

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductosParenteralesPage"
+             xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
+             x:Name="ProductosParenterales">
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,0">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="left_arrow.png" IsVisible="{Binding IsVisibleBackButton}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Calculo nutricional"
+                       TextColor="Black"
+                       FontSize="Large"
+                       VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="search.png"
+                       WidthRequest="30"/>
+                <controls:EntryControl HeightRequest="40" BorderColor="Transparent" BorderWidth="0" BackgroundColor="#C2C2C2" Placeholder="Search" HorizontalTextAlignment="Start" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" CornerRadius="4"/>
+                <Frame BackgroundColor="#C2C2C2"
+                       CornerRadius="4">
+
+                </Frame>
+            </StackLayout>
+
+            <CarouselView ItemsSource="{Binding ItemsProductosParenterales}"
+                          Margin="0,15"
+                          PeekAreaInsets="120">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame BackgroundColor="#F3F3F3"
+                                   Margin="10"
+                                   CornerRadius="6"
+                                   HeightRequest="60">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectProduct, Source={x:Reference ProductosParenterales}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Image Source="{Binding ImageProduct}" WidthRequest="50"/>
+                            </Frame>
+                            <StackLayout>
+                                <Label Text="{Binding NombreProducto}"
+                                       TextColor="Blue"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                            </StackLayout>
+
+                            <StackLayout Margin="0,30">
+                                <Label Text="{Binding NombreProducto}"
+                                       TextColor="Blue"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+                                <Label Text="237"
+                                       TextColor="Blue"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <BoxView BackgroundColor="#DADADA" HeightRequest="0.5"/>
+
+                                <Frame Padding="5"
+                                       BackgroundColor="#10BA52"
+                                       VerticalOptions="Center"
+                                       WidthRequest="40"
+                                       HorizontalOptions="Center"
+                                       CornerRadius="20">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectProduct, Source={x:Reference ProductosParenterales}}"
+                                                              CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="Ver"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"/>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

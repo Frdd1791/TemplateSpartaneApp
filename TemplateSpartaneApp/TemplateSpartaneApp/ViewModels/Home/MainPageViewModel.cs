@@ -5,6 +5,7 @@ using Plugin.Connectivity.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.Catalogs;
 using TemplateSpartaneApp.Services.Catalogs;
 using TemplateSpartaneApp.Views.Popups;
@@ -103,6 +104,46 @@ namespace TemplateSpartaneApp.ViewModels.Home
                 SetProperty(ref frameColorCuatro, value);
             }
         }
+
+        public string frameOneEnabled;
+        public string FrameOneEnabled
+        {
+            get { return frameOneEnabled; }
+            set
+            {
+                SetProperty(ref frameOneEnabled, value);
+            }
+        }
+
+        public string frameTwoEnabled;
+        public string FrameTwoEnabled
+        {
+            get { return frameTwoEnabled; }
+            set
+            {
+                SetProperty(ref frameTwoEnabled, value);
+            }
+        }
+
+        public string frameThreeEnabled;
+        public string FrameThreeEnabled
+        {
+            get { return frameThreeEnabled; }
+            set
+            {
+                SetProperty(ref frameThreeEnabled, value);
+            }
+        }
+
+        public string frameFourEnabled;
+        public string FrameFourEnabled
+        {
+            get { return frameFourEnabled; }
+            set
+            {
+                SetProperty(ref frameFourEnabled, value);
+            }
+        }
         #endregion
 
         #region Contructor
@@ -123,14 +164,16 @@ namespace TemplateSpartaneApp.ViewModels.Home
 
             Items = new ObservableCollectionExt<ProgressReportModel>();
 
-            int premium = 1;
-
-            if (premium == 1)
+            if (AppSettings.Instance.Premium)
             {
                 FrameColorUno = "#1F9017";
                 FrameColorDos = "#1F9017";
                 FrameColorTres = "#1F9017";
                 FrameColorCuatro = "#1F9017";
+
+                FrameTwoEnabled = "True";
+                FrameThreeEnabled = "True";
+                FrameFourEnabled = "True";
             }
             else
             {
@@ -138,6 +181,10 @@ namespace TemplateSpartaneApp.ViewModels.Home
                 FrameColorDos = "#A5D2A2";
                 FrameColorTres = "#A5D2A2";
                 FrameColorCuatro = "#A5D2A2";
+
+                FrameTwoEnabled = "False";
+                FrameThreeEnabled = "False";
+                FrameFourEnabled = "False";
             }
         }
         #endregion

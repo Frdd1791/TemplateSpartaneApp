@@ -9,28 +9,6 @@
     <ContentPage.Content>
         <StackLayout>
             <controls:ToolbarCustom/>
-
-            <!--<ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="Transparent" BackgroundColor="White" ItemsSource="{Binding ItemsListDash}" Margin="15,30">
-            <ListView.ItemTemplate >
-            <DataTemplate >
-            <ViewCell IsEnabled="{Binding isEnabled}">
-            <Frame HasShadow="True" BackgroundColor="#F2F2F2" Margin="5" CornerRadius="10" IsEnabled="False">
-            <StackLayout Orientation="Horizontal" Spacing="20">
-            <StackLayout VerticalOptions="Center">
-            <Frame Padding="5" CornerRadius="8" BackgroundColor="#1F9017">
-            <Image Source="{Binding Icon}"/>
-            </Frame>
-            </StackLayout>
-            <StackLayout>
-            <Label Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" FontSize="19"/>
-            <Label Text="{Binding Detail}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
-            </StackLayout>
-            </StackLayout>
-            </Frame>
-            </ViewCell>
-            </DataTemplate>
-            </ListView.ItemTemplate>
-            </ListView>-->
             <ScrollView>
                 <StackLayout>
                     <StackLayout Margin="15">
@@ -62,7 +40,8 @@
                     <Frame HasShadow="True"
                            BackgroundColor="#F2F2F2"
                            Margin="15,10"
-                           CornerRadius="10">
+                           CornerRadius="10"
+                           IsEnabled="{Binding FrameTwoEnabled}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CalculoNutricionalCommand}"/>
                         </Frame.GestureRecognizers>
@@ -85,7 +64,8 @@
                     <Frame HasShadow="True"
                            BackgroundColor="#F2F2F2"
                            Margin="15,10"
-                           CornerRadius="10">
+                           CornerRadius="10"
+                           IsEnabled="{Binding FrameThreeEnabled}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ProductosCommand}"/>
                         </Frame.GestureRecognizers>
@@ -108,7 +88,8 @@
                     <Frame HasShadow="True"
                            BackgroundColor="#F2F2F2"
                            Margin="15,10"
-                           CornerRadius="10">
+                           CornerRadius="10"
+                           IsEnabled="{Binding FrameFourEnabled}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PacientesCommand}"/>
                         </Frame.GestureRecognizers>

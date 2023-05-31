@@ -32,6 +32,9 @@ using TemplateSpartaneApp.Views;
 using TemplateSpartaneApp.ViewModels.CalculoNutricional;
 using TemplateSpartaneApp.Views.ProductosNutricionales;
 using TemplateSpartaneApp.ViewModels.ProductosNutricionales;
+using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral;
+using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral;
+using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Parenteral;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TemplateSpartaneApp
@@ -101,7 +104,14 @@ namespace TemplateSpartaneApp
 
             containerRegistry.RegisterForNavigation<ProductosNutricionalesPage, ProductosNutricionalesPageViewModel>("ProductosNutricionales");
             containerRegistry.RegisterForNavigation<ProductosOralesPage, ProductosOralesPageViewModel>("ProductosOrales");
-            containerRegistry.RegisterForNavigation<ProductoOralSeleccionadoPage, ProductoOralSeleccionadoPageVideModel>("ProductoOral");
+            containerRegistry.RegisterForNavigation<ProductoOralPage, ProductoOralPageVideModel>("ProductoOral");
+
+            containerRegistry.RegisterForNavigation<ProductosEnteralesPage, ProductosEnteralesPageViewModel>("ProductosEnterales");
+            containerRegistry.RegisterForNavigation<ProductoEnteralPage, ProductoEnteralPageViewModel>("ProductoEnteral");
+
+            containerRegistry.RegisterForNavigation<ProductosParenteralesPage, ProductosParenteralesPageViewModel>("ProductosParenterales");
+            containerRegistry.RegisterForNavigation<ProductoParenteralPage, ProductoParenteralPageViewModel>("ProductoParenteral");
+
             #endregion
 
             #region Popups

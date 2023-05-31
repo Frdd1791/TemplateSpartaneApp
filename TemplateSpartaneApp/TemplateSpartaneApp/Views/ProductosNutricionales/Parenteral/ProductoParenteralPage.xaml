@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductoParenteralPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20,20,20,0">
+                <Image Source="left_arrow.png" 
+                       IsVisible="{Binding ButtonBack}"
+                       HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+
+            <Frame BackgroundColor="WhiteSmoke"
+                   HeightRequest="150">
+                <Image Source="logo.png"/>
+            </Frame>
+
+            <StackLayout Margin="30,40">
+                <Label Text="Ensure Advance"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Start"
+                       FontSize="30"/>
+
+                <Label Text="Nunc id non at, gravida Donec elit eu convallis. lacus, quam sit Nunc id non at, gravida Donec elit eu convallis. lacus, quam sit Nunc id non at, gravida Donec elit eu convallis. lacus, quam sit"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Start"
+                       FontSize="Large"/>
+
+                <Label Text="Caracteristicas"
+                       Margin="0,20,0,0"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Start"
+                       FontSize="Large"/>
+
+                <Grid RowSpacing="1"
+                      Margin="10,15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Grid.Row="0" 
+                           Grid.Column="0"
+                           Padding="5"
+                           BackgroundColor="#E6E9F0">
+                        <StackLayout>
+                            <Label Text="Azucares"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="100"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Grid.Row="0" 
+                           Grid.Column="1"
+                           Padding="5"
+                           BackgroundColor="#E6E9F0">
+                        <StackLayout>
+                            <Label Text="Calorias"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="80"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Grid.Row="0" 
+                           Grid.Column="2"
+                           Padding="5"
+                           BackgroundColor="#E6E9F0">
+                        <StackLayout>
+                            <Label Text="Grasas"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="30"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Grid.Row="0" 
+                           Grid.Column="3"
+                           Padding="5"
+                           BackgroundColor="#E6E9F0">
+                        <StackLayout>
+                            <Label Text="Carbo"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="100"
+                                   TextColor="Black"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <Label TextColor="Black"
+                       FontFamily="DM Sans"
+                       FontSize="Large">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Empresa: "/>
+                            <Span Text="Abbot"
+                                  FontAttributes="Bold"
+                                  FontSize="Large"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,10">
+                    <Image Source="enlace.png"
+                           WidthRequest="15"/>
+                    <Label Text="ver producto en su pagina oficial"
+                       TextColor="Blue"
+                       HorizontalTextAlignment="Start"
+                       FontSize="Large"/>
+                </StackLayout>
+
+                <Button Command="{Binding ButtonBackCommand}"
+                        Margin="0,50"
+                        Text="Regresar"
+                        BackgroundColor="#ECEEF0"
+                        TextColor="Black"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="EndAndExpand"
+                        CornerRadius="50"
+                        TextTransform="None"
+                        FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

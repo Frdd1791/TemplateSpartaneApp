@@ -26,7 +26,11 @@
                     <Label
                         Text="¿Olvidaste tu contraseña?"
                         TextColor="#0296D4"
-                        FontSize="Large"/>
+                        FontSize="Large">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RecoverPassCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
 
                 <Button Command="{Binding LogInCommand}" Text="Ingresar" BackgroundColor="#47B561" TextColor="White" HorizontalOptions="Fill" CornerRadius="50" TextTransform="None" FontSize="Large"/>

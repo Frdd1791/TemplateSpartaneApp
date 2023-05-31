@@ -212,13 +212,13 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         }
         private async void ActionSheetDiasSelectedEvCommandExecuted()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Evaluaciones: ", "Cancel", null, "Ultimos 7 dias", "Ultimos 10 dias", "Ultimos 30 dias");
+            string action = await Application.Current.MainPage.DisplayActionSheet("Evaluaciones: ", "Cancel", null, "Ultimos 7 dias", "Ultimos 10 dias", "Ultimos 30 dias", "Ultimos 3 meses");
             TextSelectDiasEv = action.ToString();
         }
 
         private async void ActionSheetDiasSelectedCalCommandExecuted()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Calculos Nutricional: ", "Cancel", null, "Ultimos 7 dias", "Ultimos 10 dias", "Ultimos 30 dias");
+            string action = await Application.Current.MainPage.DisplayActionSheet("Calculos Nutricionales: ", "Cancel", null, "Ultimos 7 dias", "Ultimos 10 dias", "Ultimos 30 dias", "Ultimos 3 meses");
             TextSelectDiasCal = action.ToString();
         }
 

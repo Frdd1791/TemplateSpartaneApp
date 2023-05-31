@@ -5,19 +5,19 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemplateSpartaneApp.Abstractions;
-using TemplateSpartaneApp.Models.ProductosEnterales;
 using TemplateSpartaneApp.Models.ProductosOrales;
 
-namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
+namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
 {
-    public class ProductosEnteralesPageViewModel : ViewModelBase
+    public class ProductosOralesPageViewModel : ViewModelBase
     {
         #region Vars
-        private static string TAG = nameof(ProductosEnteralesPageViewModel);
-        private ProductosEnteralesModel ProductSelected { get; set; }
+        private static string TAG = nameof(ProductosOralesPageViewModel);
+        private ProductosOrales ProductSelected { get; set; }
         #endregion
 
         #region Vars Commands
@@ -26,13 +26,13 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         #endregion
 
         #region Properties
-        private ObservableCollectionExt<ProductosEnteralesModel> itemsProductosEnterales;
-        public ObservableCollectionExt<ProductosEnteralesModel> ItemsProductosEnterales
+        private ObservableCollectionExt<ProductosOrales> itemsProductosOrales;
+        public ObservableCollectionExt<ProductosOrales> ItemsProductosOrales
         {
-            get { return itemsProductosEnterales; }
+            get { return itemsProductosOrales; }
             set
             {
-                SetProperty(ref itemsProductosEnterales, value);
+                SetProperty(ref itemsProductosOrales, value);
             }
 
         }
@@ -51,7 +51,7 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
 
 
         #region Contructor
-        public ProductosEnteralesPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public ProductosOralesPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             SelectProduct = new DelegateCommand<object>(SelectProductCommandExecute);
             CreatedListProductos();
@@ -63,13 +63,13 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         {
             IsVisibleBackButton = "True";
             ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
-            ItemsProductosEnterales = new ObservableCollectionExt<ProductosEnteralesModel>()
+            ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>()
             {
-                new ProductosEnteralesModel{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
-                new ProductosEnteralesModel{ Id=1, ImageProduct="logo.png", NombreProducto="Advance active" },
-                new ProductosEnteralesModel{ Id=2, ImageProduct="logo.png", NombreProducto="Producto 3" },
-                new ProductosEnteralesModel{ Id=3, ImageProduct="logo.png", NombreProducto="Producto 4" },
-                new ProductosEnteralesModel{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
+                new ProductosOrales{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
+                new ProductosOrales{ Id=1, ImageProduct="logo.png", NombreProducto="Advance active" },
+                new ProductosOrales{ Id=2, ImageProduct="logo.png", NombreProducto="Producto 3" },
+                new ProductosOrales{ Id=3, ImageProduct="logo.png", NombreProducto="Producto 4" },
+                new ProductosOrales{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
             };
 
             LoadAlert();
@@ -84,12 +84,12 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
 
         private async void SelectProductCommandExecute(object item)
         {
-            if (item is ProductosEnteralesModel)
+            if (item is ProductosOrales)
             {
-                ProductSelected = (ProductosEnteralesModel)item;
+                ProductSelected = (ProductosOrales)item;
                 Debug.WriteLine(ProductSelected.Id);
             }
-            await NavigationService.NavigateAsync(new Uri("/Navigation/ProductoEnteral", UriKind.Absolute));
+            await NavigationService.NavigateAsync(new Uri("/Navigation/ProductoOral", UriKind.Absolute));
         }
         private async void LoadAlert()
         {
@@ -105,6 +105,11 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         #endregion
 
         #region Methods Life Cycle Page
+        /*public class ListProductos
+        {
+            public string ImageProduct { get; set; }
+            public string NombreProducto { get; set; }
+        }*/
         #endregion
     }
 }

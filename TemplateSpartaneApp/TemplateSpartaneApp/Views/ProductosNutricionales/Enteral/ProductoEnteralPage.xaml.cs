@@ -10,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace TemplateSpartaneApp.Views.ProductosNutricionales
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductoOralSeleccionadoPage : ContentPage
+    public partial class ProductoEnteralPage : ContentPage
     {
-        public ProductoOralSeleccionadoPage()
+        public ProductoEnteralPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }
