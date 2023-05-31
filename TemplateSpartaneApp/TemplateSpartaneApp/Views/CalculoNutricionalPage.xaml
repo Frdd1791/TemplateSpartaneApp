@@ -6,9 +6,13 @@
              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Margin="20,20,20,0" IsVisible="False">
+            <StackLayout Margin="20,10,20,0" IsVisible="{Binding HeaderContent}">
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}"/>
+                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Label Text="Calculo nutricional"
                            TextColor="Black"
                            FontSize="Large"
@@ -16,8 +20,8 @@
                            HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
             </StackLayout>
-            <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" IsVisible="False"/>
-            <StackLayout Margin="20,20,20,0" IsVisible="False">
+            <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" IsVisible="{Binding BoxLine}"/>
+            <StackLayout Margin="20,5,20,0" IsVisible="{Binding ContentProgressBar}">
                 <Label Text="{Binding TxtIndicadorPaso}"
                        TextColor="Black"
                        FontSize="20"
@@ -30,7 +34,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <ContentView IsVisible="False">
+            <ContentView IsVisible="{Binding ContentViewUno}">
                 <ScrollView>
                     <StackLayout Margin="20">
                         <Label Text="Nombre del paciente" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
@@ -130,7 +134,7 @@
                                FontSize="16"/>
                         <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="%" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
-                        <Button Command="{Binding NexFinalProcessCommand}" Text="Siguiente"
+                        <Button Command="{Binding NextPassOneCommand}" Text="Siguiente"
                                 BackgroundColor="#165BE2"
                                 TextColor="White"
                                 HorizontalOptions="Fill"
@@ -142,7 +146,7 @@
                 </ScrollView>
             </ContentView>
 
-            <ContentView IsVisible="False">
+            <ContentView IsVisible="{Binding ContentViewDos}">
                 <ScrollView>
                     <StackLayout Margin="20">
                         <Label Text="Selecciona una o mas rutas de nutricion que requieras"
@@ -190,7 +194,7 @@
                             </Frame>
                         </StackLayout>
 
-                        <Button Command="{Binding NextStepCommand}"
+                        <Button Command="{Binding NextPassTwoCommand}"
                                 Text="Siguiente"
                                 BackgroundColor="{Binding HexColorButton}"
                                 TextColor="White"
@@ -204,7 +208,7 @@
                 </ScrollView>
             </ContentView>
 
-            <StackLayout Margin="20,0" IsVisible="False">
+            <StackLayout Margin="20,0" IsVisible="{Binding ContentViewTres}">
                 <Label TextColor="Black"
                        FontFamily="DM Sans"
                        FontSize="Large">
@@ -220,8 +224,7 @@
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -269,9 +272,9 @@
                 </Grid>
             </StackLayout>
 
-            <ContentView IsVisible="False">
+            <ContentView IsVisible="{Binding ContentViewCuatro}">
                 <ScrollView>
-                    <StackLayout Margin="20,0">
+                    <StackLayout Margin="20,5">
                         <Label Text="Equivalentes alimento"
                                FontSize="21"
                                FontAttributes="Bold"
@@ -352,7 +355,7 @@
                                FontSize="Medium"/>
                         <controls:EntryControl HeightRequest="40" BorderColor="Gray" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
-                        <Button Command="{Binding NextStepCommand}"
+                        <Button Command="{Binding NextPassFourCommand}"
                                 Text="Siguiente"
                                 BackgroundColor="#165BE2"
                                 TextColor="White"
@@ -366,7 +369,7 @@
                 </ScrollView>
             </ContentView>
 
-            <ContentView IsVisible="False">
+            <ContentView IsVisible="{Binding ContentViewCinco}">
                 <StackLayout Margin="20,0">
                     <Label Text="Suplementos"
                            FontSize="21"
@@ -387,8 +390,8 @@
                             Margin="0,30"
                             FontSize="Large"/>
 
-                    <Button Command="{Binding NextStepCommand}"
-                            Text="Agregar suplemento"
+                    <Button Command="{Binding NextPassFiveCommand}"
+                            Text="Siguiente"
                             BackgroundColor="#165BE2"
                             TextColor="White"
                             HorizontalOptions="Fill"
@@ -400,7 +403,7 @@
                 </StackLayout>
             </ContentView>
 
-            <ContentView IsVisible="False">
+            <ContentView IsVisible="{Binding ContentViewSeis}">
                 <StackLayout Margin="20,0">
                     <Label Text="Productos"
                            FontSize="21"
@@ -421,8 +424,8 @@
                             Margin="0,30"
                             FontSize="Large"/>
 
-                    <Button Command="{Binding NextStepCommand}"
-                            Text="Agregar suplemento"
+                    <Button Command="{Binding NextPassSixCommand}"
+                            Text="Siguiente"
                             BackgroundColor="#165BE2"
                             TextColor="White"
                             HorizontalOptions="Fill"
@@ -434,7 +437,7 @@
                 </StackLayout>
             </ContentView>
 
-            <ContentView>
+            <ContentView IsVisible="{Binding ContentViewResultado}">
                 <StackLayout Margin="20">
                     <Label Text="Resultados del calculo nutricional"
                            TextColor="Black"
@@ -1171,7 +1174,7 @@
                                     TextTransform="None"
                                     FontSize="Large"/>
 
-                            <Button Command="{Binding NextStepCommand}"
+                            <Button Command="{Binding FinalCommand}"
                                     Text="FINALIZAR"
                                     BackgroundColor="Black"
                                     TextColor="White"

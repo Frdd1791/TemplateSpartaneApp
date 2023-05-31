@@ -6,7 +6,11 @@
         <StackLayout>
             <StackLayout Margin="20,20,20,0">
                 <StackLayout>
-                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}"/>
+                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Label Text="Productos Nutricionales"
                            TextColor="Black"
                            FontSize="25"

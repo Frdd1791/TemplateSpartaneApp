@@ -24,6 +24,16 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
         public DelegateCommand NextStepCommand { get; set; }
         public DelegateCommand AgregarSuplementoCommand { get; set; }
         public DelegateCommand AgregarProductoCommand { get; set; }
+
+        public DelegateCommand NextPassOneCommand { get; set; }
+        public DelegateCommand NextPassTwoCommand { get; set; }
+        public DelegateCommand NextPassFourCommand { get; set; }
+        public DelegateCommand NextPassFiveCommand { get; set; }
+        public DelegateCommand NextPassSixCommand { get; set; }
+
+        public DelegateCommand FinalCommand { get; set; }
+
+        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
         #region Properties
@@ -37,8 +47,8 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
             }
         }
 
-        private bool buttonBack;
-        public bool ButtonBack
+        private string buttonBack;
+        public string ButtonBack
         {
             get { return buttonBack; }
             set
@@ -47,8 +57,8 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
             }
         }
 
-        private bool progressBarOpt;
-        public bool ProgressBarOpt
+        private string progressBarOpt;
+        public string ProgressBarOpt
         {
             get { return progressBarOpt; }
             set
@@ -166,6 +176,100 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
                 SetProperty(ref rutas_selected, value);
             }
         }
+
+        private string headerContent;
+        public string HeaderContent
+        {
+            get { return headerContent; }
+            set
+            {
+                SetProperty(ref headerContent, value);
+            }
+        }
+
+        private string boxLine;
+        public string BoxLine
+        {
+            get { return boxLine; }
+            set
+            {
+                SetProperty(ref boxLine, value);
+            }
+        }
+
+        private string contentProgressBar;
+        public string ContentProgressBar
+        {
+            get { return contentProgressBar; }
+            set
+            {
+                SetProperty(ref contentProgressBar, value);
+            }
+        }
+        private string contentViewUno;
+        public string ContentViewUno
+        {
+            get { return contentViewUno; }
+            set
+            {
+                SetProperty(ref contentViewUno, value);
+            }
+        }
+        private string contentViewDos;
+        public string ContentViewDos
+        {
+            get { return contentViewDos; }
+            set
+            {
+                SetProperty(ref contentViewDos, value);
+            }
+        }
+        private string contentViewTres;
+        public string ContentViewTres
+        {
+            get { return contentViewTres; }
+            set
+            {
+                SetProperty(ref contentViewTres, value);
+            }
+        }
+        private string contentViewCuatro;
+        public string ContentViewCuatro
+        {
+            get { return contentViewCuatro; }
+            set
+            {
+                SetProperty(ref contentViewCuatro, value);
+            }
+        }
+        private string contentViewCinco;
+        public string ContentViewCinco
+        {
+            get { return contentViewCinco; }
+            set
+            {
+                SetProperty(ref contentViewCinco, value);
+            }
+        }
+        private string contentViewSeis;
+        public string ContentViewSeis
+        {
+            get { return contentViewSeis; }
+            set
+            {
+                SetProperty(ref contentViewSeis, value);
+            }
+        }
+        private string contentViewResultado;
+        public string ContentViewResultado
+        {
+            get { return contentViewResultado; }
+            set
+            {
+                SetProperty(ref contentViewResultado, value);
+            }
+        }
+
         #endregion
 
 
@@ -173,12 +277,22 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
         public CalculoNutricionalPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             TxtIndicadorPaso = "Ruta de nutricion";
-            ProgressBarOpt = true;
-            ButtonBack = true;
+            ProgressBarOpt = "True";
+            ButtonBack = "True";
             HexColorButton = "#ACACAC";
             EnabledButton = "False";
-
+            HeaderContent = "True";
+            BoxLine = "True";
+            ContentProgressBar = "True";
             Rutas_selected = 0;
+
+            ContentViewUno = "True";
+            ContentViewDos = "False";
+            ContentViewTres = "False";
+            ContentViewCuatro = "False";
+            ContentViewCinco = "False";
+            ContentViewSeis = "False";
+            ContentViewResultado = "False";
 
             GestureFrameOraAlimentosCommand = new DelegateCommand(HexColorAlimentosCommandExecuted);
             GestureFrameEnteralesCommand = new DelegateCommand(HexColorEnteralesCommandExecuted);
@@ -186,6 +300,16 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
             NextStepCommand = new DelegateCommand(NextStepCommandExecuted);
             AgregarSuplementoCommand = new DelegateCommand(AgregarSuplementoCommandExecuted);
             AgregarProductoCommand = new DelegateCommand(AgregarProductoCommandExecuted);
+
+            NextPassOneCommand = new DelegateCommand(NexPassOneCommandExecuted);
+            NextPassTwoCommand = new DelegateCommand(NextPassTwoCommandExecuted);
+            NextPassFourCommand = new DelegateCommand(NextPassFourCommandExecuted);
+            NextPassFiveCommand = new DelegateCommand(NextPassFiveCommandExecuted);
+            NextPassSixCommand = new DelegateCommand(NextPassSixCommandExecuted);
+
+            FinalCommand = new DelegateCommand(FinalCommandExecuted);
+
+            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
 
             HexColorFrameAlimentos = "#EFEFEF";
             HexColorFrameEnterales = "#EFEFEF";
@@ -198,6 +322,10 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
         #endregion
 
         #region Commands Methods
+        private async void ButtonBackCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri("/Navigation/Home", UriKind.Absolute));
+        }
         private void HexColorAlimentosCommandExecuted()
         {
             if (HexColorFrameAlimentos.Equals("#64C55D"))
@@ -294,6 +422,37 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
             }
         }
 
+        private void NexPassOneCommandExecuted()
+        {
+            ContentViewUno = "False";
+            ContentViewDos = "True";
+        }
+        private void NextPassTwoCommandExecuted()
+        {
+            ContentViewDos = "False";
+            ContentViewTres = "True";
+            ContentViewCuatro = "True";
+        }
+        private void NextPassFourCommandExecuted()
+        {
+            ContentViewCuatro = "False";
+            ContentViewCinco = "True";
+        }
+        private void NextPassFiveCommandExecuted()
+        {
+            ContentViewCinco = "False";
+            ContentViewSeis = "True";
+        }
+        private void NextPassSixCommandExecuted()
+        {
+            ContentViewSeis = "False";
+            ContentViewTres = "False";
+            HeaderContent = "False";
+            BoxLine = "False";
+            ContentProgressBar = "False";
+            ContentViewResultado = "True";
+        }
+
         private void NextStepCommandExecuted()
         {
             Debug.WriteLine("testing");
@@ -305,6 +464,11 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
         private async void AgregarProductoCommandExecuted()
         {
             await NavigationService.NavigateAsync("AgregarProducto");
+        }
+
+        private async void FinalCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/Home", UriKind.Absolute));
         }
         #endregion
     }

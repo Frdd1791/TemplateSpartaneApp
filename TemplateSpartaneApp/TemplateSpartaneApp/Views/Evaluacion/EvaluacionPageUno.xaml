@@ -7,7 +7,11 @@
         <StackLayout>
             <StackLayout Margin="20,20,20,0">
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}"/>
+                    <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Label Text="Evaluacion"
                            TextColor="Black"
                            FontSize="Large"
@@ -513,7 +517,7 @@
                         <StackLayout BackgroundColor="#F2F2F2"
                                      Margin="0,20">
                             <StackLayout Margin="20">
-                                <Button Command="{Binding NexFinalProcessCommand}" Text="Guardar resultados"
+                                <Button Command="{Binding SaveResultCommand}" Text="Guardar resultados"
                                         BackgroundColor="{Binding colorHexButtonSave}"
                                         TextColor="White"
                                         HorizontalOptions="Fill"
@@ -521,14 +525,14 @@
                                         TextTransform="None"
                                         FontSize="Large"
                                         IsEnabled="{Binding ButtonSaveData}"/>
-                                <Button Command="{Binding NexFinalProcessCommand}" Text="Descargar resultados"
+                                <Button Command="{Binding DownloadResultCommand}" Text="Descargar resultados"
                                         BackgroundColor="#47B561"
                                         TextColor="White"
                                         HorizontalOptions="Fill"
                                         CornerRadius="50"
                                         TextTransform="None"
                                         FontSize="Large"/>
-                                <Button Command="{Binding NexFinalProcessCommand}" Text="Finalizar"
+                                <Button Command="{Binding FinalCommand}" Text="Finalizar"
                                         BackgroundColor="#323A50"
                                         TextColor="White"
                                         HorizontalOptions="Fill"

@@ -20,6 +20,7 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         public DelegateCommand ProductosOralesCommand { get; set; }
         public DelegateCommand ProductosEnteralesCommand { get; set; }
         public DelegateCommand ProductosParenteralesCommand { get; set; }
+        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
 
@@ -29,10 +30,15 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
             ProductosOralesCommand = new DelegateCommand(ProductosOralesCommandExecuted);
             ProductosEnteralesCommand = new DelegateCommand(ProductosEnteralesCommandExecuted);
             ProductosParenteralesCommand = new DelegateCommand(ProductosParenteralesCommandExecuted);
+            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
         }
         #endregion
 
         #region Commands Methods
+        private async void ButtonBackCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/Home", UriKind.Absolute));
+        }
         private async void ProductosOralesCommandExecuted()
         {
             await NavigationService.NavigateAsync(new Uri("/Navigation/ProductosOrales", UriKind.Absolute));

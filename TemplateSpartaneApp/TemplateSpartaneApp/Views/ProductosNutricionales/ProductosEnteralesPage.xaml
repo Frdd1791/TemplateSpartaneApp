@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductosOralesPage"
+             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductosEnteralesPage"
              xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
-             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-             x:Name="ProductosOrales">
+             x:Name="ProductosEnterales">
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,0">
             <StackLayout Orientation="Horizontal">
@@ -28,7 +27,7 @@
                 </Frame>
             </StackLayout>
 
-            <CarouselView ItemsSource="{Binding ItemsProductosOrales}"
+            <CarouselView ItemsSource="{Binding ItemsProductosEnterales}"
                           Margin="0,15"
                           PeekAreaInsets="120">
                 <CarouselView.ItemsLayout>
@@ -42,7 +41,7 @@
                                    CornerRadius="6"
                                    HeightRequest="60">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectProduct, Source={x:Reference ProductosOrales}}"
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectProduct, Source={x:Reference ProductosEnterales}}"
                                                           CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                                 <Image Source="{Binding ImageProduct}" WidthRequest="50"/>

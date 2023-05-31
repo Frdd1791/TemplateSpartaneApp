@@ -43,6 +43,13 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         public DelegateCommand ActionHistoriaCNCommand { get; set; }
 
         public DelegateCommand NexFinalProcessCommand { get; set; }
+
+
+        public DelegateCommand SaveResultCommand { get; set; }
+        public DelegateCommand DownloadResultCommand { get; set; }
+        public DelegateCommand FinalCommand { get; set; }
+
+        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
         #region Properties
@@ -279,6 +286,13 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
 
             NexFinalProcessCommand = new DelegateCommand(NexFinalProcessCommandExecuted);
 
+            SaveResultCommand = new DelegateCommand(SaveResultCommandExecuted);
+            DownloadResultCommand = new DelegateCommand(DownloadResultCommandExecuted);
+            FinalCommand = new DelegateCommand(FinalCommandExecuted);
+
+            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
+
+
             TxtIndicadorPaso = "Indicanos algunos datos de tu paciente";
             TextPeso = "Perdida de peso de >5 % en:";
             IsActiveEvoUno = true;
@@ -301,6 +315,10 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         #endregion
 
         #region Commands Methods
+        private async void ButtonBackCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri("/Navigation/Home", UriKind.Absolute));
+        }
         private void NextEvoUnoCommandExecuted()
         {
             IsActiveEvoUno = false;
@@ -394,6 +412,21 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             IsActiveEvoResultado = true;
             IsActiveEvoCuatro = false;
             ProgressBarOpt = false;
+        }
+
+        private void SaveResultCommandExecuted()
+        {
+
+        }
+
+        private void DownloadResultCommandExecuted()
+        {
+
+        }
+
+        private async void FinalCommandExecuted()
+        {
+            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/Home", UriKind.Absolute));
         }
         #endregion
     }
