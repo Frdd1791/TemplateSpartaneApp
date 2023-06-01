@@ -32,8 +32,6 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
         public DelegateCommand NextPassSixCommand { get; set; }
 
         public DelegateCommand FinalCommand { get; set; }
-
-        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
         #region Properties
@@ -309,7 +307,6 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
 
             FinalCommand = new DelegateCommand(FinalCommandExecuted);
 
-            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
 
             HexColorFrameAlimentos = "#EFEFEF";
             HexColorFrameEnterales = "#EFEFEF";
@@ -322,10 +319,6 @@ namespace TemplateSpartaneApp.ViewModels.CalculoNutricional
         #endregion
 
         #region Commands Methods
-        private async void ButtonBackCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/Home", UriKind.Absolute));
-        }
         private void HexColorAlimentosCommandExecuted()
         {
             if (HexColorFrameAlimentos.Equals("#64C55D"))

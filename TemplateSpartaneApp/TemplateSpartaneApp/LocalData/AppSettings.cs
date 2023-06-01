@@ -56,7 +56,7 @@ namespace TemplateSpartaneApp.LocalData
         }
 
         /// <summary>
-        /// User is logged
+        /// User is Premium
         /// </summary>
         public bool Premium
         {
@@ -68,6 +68,22 @@ namespace TemplateSpartaneApp.LocalData
             set
             {
                 settingsService.AddOrUpdateValue($"{nameof(AppSettings)}{nameof(Premium)}", value);
+            }
+        }
+
+        /// <summary>
+        /// Aviso Oral
+        /// </summary>
+        public bool isAviso
+        {
+            get
+            {
+                return settingsService.GetValueOrDefault($"{nameof(AppSettings)}{nameof(isAviso)}", default(bool));
+            }
+
+            set
+            {
+                settingsService.AddOrUpdateValue($"{nameof(AppSettings)}{nameof(isAviso)}", value);
             }
         }
 
@@ -87,6 +103,7 @@ namespace TemplateSpartaneApp.LocalData
         {
             Logged = default(bool);
             Premium = default(bool);
+            isAviso = default(bool);
         }
     }
 }

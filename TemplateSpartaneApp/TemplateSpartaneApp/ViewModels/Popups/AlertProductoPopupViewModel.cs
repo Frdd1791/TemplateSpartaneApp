@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.LocalData;
 
 namespace TemplateSpartaneApp.ViewModels.Popups
 {
@@ -17,51 +18,6 @@ namespace TemplateSpartaneApp.ViewModels.Popups
 
         #region Vars Commands
         public DelegateCommand CloseCommand { get; set; }
-        public DelegateCommand NextCommand { get; set; }
-        public DelegateCommand SelectedChangedCommand { get; set; }
-        #endregion
-
-        #region Properties
-        private int selectedIndexPorcion;
-        public int SelectedIndexPorcion
-        {
-            get => selectedIndexPorcion;
-            set
-            {
-                SetProperty(ref selectedIndexPorcion, value);
-            }
-        }
-
-        private string textPorcion;
-        public string TextPorcion
-        {
-            get => textPorcion;
-            set
-            {
-                SetProperty(ref textPorcion, value);
-            }
-        }
-
-        private string entryPorcion;
-        public string EntryPorcion
-        {
-            get => entryPorcion;
-            set
-            {
-                SetProperty(ref entryPorcion, value);
-            }
-        }
-
-        private string placeHolderPorcion;
-        public string PlaceHolderPorcion
-        {
-            get => placeHolderPorcion;
-            set
-            {
-                SetProperty(ref placeHolderPorcion, value);
-            }
-        }
-
         #endregion
 
 
@@ -69,7 +25,6 @@ namespace TemplateSpartaneApp.ViewModels.Popups
         public AlertProductoPopupViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             CloseCommand = new DelegateCommand(CloseCommandExecuted);
-            NextCommand = new DelegateCommand(NextCommandExecuted);
         }
         #endregion
 
@@ -79,11 +34,8 @@ namespace TemplateSpartaneApp.ViewModels.Popups
         #region Commands Methods
         private async void CloseCommandExecuted()
         {
+            AppSettings.Instance.isAviso = true;
             await NavigationService.GoBackAsync();
-        }
-        private async void NextCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/InitTwo", UriKind.Absolute));
         }
         #endregion
 

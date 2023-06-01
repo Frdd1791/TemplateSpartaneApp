@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TemplateSpartaneApp.Views.Session.InicioDosPage">
     <ContentPage.Content>
-        <StackLayout Margin="26">
-            <StackLayout Spacing="20"  HorizontalOptions="Fill">
+        <StackLayout Margin="20,10">
+            <StackLayout Spacing="20" HorizontalOptions="Fill">
 
                 <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
                     <Label Text="Saltar" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center">
@@ -17,14 +17,14 @@
 
                 <Image Source="logo.png" />
 
-                <StackLayout HorizontalOptions="Center" Margin="10,10,10,20">
-                    <Image Source="elipse_center.png" WidthRequest="250"/>
+                <StackLayout HorizontalOptions="Center" Margin="10,15">
+                    <Image Source="group_image_two.png" WidthRequest="250"/>
                 </StackLayout>
 
                 <Label Text="Aqui pondremos una breve&#x0a;explicacion de lo que el usuario&#x0a;puede hacer dentro de la app" TextColor="Black" FontSize="Title" HorizontalTextAlignment="Center"/>
 
                 <StackLayout
-                    Margin="0,30"
+                    Margin="0,45,0,36"
                     HorizontalOptions="Center"
                     Orientation=" Horizontal">
                     <Frame BackgroundColor="#9aba8c" CornerRadius="50" WidthRequest="5" HeightRequest="5" Padding="5" Margin="7,0">

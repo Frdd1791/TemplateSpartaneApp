@@ -20,39 +20,19 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales
         public DelegateCommand ProductosOralesCommand { get; set; }
         public DelegateCommand ProductosEnteralesCommand { get; set; }
         public DelegateCommand ProductosParenteralesCommand { get; set; }
-        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
 
         #region Contructor
         public ProductosNutricionalesPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
-            ProductosOralesCommand = new DelegateCommand(ProductosOralesCommandExecuted);
-            ProductosEnteralesCommand = new DelegateCommand(ProductosEnteralesCommandExecuted);
-            ProductosParenteralesCommand = new DelegateCommand(ProductosParenteralesCommandExecuted);
-            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
+            ProductosOralesCommand = new DelegateCommand(() => NavigationService.NavigateAsync("ProductosOrales"));
+            ProductosEnteralesCommand = new DelegateCommand(() => NavigationService.NavigateAsync("ProductosEnterales"));
+            ProductosParenteralesCommand = new DelegateCommand(() => NavigationService.NavigateAsync("ProductosParenterales"));
         }
         #endregion
 
         #region Commands Methods
-        private async void ButtonBackCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/Home", UriKind.Absolute));
-        }
-        private async void ProductosOralesCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/ProductosOrales", UriKind.Absolute));
-        }
-
-        private async void ProductosEnteralesCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/ProductosEnterales", UriKind.Absolute));
-        }
-
-        private async void ProductosParenteralesCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/ProductosParenterales", UriKind.Absolute));
-        }
         #endregion
     }
 }

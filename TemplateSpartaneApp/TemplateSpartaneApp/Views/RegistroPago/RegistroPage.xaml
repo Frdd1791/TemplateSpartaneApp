@@ -4,8 +4,8 @@
              x:Class="TemplateSpartaneApp.Views.RegistroPago.RegistroPage"
              xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls">
     <ContentPage.Content>
-        <StackLayout Margin="26">
-            <StackLayout  Margin="0,50" Spacing="20"  HorizontalOptions="Fill">
+        <StackLayout Margin="20,10">
+            <StackLayout  Margin="0,20" Spacing="20"  HorizontalOptions="Fill">
                 <Label Text="Registro" TextColor="Black" FontSize="30" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
                 <Label Text="Ingresa tu información" FontSize="Large"/>
 
@@ -34,7 +34,14 @@
                 </StackLayout>
 
                 <Button Command="{Binding NextPageCommand}" Text="siguiente" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
-                <Label Text="Tengo una cuenta" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Title"/>
+                <Label Text="Tengo una cuenta"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Title">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShowPageLoginCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

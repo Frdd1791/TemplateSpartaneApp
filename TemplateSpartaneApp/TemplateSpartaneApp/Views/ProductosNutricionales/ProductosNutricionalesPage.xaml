@@ -8,7 +8,7 @@
                 <StackLayout>
                     <Image Source="left_arrow.png" HorizontalOptions="Start" IsVisible="{Binding ButtonBack}">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                            <TapGestureRecognizer Command="{Binding ReturnToPreviousPageCommand}"/>
                         </Image.GestureRecognizers>
                     </Image>
                     <Label Text="Productos Nutricionales"

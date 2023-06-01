@@ -157,10 +157,11 @@ namespace TemplateSpartaneApp.ViewModels.Home
             SelectItemCommand = new DelegateCommand(SelectItemCommandExecute);
             AddItemCommand = new DelegateCommand(AddItemCommandExecute);
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
-            PacientesCommand = new DelegateCommand(PacientesCommandExecuted);
-            ProductosCommand = new DelegateCommand(ProductosCommandExecuted);
-            EvaluacionCommand = new DelegateCommand(EvaluacionCommandExecuted);
-            CalculoNutricionalCommand = new DelegateCommand(CalculoNutricionalCommandExecuted);
+
+            PacientesCommand = new DelegateCommand(() => NavigationService.NavigateAsync("ListaPacientes"));
+            ProductosCommand = new DelegateCommand(() => NavigationService.NavigateAsync("ProductosNutricionales"));
+            EvaluacionCommand = new DelegateCommand(() => NavigationService.NavigateAsync("EvaluacionUno"));
+            CalculoNutricionalCommand = new DelegateCommand(() => NavigationService.NavigateAsync("CalculoNutricional"));
 
             Items = new ObservableCollectionExt<ProgressReportModel>();
 
@@ -273,26 +274,6 @@ namespace TemplateSpartaneApp.ViewModels.Home
         private void AddItemCommandExecute()
         {
             NavigationService.NavigateAsync(nameof(ProgressReportPopup));
-        }
-
-        private async void PacientesCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/ListaPacientes", UriKind.Absolute));
-        }
-
-        private async void ProductosCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/ProductosNutricionales", UriKind.Absolute));
-        }
-
-        private async void EvaluacionCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/EvaluacionUno", UriKind.Absolute));
-        }
-
-        private async void CalculoNutricionalCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri($"/Index/Navigation/CalculoNutricional", UriKind.Absolute));
         }
         #endregion
 

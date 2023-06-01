@@ -48,8 +48,6 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         public DelegateCommand SaveResultCommand { get; set; }
         public DelegateCommand DownloadResultCommand { get; set; }
         public DelegateCommand FinalCommand { get; set; }
-
-        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
         #region Properties
@@ -290,8 +288,6 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             DownloadResultCommand = new DelegateCommand(DownloadResultCommandExecuted);
             FinalCommand = new DelegateCommand(FinalCommandExecuted);
 
-            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
-
 
             TxtIndicadorPaso = "Indicanos algunos datos de tu paciente";
             TextPeso = "Perdida de peso de >5 % en:";
@@ -315,10 +311,6 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         #endregion
 
         #region Commands Methods
-        private async void ButtonBackCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/Home", UriKind.Absolute));
-        }
         private void NextEvoUnoCommandExecuted()
         {
             IsActiveEvoUno = false;

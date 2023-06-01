@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.ProductosOralesPage"
+             x:Class="TemplateSpartaneApp.Views.ProductosNutricionales.Oral.ProductosOralesPage"
              xmlns:controls="clr-namespace:TemplateSpartaneApp.Controls"
              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              x:Name="ProductosOrales">
@@ -10,10 +10,10 @@
             <StackLayout Orientation="Horizontal">
                 <Image Source="left_arrow.png" IsVisible="{Binding IsVisibleBackButton}">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                        <TapGestureRecognizer Command="{Binding ReturnToPreviousPageCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Calculo nutricional"
+                <Label Text="Productos Orales"
                        TextColor="Black"
                        FontSize="Large"
                        VerticalTextAlignment="Center"/>

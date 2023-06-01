@@ -18,6 +18,7 @@ namespace TemplateSpartaneApp.ViewModels.RegistroPago
 
         #region Vars Commands
         public DelegateCommand NextPageCommand { get; set; }
+        public DelegateCommand ShowPageLoginCommand { get; set; }
         #endregion
 
 
@@ -25,6 +26,7 @@ namespace TemplateSpartaneApp.ViewModels.RegistroPago
         public RegistroPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             NextPageCommand = new DelegateCommand(NextPageCommandExecuted);
+            ShowPageLoginCommand = new DelegateCommand(() => NavigationService.NavigateAsync("LogIn"));
         }
         #endregion
 
@@ -33,6 +35,7 @@ namespace TemplateSpartaneApp.ViewModels.RegistroPago
         {
             await NavigationService.NavigateAsync(new Uri("/Navigation/InitTwo", UriKind.Absolute));
         }
+
         #endregion
     }
 }

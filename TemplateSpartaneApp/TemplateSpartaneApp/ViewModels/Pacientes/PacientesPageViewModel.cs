@@ -22,7 +22,6 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
         #region Vars Commans
         public DelegateCommand OnSelectItemCommand { get; set; }
-        public DelegateCommand ButtonBackCommand { get; set; }
         #endregion
 
         #region Properties
@@ -53,7 +52,6 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #region Contructor
         public PacientesPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
-            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
             CreatedListPacientes();
         }
@@ -89,10 +87,6 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Commands Methods
-        private async void ButtonBackCommandExecuted()
-        {
-            await NavigationService.NavigateAsync(new Uri("/Navigation/Home", UriKind.Absolute));
-        }
 
         private async void OnSelectItemCommandExecuted()
         {

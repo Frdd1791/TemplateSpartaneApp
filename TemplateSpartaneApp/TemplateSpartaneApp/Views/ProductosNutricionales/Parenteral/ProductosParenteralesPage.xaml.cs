@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TemplateSpartaneApp.Views.ProductosNutricionales
+namespace TemplateSpartaneApp.Views.ProductosNutricionales.Parenteral
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductosParenteralesPage : ContentPage
@@ -15,6 +15,7 @@ namespace TemplateSpartaneApp.Views.ProductosNutricionales
         public ProductosParenteralesPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

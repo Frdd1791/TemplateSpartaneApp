@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.ProductosEnterales;
 using TemplateSpartaneApp.Models.ProductosOrales;
 
@@ -21,7 +22,6 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral
         #endregion
 
         #region Vars Commands
-        public DelegateCommand ButtonBackCommand { get; set; }
         public DelegateCommand<object> SelectProduct { get; private set; }
         #endregion
 
@@ -62,7 +62,6 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral
         private void CreatedListProductos()
         {
             IsVisibleBackButton = "True";
-            ButtonBackCommand = new DelegateCommand(ButtonBackCommandExecuted);
             ItemsProductosEnterales = new ObservableCollectionExt<ProductosEnteralesModel>()
             {
                 new ProductosEnteralesModel{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
@@ -72,7 +71,10 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral
                 new ProductosEnteralesModel{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
             };
 
-            LoadAlert();
+            if (!AppSettings.Instance.isAviso)
+            {
+                LoadAlert();
+            }
         }
         #endregion
 
@@ -95,12 +97,6 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral
         {
             await Task.Delay(1000);
             await NavigationService.NavigateAsync("AlertProducto");
-        }
-
-        private async void ButtonBackCommandExecuted()
-        {
-            Debug.WriteLine("press");
-            await NavigationService.NavigateAsync(new Uri("/Index/Navigation/ProductosNutricionales", UriKind.Absolute));
         }
         #endregion
 

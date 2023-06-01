@@ -9,7 +9,7 @@
                 <Image Source="left_arrow.png"
                        HorizontalOptions="Start">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ButtonBackCommand}"/>
+                        <TapGestureRecognizer Command="{Binding ReturnToPreviousPageCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Nombre el paciente:" TextColor="Black" FontSize="Large"/>

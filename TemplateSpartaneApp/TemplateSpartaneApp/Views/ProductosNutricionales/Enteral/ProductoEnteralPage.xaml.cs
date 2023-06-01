@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TemplateSpartaneApp.Views.ProductosNutricionales
+namespace TemplateSpartaneApp.Views.ProductosNutricionales.Enteral
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductoEnteralPage : ContentPage

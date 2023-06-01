@@ -35,6 +35,9 @@ using TemplateSpartaneApp.ViewModels.ProductosNutricionales;
 using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Enteral;
 using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral;
 using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Parenteral;
+using TemplateSpartaneApp.Views.ProductosNutricionales.Enteral;
+using TemplateSpartaneApp.Views.ProductosNutricionales.Oral;
+using TemplateSpartaneApp.Views.ProductosNutricionales.Parenteral;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TemplateSpartaneApp
@@ -70,7 +73,7 @@ namespace TemplateSpartaneApp
             }
             else
             {
-                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/InitOne", UriKind.Absolute));
+                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Registro", UriKind.Absolute));
             }
         }
 
@@ -103,6 +106,7 @@ namespace TemplateSpartaneApp
             containerRegistry.RegisterForNavigation<CalculoNutricionalPage, CalculoNutricionalPageViewModel>("CalculoNutricional");
 
             containerRegistry.RegisterForNavigation<ProductosNutricionalesPage, ProductosNutricionalesPageViewModel>("ProductosNutricionales");
+
             containerRegistry.RegisterForNavigation<ProductosOralesPage, ProductosOralesPageViewModel>("ProductosOrales");
             containerRegistry.RegisterForNavigation<ProductoOralPage, ProductoOralPageVideModel>("ProductoOral");
 
