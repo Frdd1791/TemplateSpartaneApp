@@ -20,9 +20,10 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Services\ProductosNutricionales\Parenteral\" />
+    <Folder Include="Services\ProductosNutricionales\Oral\" />
     <Folder Include="Utils\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
     <Folder Include="Controls\" />
     <Folder Include="Settings\" />
     <Folder Include="Resources\" />
