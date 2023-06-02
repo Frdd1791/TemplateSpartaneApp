@@ -25,6 +25,9 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         public DelegateCommand NextEvoCuatroCommand { get; set; }
         public DelegateCommand TabGestureListCommand { get; set; }
 
+        public DelegateCommand ActionPerdidaPesoCommand { get; set; }
+        public DelegateCommand ActionIngestaAlimentosCommand { get; set; }
+
         /*
          * Commands ContentView mas65
          */
@@ -254,6 +257,26 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
                 SetProperty(ref colorHexButtonSave, value);
             }
         }
+
+        private string textPerdidaPeso;
+        public string TextPerdidaPeso
+        {
+            get { return textPerdidaPeso; }
+            set
+            {
+                SetProperty(ref textPerdidaPeso, value);
+            }
+        }
+
+        private string textIngestaAlimentos;
+        public string TextIngestaAlimentos
+        {
+            get { return textIngestaAlimentos; }
+            set
+            {
+                SetProperty(ref textIngestaAlimentos, value);
+            }
+        }
         #endregion
 
 
@@ -270,6 +293,9 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             NextEvoMas65Command = new DelegateCommand(Mas65CommandExecuted);
             NextEvoDosCommand = new DelegateCommand(NextEvoDosCommandExecuted);
             NextEvoCuatroCommand = new DelegateCommand(NextEvoCuatroCommandExecuted);
+
+            ActionPerdidaPesoCommand = new DelegateCommand(ActionSheetPerdidaPesoCommandExecuted);
+            ActionIngestaAlimentosCommand = new DelegateCommand(ActionSheetIngestaAlimentosCommandExecuted);
 
             ActionGeneroCommand = new DelegateCommand(ActionSheetCommandExecuted);
             ActionAlimentacionCommand = new DelegateCommand(ActionSheetAlimentacionCommandExecuted);
@@ -288,7 +314,8 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             DownloadResultCommand = new DelegateCommand(DownloadResultCommandExecuted);
             FinalCommand = new DelegateCommand(FinalCommandExecuted);
 
-
+            TextPerdidaPeso = "No ha perdido peso";
+            TextIngestaAlimentos = "Normal";
             TxtIndicadorPaso = "Indicanos algunos datos de tu paciente";
             TextPeso = "Perdida de peso de >5 % en:";
             IsActiveEvoUno = true;
@@ -346,55 +373,138 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         private async void ActionSheetCommandExecuted()
         {
             string genero = await Application.Current.MainPage.DisplayActionSheet("Sexo: ", "Cancel", null, "Hombre", "Mujer");
-            TextGenero = genero.ToString();
-
+            if (genero.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextGenero = genero.ToString();
+            }
         }
 
         private async void ActionSheetAlimentacionCommandExecuted()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Alimentacion: ", "Cancel", null, "Ha comido mucho menos", "Ha comido menos", "Ha comido igual");
-            TextAlimentacionMas65 = action.ToString();
-
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextAlimentacionMas65 = action.ToString();
+            }
         }
 
         private async void ActionSheetPesoCommandExecuted()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Peso: ", "Cancel", null, "Perdida de peso >3 kilos", "No lo sabe", "Perdida de peso entre 1 a 3 kilos", "No ha habido perdida de peso");
-            TextPesoMas65 = action.ToString();
-
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextPesoMas65 = action.ToString();
+            }
         }
         private async void ActionSheetMovilidadCommandExecuted()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Movilidad: ", "Cancel", null, "De la cama al sillon", "Autonomia en el interior", "Sale del domicilio");
-            TextMovilidadMas65 = action.ToString();
-
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextMovilidadMas65 = action.ToString();
+            }
         }
         private async void ActionSheetProblemasCommandExecuted()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Problemas: ", "Cancel", null, "Demencia o depresion grave", "Demencia moderada", "Sin problemas psicologicos");
-            TextProblemasMas65 = action.ToString();
-
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextProblemasMas65 = action.ToString();
+            }
         }
 
         private async void ActionSheetAlimentacionCNCCommandExecuted()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Problemas: ", "Cancel", null, "No", "En los ultimos 5 dias", "En los ultimos 10 dias", "No lo se");
-            TextAlimentacionCNC = action.ToString();
+            string action = await Application.Current.MainPage.DisplayActionSheet("Alimentacion: ", "Cancel", null, "No", "En los ultimos 5 dias", "En los ultimos 10 dias", "No lo se");
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextAlimentacionCNC = action.ToString();
+            }
         }
         private async void ActionSheetPesoCNCCommandExecuted()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Problemas: ", "Cancel", null, "No ha perdido peso", ">15% en los ultimos 3 a 6 meses", ">10% ultimos 6 meses", "No lo se");
-            TextPesoCNC = action.ToString();
+            string action = await Application.Current.MainPage.DisplayActionSheet("Peso: ", "Cancel", null, "No ha perdido peso", ">15% en los ultimos 3 a 6 meses", ">10% ultimos 6 meses", "No lo se");
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextPesoCNC = action.ToString();
+            }
         }
         private async void ActionSheetNivelesCNCCommandExecuted()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Problemas: ", "Cancel", null, "Si", "No", "No lo se");
-            TextNivelesCNC = action.ToString();
+            string action = await Application.Current.MainPage.DisplayActionSheet("Niveles: ", "Cancel", null, "Si", "No", "No lo se");
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextNivelesCNC = action.ToString();
+            }
         }
         private async void ActionSheetHistoriaCNCCommandExecuted()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Problemas: ", "Cancel", null, "Si", "No", "No lo se");
-            TextHistoriaCNC = action.ToString();
+            string action = await Application.Current.MainPage.DisplayActionSheet("Historia: ", "Cancel", null, "Si", "No", "No lo se");
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextHistoriaCNC = action.ToString();
+            }
+        }
+        private async void ActionSheetPerdidaPesoCommandExecuted()
+        {
+            string action = await Application.Current.MainPage.DisplayActionSheet("Perdida de peso: ", "Cancel", null, "No ha perdido peso", "Ultimo mes", "2 meses", "3 meses", ">15% en tiempo indefinido");
+            if(action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextPerdidaPeso = action.ToString();
+            }
+        }
+
+        private async void ActionSheetIngestaAlimentosCommandExecuted()
+        {
+            string action = await Application.Current.MainPage.DisplayActionSheet("Perdida de peso: ", "Cancel", null, "Normal", "del 50 al 75%", "del 25 al 50%", "del 0 al 25%");
+            if (action.Equals("Calcel"))
+            {
+                Debug.WriteLine("Valor no admitido");
+            }
+            else
+            {
+                TextIngestaAlimentos = action.ToString();
+            }
         }
 
         private void NexFinalProcessCommandExecuted()

@@ -136,19 +136,33 @@
                         </StackLayout>
                         <BoxView BackgroundColor="DeepSkyBlue" HeightRequest="0.5" Margin="0,0,0,20"/>
 
-                        <!--<Label Text="{Binding TextPeso}"
-                        TextColor="Black" FontSize="Large"/>
-                        <Button Command="{Binding NextPageCommand}" Text="No ha perdido peso"
-                        BackgroundColor="white"
-                        TextColor="Black"
-                        HorizontalOptions="Fill"
-                        CornerRadius="50"
-                        TextTransform="None"
-                        FontSize="Large"
-                        BorderColor="Gray"
-                        BorderWidth="1"
-                        ImageSource="down_arrow.png"
-                        ContentLayout="Right,0"/>-->
+                        <Label Text="Perdida de peso de >5 % en: "
+                                   TextColor="Black" FontSize="Large"/>
+                        <Button Command="{Binding ActionPerdidaPesoCommand}" Text="{Binding TextPerdidaPeso}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
+
+                        <Label Text="Ingesta de alimentos ultima semana"
+                                   TextColor="Black" FontSize="Large"/>
+                        <Button Command="{Binding ActionIngestaAlimentosCommand}" Text="{Binding TextIngestaAlimentos}"
+                                    BackgroundColor="white"
+                                    TextColor="Black"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="50"
+                                    TextTransform="None"
+                                    FontSize="Large"
+                                    BorderColor="Gray"
+                                    BorderWidth="1"
+                                    ImageSource="down_arrow.png"
+                                    ContentLayout="Right,0"/>
 
                         <!--<Frame BackgroundColor="Aquamarine"
                         Padding="10"

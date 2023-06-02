@@ -73,7 +73,7 @@ namespace TemplateSpartaneApp
             }
             else
             {
-                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Registro", UriKind.Absolute));
+                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/InitOne", UriKind.Absolute));
             }
         }
 
@@ -101,7 +101,6 @@ namespace TemplateSpartaneApp
             containerRegistry.RegisterForNavigation<DataPaciente, DataPacientePageViewModel>("DataPaciente");
 
             containerRegistry.RegisterForNavigation<EvaluacionPageUno, EvaluacionPageUnoViewModel>("EvaluacionUno");
-            containerRegistry.RegisterForNavigation<EvaluacionPageDos, EvaluacionPageDosViewModel>("EvaluacionDos");
 
             containerRegistry.RegisterForNavigation<CalculoNutricionalPage, CalculoNutricionalPageViewModel>("CalculoNutricional");
 
