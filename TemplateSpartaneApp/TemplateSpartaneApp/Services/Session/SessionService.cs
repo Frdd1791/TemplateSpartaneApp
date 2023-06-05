@@ -29,5 +29,15 @@ namespace TemplateSpartaneApp.Services.Session
             return sessionService.AuthUser(username, HelperEncrypt.EncryptPassword(password));
         }
 
+        public Task<SpartanUserList> VerifyAccount(string username)
+        {
+            return sessionService.VerifyAccount(username);
+        }
+
+        public Task<int> Post([Body] UserSpartaneModel item)
+        {
+            return sessionService.Post(item);
+        }
+
     }
 }

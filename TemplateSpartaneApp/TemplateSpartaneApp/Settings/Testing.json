@@ -1,6 +1,6 @@
 ﻿{
-  "BaseUrl": "http://www.spartane.com/ALMwebapi/api",
-  "UrlToken": "http://www.spartane.com/ALMwebapi/oauth/token",
+  "BaseUrl": "http://172.107.204.246/MVCnutricionclinicatotal/api",
+  "UrlToken": "http://172.107.204.246/MVCnutricionclinicatotal/oauth/token",
   "BaseUrlImage": "",
   "UserToken": "admin",
   "PassToken": "admin",

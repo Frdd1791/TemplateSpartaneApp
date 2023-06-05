@@ -10,16 +10,16 @@
                 <Label Text="Ingresa tu información" FontSize="Large"/>
 
                 <Label Text="Nombre" TextColor="Black" FontSize="Header"/>
-                <controls:EntryControl Keyboard="Text" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+                <controls:EntryControl Keyboard="Text" BorderColor="Gray" Text="{Binding Name}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
 
                 <Label Text="E-mail" TextColor="Black" FontSize="Medium"/>
-                <controls:EntryControl Keyboard="Email" BorderColor="Gray" Text="{Binding Username}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+                <controls:EntryControl Keyboard="Email" BorderColor="Gray" Text="{Binding Email}" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
 
                 <Label Text="Contraseña" TextColor="Black" FontSize="Medium"/>
-                <controls:EntryControl BorderColor="Gray" Text="{Binding Password}" IsPassword="true" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+                <controls:EntryControl BorderColor="Gray" Text="{Binding Pass}" IsPassword="true" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
 
                 <Label Text="Repetir contraseña" TextColor="Black" FontSize="Medium"/>
-                <controls:EntryControl BorderColor="Gray" Text="{Binding Password}" IsPassword="true" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
+                <controls:EntryControl BorderColor="Gray" Text="{Binding RePass}" IsPassword="true" HorizontalOptions="Fill" CornerRadius="3" Margin="0,-15,0,0"/>
 
                 <StackLayout
                     Margin="0,0,0,50"
@@ -33,7 +33,7 @@
                         VerticalTextAlignment="Center"/>
                 </StackLayout>
 
-                <Button Command="{Binding NextPageCommand}" Text="siguiente" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
+                <Button Command="{Binding RegisterCommand}" Text="siguiente" BackgroundColor="Black" TextColor="White" HorizontalOptions="Fill" CornerRadius="3" FontSize="Large"/>
                 <Label Text="Tengo una cuenta"
                        TextColor="Black"
                        HorizontalTextAlignment="Center"

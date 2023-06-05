@@ -9,5 +9,13 @@ namespace TemplateSpartaneApp.Services.Session
         [Get("/Spartan_User/ListaSelAll?startRowIndex=1&maximumRows=1&Where=Username='{username}' COLLATE SQL_Latin1_General_CP1_CS_AS And Password='{password}' COLLATE SQL_Latin1_General_CP1_CS_AS")]
         [Headers("Authorization: Bearer")]
         Task<SpartanUserList> AuthUser(string username, string password);
+
+        [Get("/Spartan_User/ListaSelAll?startRowIndex=1&maximumRows=1&Where=Username='{username}' COLLATE SQL_Latin1_General_CP1_CS_AS")]
+        [Headers("Authorization: Bearer")]
+        Task<SpartanUserList> VerifyAccount(string username);
+
+        [Post("/Spartan_User/Post")]
+        [Headers("Authorization: Bearer")]
+        Task<int> Post([Body] UserSpartaneModel item);
     }
 }
