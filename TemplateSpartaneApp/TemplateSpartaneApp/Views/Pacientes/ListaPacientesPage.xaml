@@ -33,7 +33,7 @@
                                        CornerRadius="10">
                                     <StackLayout Orientation="Horizontal" Spacing="20">
                                         <Image Source="icon_pacientes.png" WidthRequest="30"/>
-                                        <Label Text="{Binding Name}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
+                                        <Label Text="{Binding Nombre_del_Paciente}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
                                         <Image Source="icon_right.png"
                                                WidthRequest="15"
                                                HorizontalOptions="EndAndExpand"/>

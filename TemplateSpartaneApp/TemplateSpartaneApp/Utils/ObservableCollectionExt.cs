@@ -17,4 +17,19 @@ public class ObservableCollectionExt<T> : ObservableCollection<T>
         OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
         OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
     }
+
+    public ObservableCollectionExt(List<T> items = null)
+    {
+        if (items != null)
+        {
+            Items.Clear();
+            foreach (var model in items)
+            {
+                Items.Add(model);
+            }
+            OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+            OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+    }
 }

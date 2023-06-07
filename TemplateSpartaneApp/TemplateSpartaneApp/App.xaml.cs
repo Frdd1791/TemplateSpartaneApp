@@ -38,6 +38,7 @@ using TemplateSpartaneApp.ViewModels.ProductosNutricionales.Parenteral;
 using TemplateSpartaneApp.Views.ProductosNutricionales.Enteral;
 using TemplateSpartaneApp.Views.ProductosNutricionales.Oral;
 using TemplateSpartaneApp.Views.ProductosNutricionales.Parenteral;
+using TemplateSpartaneApp.Services.Pacientes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TemplateSpartaneApp
@@ -69,7 +70,7 @@ namespace TemplateSpartaneApp
             InitServiceSQLite();
             if (AppSettings.Instance.Logged)
             {
-                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
+                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/ListaPacientes", UriKind.Absolute));
             }
             else
             {
@@ -135,6 +136,7 @@ namespace TemplateSpartaneApp
             #region Services
             containerRegistry.Register<ISessionService, SessionService>();
             containerRegistry.Register<IProgressReportService, ProgressReportService>();
+            containerRegistry.Register<IPacientesService, PacientesService>();
             #endregion
 
             #region Repositories

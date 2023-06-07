@@ -8,10 +8,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.Pacientes;
-using TemplateSpartaneApp.Services.Catalogs;
 using TemplateSpartaneApp.Services.Pacientes;
-using TemplateSpartaneApp.ViewModels.RegistroPago;
 using Xamarin.Forms;
 using static TemplateSpartaneApp.ViewModels.Home.MainPageViewModel;
 
@@ -29,8 +28,8 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Properties
-        private ObservableCollectionExt<PacientesModel> itemsList;
-        public ObservableCollectionExt<PacientesModel> ItemsList
+        private ObservableCollectionExt<MiPaciente> itemsList;
+        public ObservableCollectionExt<MiPaciente> ItemsList
         {
             get { return itemsList; }
             set
@@ -39,8 +38,8 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             }
         }
 
-        public PacientesModel selectItemPaciente;
-        public PacientesModel SelectItemPaciente
+        public MiPaciente selectItemPaciente;
+        public MiPaciente SelectItemPaciente
         {
             get { return selectItemPaciente; }
             set
@@ -55,34 +54,27 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
         #region Contructor
         public PacientesPageViewModel(INavigationService navigationService,
-            IPacientesService pacienteService,
             IUserDialogs userDialogsService,
+            IPacientesService pacientesService,
             IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
-            _pacienteService = pacienteService;
-            CreatedListPacientes();
+            _pacienteService = pacientesService;
+            LoadPacientes();
         }
         #endregion
 
         #region Methods
-        private async void CreatedListPacientes()
+        private async void LoadPacientes()
         {
-            ItemsList = new ObservableCollectionExt<PacientesModel>()
+            var items = await RunSafeApi<ListPacientesModel>(_pacienteService.ListaSelAll(0, 100, $"Usuario = {Profile.Instance.Identifier}"));
+            if (items.Status == TypeReponse.Ok)
             {
-                new PacientesModel{ Nombre_del_Paciente="Mariana Estefania Calle Mendoza" },
-                new PacientesModel{ Nombre_del_Paciente="Alberto Julian Martinez Jativa" },
-                new PacientesModel{ Nombre_del_Paciente="Carmen Anthonella Casanova Rivas" }
-            };
-
-            /*var lista = await RunSafeApi<ListPacientes>(_pacienteService.ListaSelAll(0, 1000));
-            if (lista.Status == TypeReponse.Ok)
-            {
-                if (lista.Response.RowCount > 0)
+                if (items.Response.RowCount > 0)
                 {
-
+                    ItemsList = new ObservableCollectionExt<MiPaciente>(items.Response.listPacientes);
                 }
-            }*/
+            }
         }
         #endregion
 
@@ -106,6 +98,9 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
                 Debug.WriteLine(ex.Message, TAG);
             }
         }
+        #endregion
+
+        #region Populating
         #endregion
 
         #region Methods Life Cycle Page

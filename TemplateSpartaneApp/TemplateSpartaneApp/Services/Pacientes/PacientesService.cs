@@ -29,27 +29,27 @@ namespace TemplateSpartaneApp.Services.Pacientes
             return pacienteService.Delete(id);
         }
 
-        public Task<PacientesModel> Get(int id)
+        public Task<MiPaciente> Get(int id)
         {
             return pacienteService.Get(id);
         }
 
-        public Task<ListPacientes> GetAll()
+        public Task<ListPacientesModel> GetAll()
         {
             return pacienteService.GetAll();
         }
 
-        public Task<ListPacientes> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null)
+        public Task<ListPacientesModel> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null)
         {
             return pacienteService.ListaSelAll(startRowIndex, maximumRows, where, order);
         }
 
-        public Task<int> Post([Body] PacientesModel item)
+        public Task<int> Post([Body] MiPaciente item)
         {
             return pacienteService.Post(item);
         }
 
-        public Task<int> Put(int id, [Body] PacientesModel item)
+        public Task<int> Put(int id, [Body] MiPaciente item)
         {
             return pacienteService.Put(id, item);
         }

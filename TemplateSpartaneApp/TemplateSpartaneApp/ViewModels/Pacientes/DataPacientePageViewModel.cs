@@ -244,7 +244,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Populating
-        private void PopulateView(PacientesModel item)
+        private void PopulateView(MiPaciente item)
         {
             if (item != null)
             {
@@ -260,7 +260,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             {
                 if (parameters.ContainsKey("Paciente"))
                 {
-                    var item = parameters.GetValue<PacientesModel>("Paciente");
+                    var item = parameters.GetValue<MiPaciente>("Paciente");
                     PopulateView(item);
                 }
                 else

@@ -12,23 +12,23 @@ namespace TemplateSpartaneApp.Services.Pacientes
     {
         [Get("/Mi_Paciente/Get")]
         [Headers("Authorization: Bearer")]
-        Task<PacientesModel> Get(int id);
+        Task<MiPaciente> Get(int id);
 
         [Get("/Mi_Paciente/GetAll")]
         [Headers("Authorization: Bearer")]
-        Task<ListPacientes> GetAll();
+        Task<ListPacientesModel> GetAll();
 
         [Get("/Mi_Paciente/ListaSelAll")]
         [Headers("Authorization: Bearer")]
-        Task<ListPacientes> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null);
+        Task<ListPacientesModel> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null);
 
         [Post("/Mi_Paciente/Post")]
         [Headers("Authorization: Bearer")]
-        Task<int> Post([Body] PacientesModel item);
+        Task<int> Post([Body] MiPaciente item);
 
         [Put("/Mi_Paciente/Put")]
         [Headers("Authorization: Bearer")]
-        Task<int> Put(int id, [Body] PacientesModel item);
+        Task<int> Put(int id, [Body] MiPaciente item);
 
         [Delete("/Mi_Paciente/Delete")]
         [Headers("Authorization: Bearer")]

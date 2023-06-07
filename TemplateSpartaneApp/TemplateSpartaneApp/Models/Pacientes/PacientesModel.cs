@@ -7,15 +7,15 @@ using Xamarin.Forms;
 
 namespace TemplateSpartaneApp.Models.Pacientes
 {
-    public partial class ListPacientes : ModelBase
+    public partial class ListPacientesModel : ModelBase
     {
-        [JsonProperty("Mi_Paciente")]
-        public List<PacientesModel> listPacientes { get; set; }
+        [JsonProperty("Mi_Pacientes")]
+        public List<MiPaciente> listPacientes { get; set; }
 
         [JsonProperty("RowCount")]
         public int RowCount { get; set; }
     }
-    public partial class PacientesModel : ModelBase
+    public partial class MiPaciente : ModelBase
     {
         public int Folio { get; set; }
         public DateTime? Fecha_de_Registro { get; set; }
