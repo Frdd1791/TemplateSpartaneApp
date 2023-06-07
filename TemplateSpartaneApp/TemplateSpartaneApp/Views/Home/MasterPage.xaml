@@ -16,7 +16,7 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <StackLayout Margin="0,20">
-                    <Label Text="Hola, Code." TextColor="Black" FontSize="25" FontAttributes="Bold"/>
+                    <Label Text="{Binding TextUserName}" TextColor="Black" FontSize="25" FontAttributes="Bold"/>
                     <Frame Margin="0,20" BackgroundColor="AliceBlue" Padding="7" HasShadow="True">
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                             <Image Source="crown.png" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" WidthRequest="30"/>

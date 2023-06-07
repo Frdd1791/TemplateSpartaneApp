@@ -44,11 +44,23 @@ namespace TemplateSpartaneApp.ViewModels.Home
                 OnSelectItemCommand.Execute();
             }
         }
+
+        public string textUserName;
+        public string TextUserName
+        {
+            get { return textUserName; }
+            set
+            {
+                SetProperty(ref textUserName, value);
+            }
+        }
+
         #endregion
 
         #region Constructor
         public MasterPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
+            TextUserName = "Hola, " + Profile.Instance.Name;
             CreatedMenu();
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
             CloseSessionCommand = new DelegateCommand(CloseSessionCommandExecuted);

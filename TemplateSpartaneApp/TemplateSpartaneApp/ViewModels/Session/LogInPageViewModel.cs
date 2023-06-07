@@ -13,7 +13,7 @@ namespace TemplateSpartaneApp.ViewModels.Session
 {
     public class LogInPageViewModel : ViewModelBase
     {
-        
+
         #region Vars
         private static string TAG = nameof(LogInPageViewModel);
         private ISessionService _sessionService;
@@ -67,7 +67,7 @@ namespace TemplateSpartaneApp.ViewModels.Session
         private async void LogInCommandExecuted()
         {
             UserDialogsService.ShowLoading("Loading");
-            if(string.IsNullOrEmpty(Username))
+            if (string.IsNullOrEmpty(Username))
             {
                 UserDialogsService.Alert("User field not entered.", "Alert", "Aceptar");
                 return;
@@ -92,6 +92,8 @@ namespace TemplateSpartaneApp.ViewModels.Session
                     var user = resp.Response.SpartanUsers[0];
                     if (user.Username.Equals(Username))
                     {
+                        Remenber = true;
+                        AppSettings.Instance.Premium = true;
                         SaveSession(user);
                         await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
                     }

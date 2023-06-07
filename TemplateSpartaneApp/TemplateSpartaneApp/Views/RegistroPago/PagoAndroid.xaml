@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout Margin="26">
             <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" VerticalOptions="Center">
-                <Label Text="Saltar X" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
+                <Label Text="Salir X" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center"/>
             </StackLayout>
 
             <StackLayout Spacing="20"  HorizontalOptions="Fill">

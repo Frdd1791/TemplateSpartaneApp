@@ -248,8 +248,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         {
             if (item != null)
             {
-                NombrePaciente = item.Name;
-                Debug.WriteLine(item.Name);
+                NombrePaciente = item.Nombre_del_Paciente;
             }
         }
         #endregion

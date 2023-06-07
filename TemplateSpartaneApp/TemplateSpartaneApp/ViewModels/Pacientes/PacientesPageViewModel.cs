@@ -4,10 +4,13 @@ using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
 using TemplateSpartaneApp.Models.Pacientes;
+using TemplateSpartaneApp.Services.Catalogs;
+using TemplateSpartaneApp.Services.Pacientes;
 using TemplateSpartaneApp.ViewModels.RegistroPago;
 using Xamarin.Forms;
 using static TemplateSpartaneApp.ViewModels.Home.MainPageViewModel;
@@ -18,6 +21,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
     {
         #region Vars
         private static string TAG = nameof(PacientesPageViewModel);
+        private readonly IPacientesService _pacienteService;
         #endregion
 
         #region Vars Commans
@@ -50,39 +54,35 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
 
         #region Contructor
-        public PacientesPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public PacientesPageViewModel(INavigationService navigationService,
+            IPacientesService pacienteService,
+            IUserDialogs userDialogsService,
+            IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             OnSelectItemCommand = new DelegateCommand(OnSelectItemCommandExecuted);
+            _pacienteService = pacienteService;
             CreatedListPacientes();
         }
         #endregion
 
         #region Methods
-        private void CreatedListPacientes()
+        private async void CreatedListPacientes()
         {
             ItemsList = new ObservableCollectionExt<PacientesModel>()
             {
-                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Mariana Estefania Calle Mendoza", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Alberto Julian Martinez Jativa", Icon="icon_pacientes.png" },
-                new PacientesModel{ Name="Carmen Anthonella Casanova Rivas", Icon="icon_pacientes.png"},
-                new PacientesModel{ Name="Melissa Fabiola Vera Gomez", Icon="icon_pacientes.png"},
+                new PacientesModel{ Nombre_del_Paciente="Mariana Estefania Calle Mendoza" },
+                new PacientesModel{ Nombre_del_Paciente="Alberto Julian Martinez Jativa" },
+                new PacientesModel{ Nombre_del_Paciente="Carmen Anthonella Casanova Rivas" }
             };
+
+            /*var lista = await RunSafeApi<ListPacientes>(_pacienteService.ListaSelAll(0, 1000));
+            if (lista.Status == TypeReponse.Ok)
+            {
+                if (lista.Response.RowCount > 0)
+                {
+
+                }
+            }*/
         }
         #endregion
 

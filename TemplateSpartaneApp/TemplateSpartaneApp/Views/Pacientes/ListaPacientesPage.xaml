@@ -32,7 +32,7 @@
                                        Padding="10"
                                        CornerRadius="10">
                                     <StackLayout Orientation="Horizontal" Spacing="20">
-                                        <Image Source="{Binding Icon}" WidthRequest="30"/>
+                                        <Image Source="icon_pacientes.png" WidthRequest="30"/>
                                         <Label Text="{Binding Name}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
                                         <Image Source="icon_right.png"
                                                WidthRequest="15"

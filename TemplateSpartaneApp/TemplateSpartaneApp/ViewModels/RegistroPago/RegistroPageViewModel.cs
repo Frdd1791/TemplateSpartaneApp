@@ -98,7 +98,7 @@ namespace TemplateSpartaneApp.ViewModels.RegistroPago
                 if (insert.Status == TypeReponse.Ok)
                 {
                     UserDialogsService.HideLoading();
-                    await NavigationService.GoBackAsync();
+                    await NavigationService.NavigateAsync("ValidarCuenta");
                 }
                 else
                 {

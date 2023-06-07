@@ -20,6 +20,7 @@ namespace TemplateSpartaneApp.Droid
 
             base.OnCreate(savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
+            Plugin.MaterialDesignControls.Android.Renderer.Init();
             UserDialogs.Init(this);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
