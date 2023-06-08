@@ -49,7 +49,7 @@
                                                        Grid.Column="0"
                                                        BorderColor="Gray"
                                                        Placeholder=""
-                                                       Text="{Binding Password}"
+                                                       Text="{Binding Nombre_del_Paciente}"
                                                        Keyboard="Text"
                                                        CornerRadius="0"
                                                        HorizontalOptions="FillAndExpand"/>
@@ -65,10 +65,10 @@
                             </Grid>
 
                             <Label Text="Edad" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="" HorizontalTextAlignment="Center" Text="{Binding Edad}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
                             <Label Text="Sexo" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <Button Command="{Binding ActionGeneroCommand}" Text="{Binding TextGenero}"
+                            <Button Command="{Binding ActionGeneroCommand}" Text="{Binding SexoValue}"
                                     BackgroundColor="white"
                                     TextColor="Black"
                                     HorizontalOptions="Fill"
@@ -81,19 +81,19 @@
                                     ContentLayout="Right,0"/>
 
                             <Label Text="Talla" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="mts" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="mts" HorizontalTextAlignment="Center" Text="{Binding Talla}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
                             <Label Text="Peso actual" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Peso_Actual}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
                             <Label Text="Peso usual (hace 3 meses)" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Peso_Usual}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
                             <Label Text="Peso ideal" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="Kg" HorizontalTextAlignment="Center" Text="{Binding Peso_Ideal}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
                             <Label Text="Creatinina" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="mg/dl" HorizontalTextAlignment="Center" Text="{Binding Password}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
+                            <controls:EntryControl HeightRequest="40" BorderColor="Gray" Placeholder="mg/dl" HorizontalTextAlignment="Center" Text="{Binding Creatinina}" Keyboard="Numeric" HorizontalOptions="Fill" CornerRadius="50"/>
 
                             <Button Command="{Binding NextEvoUnoCommand}" Text="Siguiente"
                                     BackgroundColor="#165BE2"
@@ -110,6 +110,7 @@
             </ContentView>
 
             <ContentView IsVisible="{Binding IsActiveEvoDos}">
+                <ScrollView>
                 <StackLayout>
                     <StackLayout Margin="20">
                         <Label Text="Fractura, paciente cronico, complicaciones agudas, cirrosism EPOC, hermodialisis, diabetes, cancer"
@@ -204,6 +205,7 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
+                </ScrollView>
             </ContentView>
 
             <ContentView IsVisible="{Binding IsActiveEvoTres}">

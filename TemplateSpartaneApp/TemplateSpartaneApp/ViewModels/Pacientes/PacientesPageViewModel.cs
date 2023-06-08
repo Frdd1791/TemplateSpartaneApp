@@ -48,7 +48,6 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
                 OnSelectItemCommand.Execute();
             }
         }
-
         #endregion
 
 

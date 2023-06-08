@@ -70,7 +70,7 @@ namespace TemplateSpartaneApp
             InitServiceSQLite();
             if (AppSettings.Instance.Logged)
             {
-                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/ListaPacientes", UriKind.Absolute));
+                await NavigationService.NavigateAsync(new Uri("/Index/Navigation/Home", UriKind.Absolute));
             }
             else
             {

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TemplateSpartaneApp.Views.Pacientes.ListaPacientesPage"
-             BackgroundColor="#F0F6FB">
+             BackgroundColor="#F0F6FB"
+             x:Name="ListaPacientes">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Margin="20,20,20,20">
@@ -16,33 +17,34 @@
             </StackLayout>
             <BoxView BackgroundColor="Blue" HeightRequest="1"/>
             <StackLayout Margin="10,0">
-                <ListView HasUnevenRows="True"
-                          SeparatorVisibility="Default"
-                          SeparatorColor="Transparent"
-                          BackgroundColor="Transparent"
-                          ItemsSource="{Binding ItemsList}"
-                          SelectedItem="{Binding SelectItemPaciente}"
-                          Margin="10,30">
-                    <ListView.ItemTemplate >
-                        <DataTemplate >
-                            <ViewCell>
-                                <Frame HasShadow="True"
+                <CollectionView BackgroundColor="Transparent"
+                                ItemsSource="{Binding ItemsList}"
+                                SelectedItem="{Binding SelectItemPaciente}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="4">
+                                <Frame HasShadow="False"
                                        BackgroundColor="white"
-                                       Margin="5"
                                        Padding="10"
-                                       CornerRadius="10">
+                                       CornerRadius="10"
+                                       HeightRequest="45">
                                     <StackLayout Orientation="Horizontal" Spacing="20">
-                                        <Image Source="icon_pacientes.png" WidthRequest="30"/>
+                                        <Image Source="icon_user.png" WidthRequest="30"/>
                                         <Label Text="{Binding Nombre_del_Paciente}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="16"/>
                                         <Image Source="icon_right.png"
                                                WidthRequest="15"
                                                HorizontalOptions="EndAndExpand"/>
                                     </StackLayout>
+                                    <!--<Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectPaciente, Source={x:Reference ListaPacientes}}"
+                                                              CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>-->
                                 </Frame>
-                            </ViewCell>
+                            </StackLayout>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

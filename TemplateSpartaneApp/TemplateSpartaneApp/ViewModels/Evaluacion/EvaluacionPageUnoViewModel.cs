@@ -6,7 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.Helpers;
+using TemplateSpartaneApp.LocalData;
+using TemplateSpartaneApp.Models.Catalogs;
+using TemplateSpartaneApp.Models.Pacientes;
+using TemplateSpartaneApp.Services.Pacientes;
 using TemplateSpartaneApp.ViewModels.RegistroPago;
 using Xamarin.Forms;
 
@@ -16,6 +22,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
     {
         #region Vars
         private static string TAG = nameof(EvaluacionPageUnoViewModel);
+        private readonly IPacientesService _pacienteService;
         #endregion
 
         #region Vars Commands
@@ -54,6 +61,85 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         #endregion
 
         #region Properties
+        /*
+         *  Properties Algunos datos del paciente
+         */
+        private string nombre_del_Paciente;
+        public string Nombre_del_Paciente
+        {
+            get { return nombre_del_Paciente; }
+            set
+            {
+                SetProperty(ref nombre_del_Paciente, value);
+            }
+        }
+
+        private string sexoValue;
+        public string SexoValue
+        {
+            get { return sexoValue; }
+            set
+            {
+                SetProperty(ref sexoValue, value);
+            }
+        }
+
+        private int sexo;
+        public int Sexo
+        {
+            get { return sexo; }
+            set
+            {
+                SetProperty(ref sexo, value);
+            }
+        }
+        private string talla;
+        public string Talla
+        {
+            get { return talla; }
+            set
+            {
+                SetProperty(ref talla, value);
+            }
+        }
+        private string peso_Actual;
+        public string Peso_Actual
+        {
+            get { return peso_Actual; }
+            set
+            {
+                SetProperty(ref peso_Actual, value);
+            }
+        }
+        private string peso_Usual;
+        public string Peso_Usual
+        {
+            get { return peso_Usual; }
+            set
+            {
+                SetProperty(ref peso_Usual, value);
+            }
+        }
+        private string peso_Ideal;
+        public string Peso_Ideal
+        {
+            get { return peso_Ideal; }
+            set
+            {
+                SetProperty(ref peso_Ideal, value);
+            }
+        }
+        private string creatinina;
+        public string Creatinina
+        {
+            get { return creatinina; }
+            set
+            {
+                SetProperty(ref creatinina, value);
+            }
+        }
+        /********** Final properties Datos del paciente **********/
+
         private string txtIndicadorPaso;
         public string TxtIndicadorPaso
         {
@@ -121,16 +207,6 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             set
             {
                 SetProperty(ref textPeso, value);
-            }
-        }
-
-        private string textGenero;
-        public string TextGenero
-        {
-            get { return textGenero; }
-            set
-            {
-                SetProperty(ref textGenero, value);
             }
         }
 
@@ -281,8 +357,10 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
 
 
         #region Contructor
-        public EvaluacionPageUnoViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public EvaluacionPageUnoViewModel(INavigationService navigationService, IPacientesService pacientesService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
+            _pacienteService = pacientesService;
+
             ButtonBack = true;
             ProgressBarOpt = true;
             ButtonSaveData = false;
@@ -324,7 +402,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             IsActiveEvoCuatro = false;
             IsActiveEvoResultado = false;
 
-            TextGenero = "Hombre";
+            SexoValue = "Hombre";
             TextAlimentacionMas65 = "Ha comido mucho menos";
             TextPesoMas65 = "Perdida de peso en los ultimos 3 meses";
             TextMovilidadMas65 = "De la cama al sillon";
@@ -338,12 +416,115 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         #endregion
 
         #region Commands Methods
-        private void NextEvoUnoCommandExecuted()
+        public async Task<string> ValidateEntry()
         {
-            IsActiveEvoUno = false;
-            IsActiveEvoDos = true;
+            string state = "";
 
-            TxtIndicadorPaso = "Indice de riesgo nutricional";
+            if (string.IsNullOrEmpty(Nombre_del_Paciente))
+            {
+                state = "Por favor ingrese Nombre del Paciente.";
+            }
+            else if (string.IsNullOrEmpty(Talla))
+            {
+                state = "El campo Talla no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(SexoValue))
+            {
+                state = "El campo Sexo no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(Peso_Actual))
+            {
+                state = "El campo Peso Actual no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(Peso_Usual))
+            {
+                state = "El campo Peso Usual no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(Peso_Ideal))
+            {
+                state = "El campo Peso Ideal no puede estar vacío.";
+            }
+            else if (string.IsNullOrEmpty(Creatinina))
+            {
+                state = "El campo Creatinina no puede estar vacío.";
+            }
+            if (!string.IsNullOrEmpty(Talla))
+            {
+                double talla = double.Parse(Talla);
+                if(talla <= 0 || talla > 2.2)
+                {
+                    state = "El rango permitido del campo talla es de 1 a 2.2";
+                }
+            }
+            if (!string.IsNullOrEmpty(Peso_Actual))
+            {
+                double peso_actual = double.Parse(Peso_Actual);
+                if (peso_actual < 15 || peso_actual > 120)
+                {
+                    state = "El rango permitido del campo peso actual es de 15 y 120";
+                }
+            }
+            if (!string.IsNullOrEmpty(Peso_Usual))
+            {
+                double peso_usual = double.Parse(Peso_Usual);
+                if (peso_usual < 15 || peso_usual > 120)
+                {
+                    state = "El rango permitido del campo peso usual es de 15 y 120";
+                }
+            }
+            if (!string.IsNullOrEmpty(Creatinina))
+            {
+                double creatinina = double.Parse(Creatinina);
+                if (creatinina < 0.01 || creatinina > 8)
+                {
+                    state = "El rango permitido del campo creatinina es de 0.01 a 8";
+                }
+            }
+            return state;
+        }
+        private async void NextEvoUnoCommandExecuted()
+        {
+            UserDialogsService.ShowLoading("Registrando...");
+            string state = await ValidateEntry();
+            if (string.IsNullOrEmpty(state))
+            {
+
+                MiPaciente model = new MiPaciente()
+                {
+                    Fecha_de_Registro = DateTime.Now,
+                    Hora_de_Registro = DateTime.Now.ToString("HH:mm"),
+                    Usuario = Profile.Instance.Identifier,
+                    Nombre_del_Paciente = Nombre_del_Paciente,
+                    Apellidoss = "Vacio",
+                    Sexo = Sexo,
+                    Talla = double.Parse(Talla),
+                    Peso_Actual = double.Parse(Peso_Actual),
+                    Peso_Usual = double.Parse(Peso_Usual),
+                    Peso_Ideal = double.Parse(Peso_Ideal),
+                    Peso_para_Calculo = 80.50,
+                    Creatinina = double.Parse(Creatinina)
+                };
+                ResponseBase<int> insert = await RunSafeApi<int>(_pacienteService.Post(model));
+                if (insert.Status == TypeReponse.Ok)
+                {
+                    UserDialogsService.HideLoading();
+                    IsActiveEvoUno = false;
+                    IsActiveEvoDos = true;
+
+                    TxtIndicadorPaso = "Indice de riesgo nutricional";
+                }
+                else
+                {
+                    UserDialogsService.HideLoading();
+                    UserDialogsService.Alert("Error al crear nuevo paciente", "Alerta", "Aceptar");
+                }
+            }
+            else
+            {
+                UserDialogsService.Alert(state, "Alerta", "Aceptar");
+            }
+
+            UserDialogsService.HideLoading();
         }
 
         private void NextEvoDosCommandExecuted()
@@ -379,7 +560,14 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             }
             else
             {
-                TextGenero = genero.ToString();
+                SexoValue = genero.ToString();
+                if (genero.Equals("Hombre"))
+                {
+                    Sexo = 1;
+                }else if (genero.Equals("Mujer"))
+                {
+                    Sexo = 2;
+                }
             }
         }
 
