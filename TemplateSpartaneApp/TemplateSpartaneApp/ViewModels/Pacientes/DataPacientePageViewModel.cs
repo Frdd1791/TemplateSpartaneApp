@@ -7,9 +7,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.CalculosNutricionales;
+using TemplateSpartaneApp.Models.ConfiguraPreguntas;
 using TemplateSpartaneApp.Models.Evaluaciones;
 using TemplateSpartaneApp.Models.Pacientes;
+using TemplateSpartaneApp.Services.ConfiguraPreguntas;
+using TemplateSpartaneApp.Services.Pacientes;
 using TemplateSpartaneApp.ViewModels.Session;
 using Xamarin.Forms;
 using static TemplateSpartaneApp.ViewModels.Pacientes.PacientesPageViewModel;
@@ -20,6 +24,7 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
     {
         #region Vars
         private static string TAG = nameof(DataPacientePageViewModel);
+        private readonly IConfiguraPreguntaService _configuraPreguntaService;
         #endregion
 
         #region Vars Commands
@@ -41,7 +46,6 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             {
                 SetProperty(ref itemsList, value);
             }
-
         }
 
         private ObservableCollectionExt<CalculosNModel> itemsListCalculos;
@@ -52,7 +56,15 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
             {
                 SetProperty(ref itemsListCalculos, value);
             }
-
+        }
+        private ObservableCollectionExt<ConfigPregunta> preguntasList;
+        public ObservableCollectionExt<ConfigPregunta> PreguntasList
+        {
+            get { return preguntasList; }
+            set
+            {
+                SetProperty(ref preguntasList, value);
+            }
         }
 
         private bool contentEvaluacion;
@@ -148,7 +160,10 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
         #endregion
 
         #region Contructor
-        public DataPacientePageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public DataPacientePageViewModel(INavigationService navigationService,
+            IUserDialogs userDialogsService,
+            IConfiguraPreguntaService configuraPreguntaService,
+            IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             NewEvaluacionCommand = new DelegateCommand(NewEvaluacionCommandExecuted);
             NewCalculoCommand = new DelegateCommand(NewCalculoCommandExecuted);
@@ -172,10 +187,23 @@ namespace TemplateSpartaneApp.ViewModels.Pacientes
 
             TextSelectDiasEv = "Ultimos 7 dias";
             TextSelectDiasCal = "Ultimos 7 dias";
+            _configuraPreguntaService = configuraPreguntaService;
+            LoadPreguntas();
         }
         #endregion
 
         #region Methods
+        private async void LoadPreguntas()
+        {
+            var items = await RunSafeApi<ListConfigPreguntaModel>(_configuraPreguntaService.ListaSelAll(0, 100, $"Clave = 1"));
+            if (items.Status == TypeReponse.Ok)
+            {
+                if (items.Response.RowCount > 0)
+                {
+                    PreguntasList = new ObservableCollectionExt<ConfigPregunta>(items.Response.listPreguntas);
+                }
+            }
+        }
         private async void ButtonBackCommandExecuted()
         {
             await NavigationService.NavigateAsync(new Uri("/Navigation/ListaPacientes", UriKind.Absolute));

@@ -65,8 +65,8 @@
                             ContentLayout="Right,0"/>
 
                     <StackLayout>
-                        <CollectionView BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}">
-                            <CollectionView.ItemTemplate >
+                        <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DeepSkyBlue" BackgroundColor="Transparent" ItemsSource="{Binding ItemsList}">
+                            <ListView.ItemTemplate >
                                 <DataTemplate >
                                     <ViewCell>
                                         <Frame HasShadow="True" BackgroundColor="white">
@@ -78,8 +78,8 @@
                                         </Frame>
                                     </ViewCell>
                                 </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
 
                     <Button Command="{Binding NewEvaluacionCommand}" Text="Nueva evaluacion"

@@ -39,6 +39,7 @@ using TemplateSpartaneApp.Views.ProductosNutricionales.Enteral;
 using TemplateSpartaneApp.Views.ProductosNutricionales.Oral;
 using TemplateSpartaneApp.Views.ProductosNutricionales.Parenteral;
 using TemplateSpartaneApp.Services.Pacientes;
+using TemplateSpartaneApp.Services.ConfiguraPreguntas;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TemplateSpartaneApp
@@ -137,6 +138,7 @@ namespace TemplateSpartaneApp
             containerRegistry.Register<ISessionService, SessionService>();
             containerRegistry.Register<IProgressReportService, ProgressReportService>();
             containerRegistry.Register<IPacientesService, PacientesService>();
+            containerRegistry.Register<IConfiguraPreguntaService, ConfiguraPreguntaService>();
             #endregion
 
             #region Repositories

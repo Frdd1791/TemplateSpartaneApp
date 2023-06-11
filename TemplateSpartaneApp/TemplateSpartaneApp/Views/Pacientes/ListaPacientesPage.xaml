@@ -17,13 +17,16 @@
             </StackLayout>
             <BoxView BackgroundColor="Blue" HeightRequest="1"/>
             <StackLayout Margin="10,0">
-                <CollectionView BackgroundColor="Transparent"
-                                ItemsSource="{Binding ItemsList}"
-                                SelectedItem="{Binding SelectItemPaciente}"
-                                SelectionMode="Single">
-                    <CollectionView.ItemTemplate>
+                <ListView BackgroundColor="Transparent"
+                          SeparatorVisibility="Default"
+                          SeparatorColor="Transparent"
+                          HasUnevenRows="True"
+                          ItemsSource="{Binding ItemsList}"
+                          SelectedItem="{Binding SelectItemPaciente}"
+                          Margin="10,30">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Margin="4">
+                            <ViewCell>
                                 <Frame HasShadow="False"
                                        BackgroundColor="white"
                                        Padding="10"
@@ -36,15 +39,11 @@
                                                WidthRequest="15"
                                                HorizontalOptions="EndAndExpand"/>
                                     </StackLayout>
-                                    <!--<Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectPaciente, Source={x:Reference ListaPacientes}}"
-                                                              CommandParameter="{Binding .}"/>
-                                    </Frame.GestureRecognizers>-->
                                 </Frame>
-                            </StackLayout>
+                            </ViewCell>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
