@@ -31,27 +31,27 @@ namespace TemplateSpartaneApp.Services.ConfiguraPreguntas
             return configuraPreguntaService.Delete(id);
         }
 
-        public Task<ConfigPregunta> Get(int id)
+        public Task<ConfiguraPregunta> Get(int id)
         {
             return configuraPreguntaService.Get(id);
         }
 
-        public Task<ListConfigPreguntaModel> GetAll()
+        public Task<ListConfiguracionPreguntaModel> GetAll()
         {
             return configuraPreguntaService.GetAll();
         }
 
-        public Task<ListConfigPreguntaModel> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null)
+        public Task<ListConfiguracionPreguntaModel> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null)
         {
             return configuraPreguntaService.ListaSelAll(startRowIndex, maximumRows, where, order);
         }
 
-        public Task<int> Post([Body] ConfigPregunta item)
+        public Task<int> Post([Body] ConfiguraPregunta item)
         {
             return configuraPreguntaService.Post(item);
         }
 
-        public Task<int> Put(int id, [Body] ConfigPregunta item)
+        public Task<int> Put(int id, [Body] ConfiguraPregunta item)
         {
             return configuraPreguntaService.Put(id, item);
         }

@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using TemplateSpartaneApp.Abstractions;
 using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.ProductosOrales;
+using TemplateSpartaneApp.Models.Spartane;
+using TemplateSpartaneApp.Services.Spartane;
 
 namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
 {
@@ -23,6 +25,7 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
 
         #region Vars Commands
         public DelegateCommand<object> SelectProduct { get; private set; }
+        private readonly ISpartaneQueryService _spartaneQueryService;
         #endregion
 
         #region Properties
@@ -51,15 +54,19 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
 
 
         #region Contructor
-        public ProductosOralesPageViewModel(INavigationService navigationService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public ProductosOralesPageViewModel(INavigationService navigationService,
+            ISpartaneQueryService spartaneQueryService,
+            IUserDialogs userDialogsService,
+            IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
+            _spartaneQueryService = spartaneQueryService;
             SelectProduct = new DelegateCommand<object>(SelectProductCommandExecute);
             CreatedListProductos();
         }
         #endregion
 
         #region Methods
-        private void CreatedListProductos()
+        private async void CreatedListProductos()
         {
             IsVisibleBackButton = "True";
             ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>()
@@ -74,6 +81,12 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
             if (!AppSettings.Instance.isAviso)
             {
                 LoadAlert();
+            }
+
+            var resp = await RunSafeApi(_spartaneQueryService.GetRawQuery<string>(new SpartaneQueryModel { Query = "exec sp_GetComplete_Productos_Nutricionales_Categoria 1" }));
+            if (resp.Status == TypeReponse.Ok && !string.IsNullOrEmpty(resp.Response) && !resp.Response.ToLower().Equals("null"))
+            {
+
             }
 
         }

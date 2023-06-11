@@ -11,7 +11,10 @@ using TemplateSpartaneApp.Abstractions;
 using TemplateSpartaneApp.Helpers;
 using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.Catalogs;
+using TemplateSpartaneApp.Models.ConfiguraPreguntas;
 using TemplateSpartaneApp.Models.Pacientes;
+using TemplateSpartaneApp.Services.ConfiguraPreguntas;
+using TemplateSpartaneApp.Services.Formulario;
 using TemplateSpartaneApp.Services.Pacientes;
 using TemplateSpartaneApp.ViewModels.RegistroPago;
 using Xamarin.Forms;
@@ -23,6 +26,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         #region Vars
         private static string TAG = nameof(EvaluacionPageUnoViewModel);
         private readonly IPacientesService _pacienteService;
+        private readonly IConfiguraPreguntaService _configuraPreguntaService;
         #endregion
 
         #region Vars Commands
@@ -64,6 +68,60 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         /*
          *  Properties Algunos datos del paciente
          */
+        private string textPregunta1;
+        public string TextPregunta1
+        {
+            get { return textPregunta1; }
+            set
+            {
+                SetProperty(ref textPregunta1, value);
+            }
+        }
+        private string textPregunta2;
+        public string TextPregunta2
+        {
+            get { return textPregunta2; }
+            set
+            {
+                SetProperty(ref textPregunta2, value);
+            }
+        }
+        private string textPregunta3;
+        public string TextPregunta3
+        {
+            get { return textPregunta3; }
+            set
+            {
+                SetProperty(ref textPregunta3, value);
+            }
+        }
+        private string textPregunta4;
+        public string TextPregunta4
+        {
+            get { return textPregunta4; }
+            set
+            {
+                SetProperty(ref textPregunta4, value);
+            }
+        }
+        private string textPregunta5;
+        public string TextPregunta5
+        {
+            get { return textPregunta5; }
+            set
+            {
+                SetProperty(ref textPregunta5, value);
+            }
+        }
+        private string textPregunta6;
+        public string TextPregunta6
+        {
+            get { return textPregunta6; }
+            set
+            {
+                SetProperty(ref textPregunta6, value);
+            }
+        }
         private string nombre_del_Paciente;
         public string Nombre_del_Paciente
         {
@@ -357,9 +415,15 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
 
 
         #region Contructor
-        public EvaluacionPageUnoViewModel(INavigationService navigationService, IPacientesService pacientesService, IUserDialogs userDialogsService, IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
+        public EvaluacionPageUnoViewModel(INavigationService navigationService,
+            IPacientesService pacientesService,
+            IConfiguraPreguntaService configuraPreguntaService,
+            IUserDialogs userDialogsService,
+            IConnectivity connectivity) : base(navigationService, userDialogsService, connectivity)
         {
             _pacienteService = pacientesService;
+            _configuraPreguntaService = configuraPreguntaService;
+            LoadPreguntas();
 
             ButtonBack = true;
             ProgressBarOpt = true;
@@ -394,7 +458,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
 
             TextPerdidaPeso = "No ha perdido peso";
             TextIngestaAlimentos = "Normal";
-            TxtIndicadorPaso = "Indicanos algunos datos de tu paciente";
+
             TextPeso = "Perdida de peso de >5 % en:";
             IsActiveEvoUno = true;
             isActiveEvoDos = false;
@@ -416,6 +480,55 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         #endregion
 
         #region Commands Methods
+        private async void LoadPreguntas()
+        {
+            var configuraciones = await RunSafeApi<ListConfiguracionPreguntaModel>(_configuraPreguntaService.ListaSelAll(0, 100));
+            if (configuraciones.Status == TypeReponse.Ok)
+            {
+                if (configuraciones.Response.RowCount > 0)
+                {
+                    for (int i = 0; i < configuraciones.Response.RowCount; i++)
+                    {
+                        if (configuraciones.Response.Configura_Preguntas[i] != null)
+                        {
+                            if (configuraciones.Response.Configura_Preguntas[i].Formulario == 1)
+                            {
+                                if (configuraciones.Response.Configura_Preguntas[i].Titulo_Seccion_de_Formulario.Clave == 1 && configuraciones.Response.Configura_Preguntas[i].Clave == 1)
+                                {
+                                    TxtIndicadorPaso = configuraciones.Response.Configura_Preguntas[i].Titulo_Seccion_de_Formulario.Descripcion.ToString();
+                                    Debug.WriteLine(configuraciones.Response.Configura_Preguntas[i].Titulo_Seccion_de_Formulario.Descripcion.ToString());
+                                }
+
+                                if (configuraciones.Response.Configura_Preguntas[i].Clave == 1)
+                                {
+                                    TextPregunta1 = configuraciones.Response.Configura_Preguntas[i].Pregunta;
+                                }
+                                else if (configuraciones.Response.Configura_Preguntas[i].Clave == 2)
+                                {
+                                    TextPregunta2 = configuraciones.Response.Configura_Preguntas[i].Pregunta;
+                                }
+                                else if (configuraciones.Response.Configura_Preguntas[i].Clave == 3)
+                                {
+                                    TextPregunta3 = configuraciones.Response.Configura_Preguntas[i].Pregunta;
+                                }
+                                else if (configuraciones.Response.Configura_Preguntas[i].Clave == 4)
+                                {
+                                    TextPregunta4 = configuraciones.Response.Configura_Preguntas[i].Pregunta;
+                                }
+                                else if (configuraciones.Response.Configura_Preguntas[i].Clave == 5)
+                                {
+                                    TextPregunta5 = configuraciones.Response.Configura_Preguntas[i].Pregunta;
+                                }
+                                else if (configuraciones.Response.Configura_Preguntas[i].Clave == 6)
+                                {
+                                    TextPregunta6 = configuraciones.Response.Configura_Preguntas[i].Pregunta;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         public async Task<string> ValidateEntry()
         {
             string state = "";
@@ -451,7 +564,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
             if (!string.IsNullOrEmpty(Talla))
             {
                 double talla = double.Parse(Talla);
-                if(talla <= 0 || talla > 2.2)
+                if (talla <= 0 || talla > 2.2)
                 {
                     state = "El rango permitido del campo talla es de 1 a 2.2";
                 }
@@ -564,7 +677,8 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
                 if (genero.Equals("Hombre"))
                 {
                     Sexo = 1;
-                }else if (genero.Equals("Mujer"))
+                }
+                else if (genero.Equals("Mujer"))
                 {
                     Sexo = 2;
                 }
@@ -672,7 +786,7 @@ namespace TemplateSpartaneApp.ViewModels.Evaluacion
         private async void ActionSheetPerdidaPesoCommandExecuted()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Perdida de peso: ", "Cancel", null, "No ha perdido peso", "Ultimo mes", "2 meses", "3 meses", ">15% en tiempo indefinido");
-            if(action.Equals("Calcel"))
+            if (action.Equals("Calcel"))
             {
                 Debug.WriteLine("Valor no admitido");
             }

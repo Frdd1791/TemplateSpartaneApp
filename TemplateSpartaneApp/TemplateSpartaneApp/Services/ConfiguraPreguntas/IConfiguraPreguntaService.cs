@@ -12,23 +12,23 @@ namespace TemplateSpartaneApp.Services.ConfiguraPreguntas
     {
         [Get("/Configura_Pregunta/Get")]
         [Headers("Authorization: Bearer")]
-        Task<ConfigPregunta> Get(int id);
+        Task<ConfiguraPregunta> Get(int id);
 
         [Get("/Configura_Pregunta/GetAll")]
         [Headers("Authorization: Bearer")]
-        Task<ListConfigPreguntaModel> GetAll();
+        Task<ListConfiguracionPreguntaModel> GetAll();
 
         [Get("/Configura_Pregunta/ListaSelAll")]
         [Headers("Authorization: Bearer")]
-        Task<ListConfigPreguntaModel> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null);
+        Task<ListConfiguracionPreguntaModel> ListaSelAll(int startRowIndex, int maximumRows, string where = null, string order = null);
 
         [Post("/Configura_Pregunta/Post")]
         [Headers("Authorization: Bearer")]
-        Task<int> Post([Body] ConfigPregunta item);
+        Task<int> Post([Body] ConfiguraPregunta item);
 
         [Put("/Configura_Pregunta/Put")]
         [Headers("Authorization: Bearer")]
-        Task<int> Put(int id, [Body] ConfigPregunta item);
+        Task<int> Put(int id, [Body] ConfiguraPregunta item);
 
         [Delete("/Configura_Pregunta/Delete")]
         [Headers("Authorization: Bearer")]
