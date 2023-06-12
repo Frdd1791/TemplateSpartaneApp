@@ -4,11 +4,13 @@ using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemplateSpartaneApp.Abstractions;
+using TemplateSpartaneApp.Helpers;
 using TemplateSpartaneApp.LocalData;
 using TemplateSpartaneApp.Models.ProductosOrales;
 using TemplateSpartaneApp.Models.Spartane;
@@ -36,6 +38,16 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
             set
             {
                 SetProperty(ref itemsProductosOrales, value);
+            }
+
+        }
+        private ObservableCollection<OralesModel> itemsOrales;
+        public ObservableCollection<OralesModel> ItemsOrales
+        {
+            get { return itemsOrales; }
+            set
+            {
+                SetProperty(ref itemsOrales, value);
             }
 
         }
@@ -69,14 +81,14 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
         private async void CreatedListProductos()
         {
             IsVisibleBackButton = "True";
-            ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>()
-            {
-                new ProductosOrales{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
-                new ProductosOrales{ Id=1, ImageProduct="logo.png", NombreProducto="Advance active" },
-                new ProductosOrales{ Id=2, ImageProduct="logo.png", NombreProducto="Producto 3" },
-                new ProductosOrales{ Id=3, ImageProduct="logo.png", NombreProducto="Producto 4" },
-                new ProductosOrales{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
-            };
+            //ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>()
+            //{
+            //    new ProductosOrales{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
+            //    new ProductosOrales{ Id=1, ImageProduct="logo.png", NombreProducto="Advance active" },
+            //    new ProductosOrales{ Id=2, ImageProduct="logo.png", NombreProducto="Producto 3" },
+            //    new ProductosOrales{ Id=3, ImageProduct="logo.png", NombreProducto="Producto 4" },
+            //    new ProductosOrales{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
+            //};
 
             if (!AppSettings.Instance.isAviso)
             {
@@ -86,7 +98,8 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
             var resp = await RunSafeApi(_spartaneQueryService.GetRawQuery<string>(new SpartaneQueryModel { Query = "exec sp_GetComplete_Productos_Nutricionales_Categoria 1" }));
             if (resp.Status == TypeReponse.Ok && !string.IsNullOrEmpty(resp.Response) && !resp.Response.ToLower().Equals("null"))
             {
-
+                List<ProductosOrales> lista = GlobalMethods.DeserializeObjectWithSlashes<List<ProductosOrales>>(resp);
+                ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>(lista);
             }
 
         }
@@ -103,7 +116,7 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
             if (item is ProductosOrales)
             {
                 ProductSelected = (ProductosOrales)item;
-                Debug.WriteLine(ProductSelected.Id);
+                //Debug.WriteLine(ProductSelected.Id);
             }
             await NavigationService.NavigateAsync(new Uri("/Navigation/ProductoOral", UriKind.Absolute));
         }
