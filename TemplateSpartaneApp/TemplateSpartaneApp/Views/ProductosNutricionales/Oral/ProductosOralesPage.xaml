@@ -25,60 +25,51 @@
                 <Image Source="filter_round.png"/>
             </StackLayout>
 
-            <CarouselView ItemsSource="{Binding ItemsProductosOrales}"
-                          Margin="0,15"
-                          PeekAreaInsets="80">
-                <CarouselView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal"/>
-                </CarouselView.ItemsLayout>
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Frame BackgroundColor="#F3F3F3"
-                                   Margin="10"
-                                   CornerRadius="6"
-                                   HeightRequest="60">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectProduct, Source={x:Reference ProductosOrales}}"
-                                                          CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>
-                                <Image Source="logo.png" WidthRequest="50"/>
+            <StackLayout>
+                <CollectionView BackgroundColor="Transparent" ItemsSource="{Binding ItemsProductosOrales}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame HasShadow="True" BackgroundColor="white"
+                                   WidthRequest="150">
+                                <StackLayout>
+                                    <Frame BackgroundColor="WhiteSmoke"
+                                           CornerRadius="7"
+                                           Padding="0">
+                                        <Image Source="logo.png" WidthRequest="50"/>
+                                    </Frame>
+                                    <StackLayout HorizontalOptions="Center">
+                                        <Label Text="{Binding Grupo_de_Alimentos_Descripcion}" TextColor="Black" FontSize="16"/>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="Center">
+                                        <CollectionView>
+                                            <CollectionView.ItemsLayout>
+                                                <LinearItemsLayout Orientation="Vertical" />
+                                            </CollectionView.ItemsLayout>
+                                            <CollectionView.ItemsSource>
+                                                <x:Array Type="{x:Type x:String}">
+                                                    <x:String>Item 1</x:String>
+                                                    <x:String>Item 2</x:String>
+                                                    <x:String>Item 3</x:String>
+                                                    <x:String>Item 4</x:String>
+                                                    <x:String>Item 5</x:String>
+                                                    <x:String>Item 6</x:String>
+                                                    <x:String>Item 7</x:String>
+                                                    <x:String>Item 8</x:String>
+                                                    <x:String>Item 9</x:String>
+                                                    <x:String>Item 10</x:String>
+                                                </x:Array>
+                                            </CollectionView.ItemsSource>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </StackLayout>
                             </Frame>
-                            <StackLayout>
-                                <ListView HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="DeepSkyBlue" BackgroundColor="Transparent" ItemsSource="{Binding ItemsProductosOrales}">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <Frame HasShadow="True" BackgroundColor="white">
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <StackLayout HorizontalOptions="Start">
-                                                            <Label Text="{Binding Productos_Nutricionales_Nombre}" TextColor="Black" FontSize="16"/>
-                                                        </StackLayout>
-                                                        <StackLayout HorizontalOptions="EndAndExpand">
-                                                            <Label>
-                                                                <Label.FormattedText>
-                                                                    <FormattedString>
-                                                                        <Span Text="{Binding Medidas_Oral_Medida}"
-                                                                              TextColor="blue"/>
-                                                                        <Span Text=" "/>
-                                                                        <Span Text="{Binding Medidas_Oral_Detalle}"
-                                                                              TextColor="blue"
-                                                                              FontSize="16"/>
-                                                                    </FormattedString>
-                                                                </Label.FormattedText>
-                                                            </Label>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </Frame>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </StackLayout>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

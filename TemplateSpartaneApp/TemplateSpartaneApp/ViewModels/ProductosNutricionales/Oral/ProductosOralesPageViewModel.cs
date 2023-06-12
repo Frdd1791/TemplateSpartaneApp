@@ -49,8 +49,18 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
             {
                 SetProperty(ref itemsOrales, value);
             }
-
         }
+
+        private ObservableCollection<Verduras> itemsVerduras;
+        public ObservableCollection<Verduras> ItemsVerduras
+        {
+            get { return itemsVerduras; }
+            set
+            {
+                SetProperty(ref itemsVerduras, value);
+            }
+        }
+
 
         private string isVisibleBackButton;
         public string IsVisibleBackButton
@@ -79,17 +89,8 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
 
         #region Methods
         private async void CreatedListProductos()
-        {
+        {   
             IsVisibleBackButton = "True";
-            //ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>()
-            //{
-            //    new ProductosOrales{ Id=0, ImageProduct="deslizar_black.png", NombreProducto="Ensure" },
-            //    new ProductosOrales{ Id=1, ImageProduct="logo.png", NombreProducto="Advance active" },
-            //    new ProductosOrales{ Id=2, ImageProduct="logo.png", NombreProducto="Producto 3" },
-            //    new ProductosOrales{ Id=3, ImageProduct="logo.png", NombreProducto="Producto 4" },
-            //    new ProductosOrales{  Id=4, ImageProduct="logo.png", NombreProducto = "Producto 5" }
-            //};
-
             if (!AppSettings.Instance.isAviso)
             {
                 LoadAlert();
@@ -100,8 +101,22 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
             {
                 List<ProductosOrales> lista = GlobalMethods.DeserializeObjectWithSlashes<List<ProductosOrales>>(resp);
                 ItemsProductosOrales = new ObservableCollectionExt<ProductosOrales>(lista);
-            }
 
+                var productGroupedByCategoria = lista.GroupBy(item => item.Grupo_de_Alimentos_Descripcion);
+
+                //foreach (var group in productGroupedByCategoria)
+                //{
+                //    Debug.WriteLine("Items from " + group.Key);
+                //    foreach(var producto in group)
+                //    {
+                //        if (group.Key.Equals("Verduras"))
+                //        {
+                //            Debug.WriteLine(producto.Productos_Nutricionales_Nombre);
+                //            ItemsVerduras.Add(new Verduras { Nombre = producto.Productos_Nutricionales_Nombre });
+                //        }
+                //    }
+                //}
+            }
         }
         #endregion
 
@@ -128,11 +143,14 @@ namespace TemplateSpartaneApp.ViewModels.ProductosNutricionales.Oral
         #endregion
 
         #region Methods Life Cycle Page
-        /*public class ListProductos
+        public class ListVerduras
         {
-            public string ImageProduct { get; set; }
-            public string NombreProducto { get; set; }
-        }*/
+            List<Verduras> verduras { get; set; }
+        }
+        public class Verduras
+        {
+            public string Nombre { get; set; }
+        }
         #endregion
     }
 }
